@@ -1,6 +1,6 @@
 ---
 title: Almacenar en caché las dependencias para agilizar los flujos de trabajo
-shortTitle: Almacenar dependencias en caché
+shortTitle: Cache dependencies
 intro: 'Para hacer que tus flujos de trabajo sean más rápidos y eficientes, puedes crear y usar cachés para las dependencias y otros archivos comúnmente reutilizados.'
 redirect_from:
   - /github/automating-your-workflow-with-github-actions/caching-dependencies-to-speed-up-workflows
@@ -9,89 +9,74 @@ redirect_from:
   - /actions/guides/caching-dependencies-to-speed-up-workflows
   - /actions/advanced-guides/caching-dependencies-to-speed-up-workflows
 versions:
-  fpt: '*'
-  ghec: '*'
+  feature: actions-caching
 type: tutorial
 topics:
   - Workflows
+miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: 380fe568e950a4dc388e8f811ecebd12f242c5df
+ms.sourcegitcommit: 34d500fe45b362043b4b4685d6705a7bfb484d11
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 11/15/2022
+ms.locfileid: '148164384'
 ---
-
 ## Acerca de almacenar en caché las dependencias de flujo de trabajo
 
 Las ejecuciones de flujo de trabajo a menudo reutilizan las mismas salidas o dependencias descargadas de una ejecución a otra. Por ejemplo, las herramientas de administración de paquetes y dependencias como Maven, Gradle, npm y Yarn mantienen una caché local de las dependencias descargadas.
 
-Los trabajos en los ejecutores alojados {% data variables.product.prodname_dotcom %} se inician en un entorno virtual limpio y deben descargar dependencias cada vez, lo que provoca una mayor utilización de la red, un tiempo de ejecución más largo y un mayor costo. Para ayudar a acelerar el tiempo que se tarda en volver a crear estos archivos, {% data variables.product.prodname_dotcom %} puede almacenar en caché las dependencias que utilizas con frecuencia en los flujos de trabajo.
+{% ifversion fpt or ghec %} Los trabajos en ejecutores hospedados en {% data variables.product.prodname_dotcom %} se inician en una imagen de ejecutor limpia y deben descargar dependencias cada vez, lo que provoca una mayor utilización de la red, un tiempo de ejecución más largo y un mayor costo. {% endif %}Para ayudar a acelerar el tiempo que se tarda en volver a crear archivos como dependencias, {% data variables.product.prodname_dotcom %} puede almacenar en caché los archivos que utilizas con frecuencia en los flujos de trabajo.
 
-Para almacenar en caché las dependencias de un trabajo, deberás usar la acción de `caché` de {% data variables.product.prodname_dotcom %}. La acción recupera una caché identificada por una clave única. Para más información, consulta [`actions/cache`](https://github.com/actions/cache).
+Para almacenar en caché las dependencias de un trabajo, puedes usar la [acción `cache`](https://github.com/actions/cache) de {% data variables.product.prodname_dotcom %}. La acción crea y restaura una memoria caché que identifica una clave única. Como alternativa, si almacenas en caché los administradores de paquetes que se enumeran debajo, el uso de sus respectivas acciones setup-* requiere una configuración mínima, y creará y restaurará las cachés de dependencias automáticamente.
 
-Si estás almacenando en caché los administradores de paquetes que se listan a continuación, considera utilizar las acciones de setup-* respectivas, las cuales casi no requieren de configuración y son fáciles de utilizar.
-
-<table>
-<thead>
-  <tr>
-    <th>Administradores de paquetes</th>
-    <th>acción de setup-* para almacenar en caché</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>npm, yarn, pnpm</td>
-    <td><a href="https://github.com/actions/setup-node">setup-node</a></td>
-  </tr>
-  <tr>
-    <td>pip, pipenv</td>
-    <td><a href="https://github.com/actions/setup-python">setup-python</a></td>
-  </tr>
-  <tr>
-    <td>gradle, maven</td>
-    <td><a href="https://github.com/actions/setup-java">setup-java</a></td>
-  </tr>
-  <tr>
-    <td>ruby gems</td>
-    <td><a href="https://github.com/ruby/setup-ruby">setup-ruby</a></td>
-  </tr>
-</tbody>
-</table>
+| Administradores de paquetes | acción de setup-* para almacenar en caché |
+|---|---|
+| npm, Yarn, pnpm | [setup-node](https://github.com/actions/setup-node#caching-global-packages-data) |
+| pip, pipenv, Poetry | [setup-python](https://github.com/actions/setup-python#caching-packages-dependencies) |
+| Gradle, Maven | [setup-java](https://github.com/actions/setup-java#caching-packages-dependencies) |
+| RubyGems | [setup-ruby](https://github.com/ruby/setup-ruby#caching-bundle-install-automatically) |
+| Go `go.sum` | [setup-go](https://github.com/actions/setup-go#caching-dependency-files-and-build-outputs) |
 
 {% warning %}
 
-**Advertencia**: Te recomendamos que no almacenes ninguna información confidencial en la caché de los repositorios públicos. Por ejemplo, la información confidencial puede incluir tokens de acceso o credenciales de inicio de sesión almacenados en un archivo en la ruta de la caché. Además, los programas de interfaz de línea de comando (CLI) como `docker login` pueden guardar las credenciales de acceso en un archivo de configuración. Cualquier persona con acceso de lectura puede crear una solicitud de extracción en un repositorio y acceder a los contenidos de la caché. Las bifurcaciones de un repositorio también pueden crear solicitudes de extracción en la rama base y acceder a las cachés en la rama base.
+**Advertencia**: {% ifversion fpt or ghec %}Ten en cuenta lo siguiente al usar el almacenamiento en caché con {% data variables.product.prodname_actions %}:
+
+* {% endif %}Se recomienda no almacenar ninguna información confidencial en la memoria caché. Por ejemplo, la información confidencial puede incluir tokens de acceso o credenciales de inicio de sesión almacenados en un archivo en la ruta de la caché. Además, los programas de interfaz de línea de comandos (CLI), como `docker login`, pueden guardar las credenciales de acceso en un archivo de configuración. Cualquier usuario con acceso de lectura puede crear una solicitud de incorporación de cambios en un repositorio y acceder a los contenidos de una caché. Las bifurcaciones de un repositorio también pueden crear solicitudes de extracción en la rama base y acceder a las cachés en la rama base.
+{%- ifversion fpt or ghec %}
+* Al usar ejecutores autohospedados, las cachés de las ejecuciones de flujo de trabajo se almacenan en almacenamiento en la nube propiedad de {% data variables.product.company_short %}. Una solución de almacenamiento propiedad del cliente solo está disponible con {% data variables.product.prodname_ghe_server %}.
+{%- endif %}
 
 {% endwarning %}
 
-## Comparar artefactos y caché de dependencias
+{% data reusables.actions.comparing-artifacts-caching %}
 
-Los artefactos y el almacenamiento en caché son similares porque brindan la posibilidad de almacenar archivos en {% data variables.product.prodname_dotcom %}, pero cada característica ofrece diferentes casos de uso y no se puede usar indistintamente.
-
-- Usa el almacenamiento en caché cuando quieras reutilizar archivos que no cambien a menudo entre trabajos o ejecuciones de flujo de trabajo.
-- Usa artefactos cuando quieras guardar los archivos producidos por un trabajo para ver después de que haya finalizado un flujo de trabajo. Para obtener más información, consulta "[Conservar datos de flujo de trabajo mediante artefactos](/github/automating-your-workflow-with-github-actions/persisting-workflow-data-using-artifacts)".
+Para más información sobre los artefactos de ejecución de flujo de trabajo, consulta "[Conservación de datos de flujo de trabajo mediante artefactos](/github/automating-your-workflow-with-github-actions/persisting-workflow-data-using-artifacts)".
 
 ## Restricciones para acceder a una caché
 
-Con la `v2` de la acción `cache`, puedes acceder al caché en en los flujos de trabajo que cualquier evento que tenga un `GITHUB_REF` active. Si estás utilizando la `v1` de la acción `cache`, únicamente podrás acceder al caché en los flujos de trabajo que activen los eventos `push` y `pull_request`, con excepción de aquellos eventos `pull_request` `closed`. Para obtener más información, consulta "[Eventos que activan los flujos de trabajo](/actions/reference/events-that-trigger-workflows)".
+Las restricciones de acceso proporcionan aislamiento y seguridad de caché al crear una frontera lógica entre las ramas o etiquetas diferentes. Las ejecuciones de flujo de trabajo pueden restaurar las memorias caché creadas en la rama actual o en la rama predeterminada (normalmente `main`). Si se desencadena una ejecución de flujo de trabajo para una solicitud de incorporación de cambios, también puede restaurar las memorias caché creadas en la rama base, incluidas las ramas base de repositorios bifurcados. Por ejemplo, si la rama `feature-b` tiene la rama base `feature-a`, una ejecución de flujo de trabajo desencadenada en una solicitud de incorporación de cambios tendría acceso a las memorias caché creadas en la rama predeterminada `main`, la rama base `feature-a` y la rama actual `feature-b`.
 
-Un flujo de trabajo puede acceder y restaurar una caché creada en la rama actual, la rama base (incluidas las ramas base de los repositorios bifurcados) o la rama predeterminada (por lo general `main`). Por ejemplo, un caché creado en la rama predeterminada sería accesible desde cualquier solicitud de cambios. También, si la rama `feature-b` tiene la rama base `feature-a`, un flujo de trabajo activado en `feature-b` tendría acceso a las cachés creadas en la rama predeterminada (`main`), `feature-a` y `feature-b`.
+Las ejecuciones de flujo de trabajo no pueden restaurar las memorias caché creadas para ramas secundarias o ramas del mismo nivel. Por ejemplo, una memoria caché creada para la rama secundaria `feature-b` no sería accesible para una ejecución de flujo de trabajo desencadenada en la rama primaria `main`. De forma similar, una memoria caché creada para la rama `feature-a` con la rama `main` base no sería accesible para su la rama `feature-c` del mismo nivel con la rama base `main`. Las ejecuciones de flujo de trabajo tampoco pueden restaurar las memorias caché creadas para nombres de etiqueta diferentes. Por ejemplo, una memoria caché creada para la etiqueta `release-a` con la rama `main` no sería accesible para un flujo de trabajo desencadenado para la etiqueta `release-b` con la rama base `main`.
 
-Las restricciones de acceso proporcionan aislamiento y seguridad de caché al crear una frontera lógica entre las ramas diferentes. Por ejemplo, un caché creado para la rama `feature-a` (con la base `main`) no sería accesible para una solicitud de extracción para la rama `feature-b` (con la base `main`).
+Cuando se crea una memoria caché mediante una ejecución de flujo de trabajo desencadenada en una solicitud de incorporación de cambios, dicha memoria caché se crea para la referencia de combinación (`refs/pull/.../merge`). Por este motivo, la memoria caché tendrá un ámbito limitado y solo se puede restaurar mediante nuevas ejecuciones de la solicitud de incorporación de cambios. No se puede restaurar mediante la rama base u otras solicitudes de incorporación de cambios destinadas a esa rama base.
 
-Los flujos de trabajo múltiples dentro de un repositorio comparten entradas de caché. Puede accederse a un caché que se crea para una rama dentro de un flujo de trabajo y se puede establecer desde otro flujo de trabajo para el mismo repositorio y rama.
+Varias ejecuciones de flujo de trabajo en un repositorio pueden compartir memorias caché. Se puede acceder a una memoria caché creada para una rama en una ejecución de flujo de trabajo y restaurarla desde otra ejecución de flujo de trabajo para el mismo repositorio y rama.
 
-## Usando la acción `cache`
+## Uso de la acción `cache`
 
-La acción `cache` intentará restaurar una memoria caché basada en la `key` (clave) que proporciones. Cuando la acción encuentra una memoria caché, la acción restaura los archivos almacenados en la caché al `path` (ruta) que configures.
+La [acción `cache`](https://github.com/actions/cache) intentará restaurar una caché en función del `key` que proporciones. Cuando la acción encuentra una memoria caché que coincide _exactamente_ con la clave, la acción restaura los archivos almacenados en caché al `path` que configures.
+Opcionalmente, puedes proporcionar una lista de `restore-keys` para que se usen cuando `key` no coincide con una memoria caché existente. Una lista de `restore-keys` resulta útil cuando se restaura una memoria caché desde otra rama porque `restore-keys` puede coincidir _parcialmente_ con claves de caché. Para obtener más información sobre la coincidencia con `restore-keys`, consulta "[Coincidencia con una clave de caché](#matching-a-cache-key)".
 
-Si no hay una coincidencia exacta, la acción crea una nueva entrada de caché si el trabajo se completa correctamente. La nueva memoria caché usará la `key` que proporcionaste y contiene los archivos en el directorio del `path`.
+Si hay una coincidencia exacta con el elemento `key` proporcionado, se considera un acierto de caché. Si ninguna memoria caché coincide exactamente con el elemento `key` proporcionado, se considera un error de caché. En un error de caché, la acción crea automáticamente una nueva memoria caché si el trabajo se completa correctamente. La nueva caché usará el elemento `key` que proporcionaste y contiene los archivos que especificaste en `path`. Para obtener más información sobre cómo se controla esto, consulta "[Aciertos y errores de caché](#cache-hits-and-misses)".
 
-De manera opcional, puedes proporcionar una lista de `restore-keys` para usar cuando la `key` no coincida con una memoria caché existente. Una lista de `restore-keys` es útil cuando estás restaurando una caché desde otra rama porque `restore-keys` pueden coincidir parcialmente con claves de caché. Para obtener más información acerca de la coincidencia `restore-keys`, consulta [Hacer coincidir una clave de caché](#matching-a-cache-key)".
+No se puede cambiar el contenido de una memoria caché existente. En su lugar, puedes crear una nueva memoria caché con una nueva clave.
 
-Para más información, consulta [`actions/cache`](https://github.com/actions/cache).
 
-### Parámetros de entrada para la acción `chache`
+### Parámetros de entrada de la acción `cache`
 
-- `key`: **Obligatorio** La clave que se crea cuando se guarda una memoria caché y la clave utilizada para buscar una caché. Puede ser cualquier combinación de variables, valores de contexto, cadenas estáticas y funciones. Las claves tienen una longitud máxima de 512 caracteres y las claves más largas que la longitud máxima provocarán un error en la acción.
-- `path`: **Obligatorio** La ruta del archivo en el ejecutor para almacenar en caché o restaurar. The path can be an absolute path or relative to the workspace directory.
-  - Las rutas pueden ser tanto directorios o solo archivos, y los patrones estilo glob son compatibles.
-  - Con la `v2` de la acción `cache`, puedes especificar una ruta sencilla o puedes agregar rutas múltiples en líneas separadas. Por ejemplo:
+- `key`: **obligatorio** La clave creada al guardar una memoria caché y la clave usada para buscar una caché. Puede ser cualquier combinación de variables, valores de contexto, cadenas estáticas y funciones. Las claves tienen una longitud máxima de 512 caracteres y las claves más largas que la longitud máxima provocarán un error en la acción.
+- `path`: **obligatorio** las rutas de acceso en el ejecutor para almacenar en caché o restaurar.
+  - Puedes especificar una única ruta de acceso o agregar varias rutas de acceso en líneas independientes. Por ejemplo:
 
     ```
     - name: Cache Gradle packages
@@ -101,39 +86,53 @@ Para más información, consulta [`actions/cache`](https://github.com/actions/ca
           ~/.gradle/caches
           ~/.gradle/wrapper
     ```
-  - Con la `v1` de la acción `cache`, solo se puede utilizar una ruta única, la cual debe ser un directorio. No puedes almacenar en caché un archivo único.
-- `restore-keys`: **Optional** A string containing alternative restore keys, with each restore key placed on a new line. If no cache hit occurred for `key`, these restore keys are used sequentially in the order provided to find and restore a cache. Por ejemplo:
+  - Puedes especificar directorios o archivos únicos, y los patrones globales son compatibles.
+  - Puedes especificar rutas de acceso absolutas o rutas de acceso relativas al directorio del área de trabajo.
+- `restore-keys`: **opcional** una cadena que contiene claves de restauración alternativas, con cada clave de restauración colocada en una nueva línea. Si no se produce ningún acierto de caché para `key`, estas claves de restauración se usan secuencialmente en el orden proporcionado para buscar y restaurar una caché. Por ejemplo:
 
   {% raw %}
   ```yaml
   restore-keys: |
-    npm-foobar-${{ hashFiles('package-lock.json') }}
-    npm-foobar-
+    npm-feature-${{ hashFiles('package-lock.json') }}
+    npm-feature-
     npm-
   ```
   {% endraw %}
 
-### Parámetros de salida para la acción `cache`
+### Parámetros de salida de la acción `cache`
 
-- `cache-hit`: Un valor booleano para indicar que se encontró una coincidencia exacta para la llave.
+- `cache-hit`: valor booleano para indicar que se encontró una coincidencia exacta para la clave.
 
-### Ejemplo de uso para la acción `cache`
+### Aciertos y errores de caché
+Cuando `key` coincide exactamente con una memoria caché existente, se denomina un _acierto de caché_ y la acción restaura los archivos almacenados en caché en el directorio `path`.
 
-Este ejemplo crea una nueva memoria caché cuando los paquetes en el archivo `package-lock.json` cambian o cuando cambia el sistema operativo del ejecutor. La clave de caché usa contextos y expresiones para generar una clave que incluye el sistema operativo del ejecutor y un hash SHA-256 del archivo `package-lock.json`.
+Cuando `key` no coincide con una caché existente, se denomina un _error de caché_ y se crea automáticamente una caché si el trabajo se completa correctamente.
+
+Cuando se produce un error de caché, la acción también busca los elementos `restore-keys` especificados en busca de coincidencias:
+
+1. Si proporcionas `restore-keys`, la acción `cache` busca secuencialmente las memorias caché que coincidan con la lista de `restore-keys`.
+   - Cuando hay una coincidencia exacta, la acción restaura los archivos en la memoria caché al directorio `path`.
+   - Si no hay coincidencias exactas, la acción busca coincidencias parciales de las claves de restauración. Cuando la acción encuentra una coincidencia parcial, se restaura la caché más reciente al directorio `path`.
+1. La acción `cache` se completa y se ejecuta el paso siguiente del flujo de trabajo.
+1. Si el trabajo se completa correctamente, la acción crea automáticamente una caché con los contenidos del directorio `path`.
+
+Para obtener una explicación más detallada del proceso de coincidencia de caché, consulta "[Coincidencia de una clave de caché](#matching-a-cache-key)".
+
+### Ejemplo de uso de la acción `cache`
+
+En este ejemplo se crea una nueva memoria caché cuando cambian los paquetes del archivo `package-lock.json` o cuando cambia el sistema operativo del ejecutor. La clave de caché usa contextos y expresiones para generar una clave que incluye el sistema operativo del ejecutor y un hash SHA-256 del archivo `package-lock.json`.
 
 ```yaml{:copy}
 name: Caching with npm
-
 on: push
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: {% data reusables.actions.action-checkout %}
 
       - name: Cache node modules
+        id: cache-npm
         uses: {% data reusables.actions.action-cache %}
         env:
           cache-name: cache-node-modules
@@ -146,7 +145,12 @@ jobs:
             {% raw %}${{ runner.os }}-build-{% endraw %}
             {% raw %}${{ runner.os }}-{% endraw %}
 
-      - name: Install Dependencies
+      - if: {% raw %}${{ steps.cache-npm.outputs.cache-hit != 'true' }}{% endraw %}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
+
+      - name: Install dependencies
         run: npm install
 
       - name: Build
@@ -156,23 +160,13 @@ jobs:
         run: npm test
 ```
 
-Cuando `key` coincide con una caché existente, se denomina hit de caché y la acción restaura los archivos almacenados en la caché al directorio `path`.
-
-Cuando `key` no coincide con una caché existente, se denomina una falta de caché y se crea una nueva memoria caché si el trabajo se completa correctamente. Cuando se produce una falta de caché, la acción busca claves alternativas llamadas `restore-keys`.
-
-1. Si proporcionas `restore-Keys`, la acción `cache` busca cualquier caché en forma secuencial que coincida con la lista de `restore-keys`.
-   - Cuando hay una coincidencia exacta, la acción restaura los archivos en la memoria caché al directorio `path`.
-   - Si no hay coincidencias exactas, la acción busca coincidencias parciales de las claves de restauración. Cuando la acción encuentra una coincidencia parcial, se restaura la caché más reciente al directorio `path`.
-1. La acción `cache` se completa y el siguiente paso en el flujo de trabajo del job se ejecuta.
-1. Si el trabajo se completa correctamente, la acción crea una nueva memoria caché con los contenidos del directorio `path`.
-
-Para almacenar en caché los archivos en más de un directorio, necesitarás un paso que use la acción [`cache`](https://github.com/actions/cache) para cada directorio. Una vez que creas una caché, no puedes cambiar los contenidos de una memoria caché existente, pero puedes crear una nueva caché con una clave nueva.
-
 ### Usar contextos para crear claves de caché
 
-Una clave de caché puede incluir cualquiera de los contextos, funciones, literales y operadores admitidos por {% data variables.product.prodname_actions %}. Para obtener más información, consulta la sección "[Expresiones](/actions/learn-github-actions/expressions)".
+Una clave de caché puede incluir cualquiera de los contextos, funciones, literales y operadores admitidos por {% data variables.product.prodname_actions %}. Para obtener más información, consulta "[Contextos](/actions/learn-github-actions/contexts)" y "[Expresiones](/actions/learn-github-actions/expressions)".
 
-Usar expresiones para crear una `key` te permite crear automáticamente una nueva caché cuando las dependencias han cambiado. Por ejemplo, puedes crear una `key` utilizando una expresión que calcule el hash de un archivo `package-lock.json` de npm.
+Usar expresiones para crear un elemento `key` te permite crear automáticamente una caché cuando las dependencias cambian.
+
+Por ejemplo, puedes crear una `key` mediante una expresión que calcule el hash de un archivo `package-lock.json` de npm. Por lo tanto, cuando cambian las dependencias que componen el cambio en el archivo `package-lock.json`, la clave de caché cambia y se crea automáticamente una caché.
 
 {% raw %}
 ```yaml
@@ -180,45 +174,60 @@ npm-${{ hashFiles('package-lock.json') }}
 ```
 {% endraw %}
 
-{% data variables.product.prodname_dotcom %} evalúa la expresión `hash "package-lock.json"` para obtener la última `key`.
+{% data variables.product.prodname_dotcom %} evalúa la expresión `hash "package-lock.json"` para generar el `key` final.
 
 ```yaml
 npm-d5ea0750
 ```
 
+### Uso de la salida de la acción `cache`
+
+Puedes usar la salida de la acción `cache` para hacer algo en función de si se ha producido un acierto o un error en la caché. Si se encuentra una coincidencia exacta para la caché en la `key` especificada, la salida `cache-hit` se establece en `true`.
+
+En el flujo de trabajo de ejemplo anterior, hay un paso que enumera el estado de los módulos de Node si se ha producido un error en la caché:
+
+```yaml
+- if: {% raw %}${{ steps.cache-npm.outputs.cache-hit != 'true' }}{% endraw %}
+  name: List the state of node modules
+  continue-on-error: true
+  run: npm list
+```
+
 ## Hacer coincidir una clave de caché
 
-La acción `cache` busca primero las coincidencias de caché para `key` y `restore-keys` en la rama que contiene la ejecución del flujo de trabajo. Si no hay coincidencias en la rama actual, la acción `chache` busca a `key` y `restore-keys` en la rama padre y en las ramas ascendentes.
+La acción `cache` busca primero los aciertos de caché para `key` y la _versión_ de la memoria caché en la rama que contiene la ejecución del flujo de trabajo. Si no hay ningún acierto, busca `restore-keys` y la _versión_. Si sigue sin haber aciertos en la rama actual, la acción `cache` reintenta los mismos pasos en la rama predeterminada. Ten en cuenta que se aplican las restricciones de ámbito durante la búsqueda. Para obtener más información, consulta "[Restricciones para acceder a una memoria caché](#restrictions-for-accessing-a-cache)".
 
-Puedes proporcionar una lista de claves de restauración para usar cuando haya una falta de caché en `key`. Puedes crear múltiples claves de restauración ordenadas desde las más específicas hasta las menos específicas. La acción `cache` busca `restore-keys` en orden secuencial. Cuando una clave no coincide directamente, la acción busca las claves prefijadas con la clave de restauración. Si hay múltiples coincidencias parciales para una clave de restauración, la acción devuelve la caché que se creó más recientemente.
+La versión de la memoria caché es una forma de marcar con un sello una memoria caché con metadatos de `path` y la herramienta de compresión que se usa al crear la memoria caché. Esto garantiza que la ejecución del flujo de trabajo de consumo coincida únicamente con una memoria caché que realmente puede descomprimir y usar. Para obtener más información, consulta [Versión de caché](https://github.com/actions/cache#cache-version) en la documentación de caché de Acciones.
+
+`restore-keys` permite especificar una lista de claves de restauración alternativas que se usarán cuando se produce un error de caché en `key`. Puedes crear múltiples claves de restauración ordenadas desde las más específicas hasta las menos específicas. La acción `cache` busca `restore-keys` en orden secuencial. Cuando una clave no coincide directamente, la acción busca las claves prefijadas con la clave de restauración. Si hay múltiples coincidencias parciales para una clave de restauración, la acción devuelve la caché que se creó más recientemente.
 
 ### Ejemplo usando múltiples claves de restauración
 
 {% raw %}
 ```yaml
 restore-keys: |
-  npm-foobar-${{ hashFiles('package-lock.json') }}
-  npm-foobar-
+  npm-feature-${{ hashFiles('package-lock.json') }}
+  npm-feature-
   npm-
 ```
 {% endraw %}
 
-El ejecutor evalúa las expresiones, que resuelven estas `restore-keys`:
+El ejecutor evalúa las expresiones, que se resuelven en estos `restore-keys`:
 
 {% raw %}
 ```yaml
 restore-keys: |
-  npm-foobar-d5ea0750
-  npm-foobar-
+  npm-feature-d5ea0750
+  npm-feature-
   npm-
 ```
 {% endraw %}
 
-La clave de restauración `npm-foobar-` coincide con cualquier clave que empiece con la cadena `npm-foobar-`. Por ejemplo, ambas claves `npm-foobar-fd3052de` y `npm-foobar-a9b253ff` coinciden con la clave de restauración. Se utilizará la caché con la fecha de creación más reciente. Las claves en este ejemplo se buscan en el siguiente orden:
+La clave de restauración `npm-feature-` coincide con cualquier clave que comience por la cadena `npm-feature-`. Por ejemplo, las claves `npm-feature-fd3052de` y `npm-feature-a9b253ff` coinciden con la clave de restauración. Se utilizará la caché con la fecha de creación más reciente. Las claves en este ejemplo se buscan en el siguiente orden:
 
-1. **`npm-foobar-d5ea0750`** coincide con un hash específico.
-1. **`npm-foobar-`** coincide con claves de caché prefijadas con `npm-foobar-`.
-1. **`npm`** coincide con cualquier clave prefijada con `npm`.
+1. **`npm-feature-d5ea0750`** coincide con un hash específico.
+1. **`npm-feature-`** coincide con las claves de caché con el prefijo `npm-feature-`.
+1. **`npm-`** coincide con cualquier clave con el prefijo `npm-`.
 
 #### Ejemplo de prioridad de búsqueda
 
@@ -230,23 +239,77 @@ restore-keys: |
   npm-
 ```
 
-Por ejemplo, si una solicitud de cambios contiene una rama `feature` (el alcance actual) y se dirige a la rama predeterminada (`main`), la acción busca a `key` y a `restore-keys` en el siguiente orden:
+Por ejemplo, si una solicitud de incorporación de cambios contiene una rama `feature` y tiene como destino la rama predeterminada (`main`), la acción busca `key` y `restore-keys` en el orden siguiente:
 
-1. Clave `npm-feature-d5ea0750` en el alcance de la rama `feature`
-1. Clave `npm-feature-` en el alcance de la rama `feature`
-2. Clave `npm` en el alcance de la rama `feature`
-1. Clave `npm-feature-d5ea0750` en el alcance de la rama `main`
-3. Clave `npm-feature-` en el alcance de la rama `main`
-4. Clave `npm-` en el alcance de la rama `main`
+1. Clave `npm-feature-d5ea0750` en la rama `feature`
+1. Clave `npm-feature-` en la rama `feature`
+1. Clave `npm-` en la rama `feature`
+1. Clave `npm-feature-d5ea0750` en la rama `main`
+1. Clave `npm-feature-` en la rama `main`
+1. Clave `npm-` en la rama `main`
 
 ## Límites de uso y política de desalojo
 
-{% data variables.product.prodname_dotcom %} eliminará todas las entradas de caché a las que no se haya accedido en más de 7 días. There is no limit on the number of caches you can store, but the total size of all caches in a repository is limited to 10 GB. If you exceed this limit, {% data variables.product.prodname_dotcom %} will save your cache but will begin evicting caches until the total size is less than 10 GB.
+{% data variables.product.prodname_dotcom %} eliminará todas las entradas de caché a las que no se haya accedido en más de 7 días. No hay límite en la cantidad de cachés que puedes almacenar, pero el tamaño total de todas las cachés de un repositorio es limitado{% ifversion actions-cache-policy-apis %}. De manera predeterminada, el límite es de 10 GB por repositorio, pero este límite puede ser diferente en función de las directivas que establezcan los propietarios de la empresa o los administradores del repositorio.{% else %} hasta 10 GB. {% endif %} 
 
-{% if actions-cache-management %}
+{% data reusables.actions.cache-eviction-process %} {% ifversion actions-cache-ui %}El proceso de expulsión de caché puede provocar la paginación excesiva de caché, donde las memorias caché se crean y eliminan con una alta frecuencia. Para reducir esto, puedes revisar las memorias caché de un repositorio y tomar medidas correctivas, como quitar el almacenamiento en caché de flujos de trabajo específicos. Para obtener más información, consulta "[Administración de memorias caché](#managing-caches)".{% endif %}{% ifversion actions-cache-admin-ui %} También puedes aumentar el límite de tamaño de caché de un repositorio. Para más información, vea "[Administración de la configuración de {% data variables.product.prodname_actions %} para un repositorio](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#configuring-cache-storage-for-a-repository)".
 
-## Managing caches
+{% elsif actions-cache-policy-apis %}
 
-You can use the {% data variables.product.product_name %} REST API to manage your caches. At present, you can use the API to see your cache usage, with more functionality expected in future updates. For more information, see the "[Actions](/rest/reference/actions#cache)" REST API documentation.
+A fin de obtener información sobre cómo cambiar las directivas para el límite de tamaño de caché del repositorio, consulta "[Aplicación de directivas para {% data variables.product.prodname_actions %} en la empresa](/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#enforcing-a-policy-for-cache-storage-in-your-enterprise)" y "[Administración de la configuración de {% data variables.product.prodname_actions %} para un repositorio](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#configuring-cache-storage-for-a-repository)".
+
+{% endif %}
+
+{% ifversion actions-cache-management %}
+
+## Administración de cachés
+
+{% ifversion actions-cache-ui %}
+
+Para administrar las memorias caché creadas a partir de los flujos de trabajo, puedes:
+
+- Ver una lista de todas las entradas de caché de un repositorio.
+- Filtrar y ordenar la lista de memorias cachés mediante metadatos específicos, como el tamaño de la memoria caché, la hora de creación o la hora a la que se accedió por última vez.
+- Eliminar las entradas de caché de un repositorio.
+- Supervisar el uso de caché agregada para repositorios y organizaciones.
+
+Hay varias maneras de administrar memorias cachés para los repositorios:
+
+- Mediante la interfaz web de {% data variables.product.prodname_dotcom %}, como se muestra a continuación.
+- Mediante la API REST. Para más información, consulta la documentación de la API REST de "[Caché de {% data variables.product.prodname_actions %}](/rest/actions/cache)".
+- Instalando una extensión de la {% data variables.product.prodname_cli %} para administrar las memorias caché desde la línea de comandos. Para obtener más información, consulta la extensión [gh-actions-cache](https://github.com/actions/gh-actions-cache).
+
+{% else %}
+
+Puedes usar la API de REST de {% data variables.product.product_name %} para administrar las memorias caché. {% ifversion actions-cache-list-delete-apis %}Puedes usar la API para enumerar y eliminar entradas de caché y ver el uso de la caché.{% elsif actions-cache-management %}En la actualidad, puedes usar la API para ver el uso de la caché, con más funcionalidad esperada en actualizaciones futuras.{% endif %} Para más información, consulta la documentación de la API REST "[Caché de {% data variables.product.prodname_actions %}](/rest/actions/cache)".
+
+También puedes instalar una extensión de {% data variables.product.prodname_cli %} para administrar las memorias caché desde la línea de comandos. Para obtener más información sobre la extensión, consulta [la documentación de la extensión](https://github.com/actions/gh-actions-cache#readme). Para más información sobre las extensiones de {% data variables.product.prodname_cli %}, consulta "[Uso de extensiones de la CLI de GitHub](/github-cli/github-cli/using-github-cli-extensions)".
+
+{% endif %}
+
+{% ifversion actions-cache-ui %}
+
+### Visualización de entradas de caché
+
+Puedes usar la interfaz web para ver una lista de entradas de caché de un repositorio. En la lista de caché, puedes ver cuánto espacio en disco usa cada memoria caché, cuándo se creó la memoria caché y cuándo se usó por última vez la memoria caché.
+
+{% data reusables.repositories.navigate-to-repo %} {% data reusables.repositories.actions-tab %} {% data reusables.repositories.actions-cache-list %}
+1. Revisa la lista de entradas de caché del repositorio.
+
+   * Para buscar entradas de caché usadas para una rama específica, haz clic en el menú desplegable **Rama** y selecciona una rama. La lista de memorias caché mostrará todas las memorias caché usadas para la rama seleccionada.
+   * Para buscar entradas de caché con una clave de caché específica, usa la sintaxis `key: key-name` en el campo **Filtrar memorias cachés**. La lista de memorias caché mostrará las memorias caché de todas las ramas en las que se usó la clave.
+
+   ![Captura de pantalla de la lista de entradas de caché](/assets/images/help/repository/actions-cache-entry-list.png)
+
+### Eliminación de entradas de caché
+
+Los usuarios con acceso `write` a un repositorio pueden usar la interfaz web de {% data variables.product.prodname_dotcom %} para eliminar entradas de caché.
+
+{% data reusables.repositories.navigate-to-repo %} {% data reusables.repositories.actions-tab %} {% data reusables.repositories.actions-cache-list %}
+1. A la derecha de la entrada de caché que quieres eliminar, haz clic en {% octicon "trash" aria-label="The trash icon" %}. 
+
+   ![Captura de pantalla de la lista de entradas de caché](/assets/images/help/repository/actions-cache-delete.png)
+
+{% endif %}
 
 {% endif %}

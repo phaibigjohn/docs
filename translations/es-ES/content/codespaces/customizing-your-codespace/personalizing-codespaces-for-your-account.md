@@ -1,53 +1,57 @@
 ---
-title: Personalizing Codespaces for your account
-intro: 'You can personalize {% data variables.product.prodname_codespaces %} by using a `dotfiles` repository on {% data variables.product.product_name %} or by using Settings Sync.'
+title: Personalizar Codespaces para tu cuenta
+shortTitle: Personalize your codespaces
+intro: Puedes personalizar {% data variables.product.prodname_codespaces %} utilizando un repositorio de `dotfiles` en {% data variables.product.product_name %} o utilizando la sincronización de ajustes.
 redirect_from:
-  - /github/developing-online-with-github-codespaces/personalizing-github-codespaces-for-your-account
-  - /github/developing-online-with-codespaces/personalizing-codespaces-for-your-account
-  - /codespaces/setting-up-your-codespace/personalizing-codespaces-for-your-account
+- /github/developing-online-with-github-codespaces/personalizing-github-codespaces-for-your-account
+- /github/developing-online-with-codespaces/personalizing-codespaces-for-your-account
+- /codespaces/setting-up-your-codespace/personalizing-codespaces-for-your-account
 versions:
   fpt: '*'
   ghec: '*'
 type: how_to
 topics:
-  - Codespaces
-  - Set up
-  - Fundamentals
+- Codespaces
+- Set up
+- Fundamentals
 product: '{% data reusables.gated-features.codespaces %}'
-shortTitle: Personalize your codespaces
+ms.openlocfilehash: 2c136318f3eff0a8caed8900520b8eb8a7772add
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "146681353"
 ---
+## <a name="about-personalizing--data-variablesproductprodname_codespaces-"></a>Acerca de personalizar los {% data variables.product.prodname_codespaces %}
 
+Cuando utilizas cualquier ambiente de desarrollo, personalizar las configuraciones y herramientas de acuerdo con tus preferencias y flujos de trabajo es un paso importante. {% data variables.product.prodname_codespaces %} permite dos formas principales de personalizar tus codespaces.
 
-## About personalizing {% data variables.product.prodname_codespaces %}
+- [Sincronizar configuración](#settings-sync): puede utilizar y compartir la configuración de {% data variables.product.prodname_vscode %} entre {% data variables.product.prodname_codespaces %} y otras instancias de {% data variables.product.prodname_vscode %}
+- [Dotfiles](#dotfiles): puede usar un repositorio `dotfiles` para especificar scripts, preferencias de shell y otras configuraciones.
 
-When using any development environment, customizing the settings and tools to your preferences and workflows is an important step. {% data variables.product.prodname_codespaces %} allows for two main ways of personalizing your codespaces.
+La personalización de {% data variables.product.prodname_codespaces %} aplica a cualquier codespace que crees.
 
-- [Settings Sync](#settings-sync) - You can use and share {% data variables.product.prodname_vscode %} settings between {% data variables.product.prodname_codespaces %} and other instances of {% data variables.product.prodname_vscode %}.
-- [Dotfiles](#dotfiles) – You can use a `dotfiles` repository to specify scripts, shell preferences, and other configurations.
+Los mantenendores de proyecto también pueden definir una configuración predeterminada que aplique a cada codespace para un repositorio que cree alguien más. Para más información, vea "[Configuración de {% data variables.product.prodname_codespaces %} para el proyecto](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project)".
 
-{% data variables.product.prodname_codespaces %} personalization applies to any codespace you create.
+## <a name="settings-sync"></a>Sincronización de ajustes
 
-Project maintainers can also define a default configuration that applies to every codespace for a repository, created by anyone. For more information, see "[Configuring {% data variables.product.prodname_codespaces %} for your project](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project)."
+La configuración de ajustes te permite compartir configuraciones tales como configuraciones, atajos de teclado, fragmentos de código, extensiones y estados de IU entre máquinas e instancias de {% data variables.product.prodname_vscode %}.
 
-## Settings Sync
+Para habilitar Sincronizar configuración, en la esquina inferior izquierda de la barra de actividad, seleccione {% octicon "gear" aria-label="The gear icon" %} and click **Activar Sincronizar configuración…** . En la caja de diálogo, selecciona los ajustes que te gustaría sincronizar.
 
-Settings Sync allows you to share configurations such as settings, keyboard shortcuts, snippets, extensions, and UI state across machines and instances of {% data variables.product.prodname_vscode %}.
+![La opción de sincronización de ajustes en el menú de administración](/assets/images/help/codespaces/codespaces-manage-settings-sync.png)
 
-To enable Settings Sync, in the bottom-left corner of the Activity Bar, select {% octicon "gear" aria-label="The gear icon" %} and click **Turn on Settings Sync…**. In the dialog box, select the settings you'd like to sync.
+Para más información, vea "[Guía de Sincronizar configuración](https://code.visualstudio.com/docs/editor/settings-sync)" en la documentación de {% data variables.product.prodname_vscode %}.
 
-![Setting Sync option in manage menu](/assets/images/help/codespaces/codespaces-manage-settings-sync.png)
+## <a name="dotfiles"></a>Dotfiles
 
-For more information, see the [Settings Sync guide](https://code.visualstudio.com/docs/editor/settings-sync) in the {% data variables.product.prodname_vscode %} documentation.
+Los dotfile son archivos y carpetas de sistemas similares a Unix que comienzan con `.` y que controlan la configuración de aplicaciones y shells en el sistema. Puedes alamacenar y administrar tus dotfiles en un repositorio en {% data variables.product.prodname_dotcom %}. Para obtener consejos y tutoriales sobre qué incluir en el repositorio de dotfile, vea [Dotfile en GitHub](https://dotfiles.github.io/).
 
-## Dotfiles
+Tu repositorio dotfiles puede incluir los alias de tu shell y tus preferencias, cualquier herramienta que quieras instalar o cualquier otra personalización del codespace que quieras hacer.
 
-Dotfiles are files and folders on Unix-like systems starting with `.` that control the configuration of applications and shells on your system. You can store and manage your dotfiles in a repository on {% data variables.product.prodname_dotcom %}. For advice and tutorials about what to include in your dotfiles repository, see [GitHub does dotfiles](https://dotfiles.github.io/).
+Puede configurar {% data variables.product.prodname_codespaces %} para usar dotfile desde cualquier repositorio que posea si selecciona ese repositorio en la [configuración personal de {% data variables.product.prodname_codespaces %}](https://github.com/settings/codespaces).
 
-Your dotfiles repository might include your shell aliases and preferences, any tools you want to install, or any other codespace personalization you want to make.
-
-You can configure {% data variables.product.prodname_codespaces %} to use dotfiles from any repository you own by selecting that repository in your [personal {% data variables.product.prodname_codespaces %} settings](https://github.com/settings/codespaces).
-
-When you create a new codespace, {% data variables.product.prodname_dotcom %} clones your selected repository to the codespace environment, and looks for one of the following files to set up the environment.
+Cuando creas un codespace nuevo, {% data variables.product.prodname_dotcom %} clona tu repositorio seleccionado hacia el ambiente del codespace, y busca uno de los siguientes archivos para configurar el ambiente.
 
 * _install.sh_
 * _install_
@@ -58,47 +62,46 @@ When you create a new codespace, {% data variables.product.prodname_dotcom %} cl
 * _setup_
 * _script/setup_
 
-If none of these files are found, then any files or folders in your selected dotfiles repository starting with `.` are symlinked to the codespace's `~` or `$HOME` directory.
+Si no se encuentra ninguno de estos archivos, los archivos o carpetas del repositorio dotfiles seleccionado que empiezan por `.` se enlazan de forma simbólica al directorio `~` o `$HOME` del codespace.
 
-Any changes to your selected dotfiles repository will apply only to each new codespace, and do not affect any existing codespace.
+Cualquier cambio al repositorio de dotfiles que seleccionaste se aplicará únicamente a cada codespace nuevo y no afectará a ningún codespace existente.
 
 {% note %}
 
-**Note:** Currently, {% data variables.product.prodname_codespaces %} does not support personalizing the _User_ settings for the {% data variables.product.prodname_vscode %} editor with your `dotfiles` repository. You can set default _Workspace_ and _Remote [Codespaces]_ settings for a specific project in the project's repository. For more information, see "[Introduction to dev containers](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project#creating-a-custom-dev-container-configuration)."
+**Nota:** Actualmente, en {% data variables.product.prodname_codespaces %} no se admite la personalización de la configuración de _Usuario_ para el editor de {% data variables.product.prodname_vscode %} con el repositorio `dotfiles`. Puede establecer la configuración predeterminada _Área de trabajo_ y _Repositorio remoto [Codespaces]_ para un proyecto específico en el repositorio del proyecto. Para obtener más información, consulte "[Introducción a los contenedores de desarrollo](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project#creating-a-custom-dev-container-configuration)".
 
 {% endnote %}
 
-### Enabling your dotfiles repository for {% data variables.product.prodname_codespaces %}
+### <a name="enabling-your-dotfiles-repository-for--data-variablesproductprodname_codespaces-"></a>Habilitar tu repositorio de dotfiles para {% data variables.product.prodname_codespaces %}
 
-You can use your selected dotfiles repository to personalize your {% data variables.product.prodname_codespaces %} environment. Once you choose your dotfiles repository, you can add your scripts, preferences, and configurations to it. You then need to enable your dotfiles from your personal {% data variables.product.prodname_codespaces %} settings page.
+Puedes utilizar tu repositorio de dotfiles seleccionado para personalizar tu ambiente de {% data variables.product.prodname_codespaces %}. Una vez que elijas tu repositorio de dotfiles, puedes agregar tus scripts, preferencias y configuraciones a este. Después, necesitarás habilitar tus dotfiles desde tu página personal de ajustes de {% data variables.product.prodname_codespaces %}.
 
 {% warning %}
 
-**Warning:** Dotfiles have the ability to run arbitrary scripts, which may contain unexpected or malicious code. Before installing a dotfiles repo, we recommend checking scripts to ensure they don't perform any unexpected actions.
+**Advertencia:** Los dotfile tienen la capacidad de ejecutar scripts arbitrarios, que podrían contener código malicioso o inesperado. Antes de instalar un repositorio de dotfiles, te recomendamos verificar los scripts para asegurarte de que no realicen acciones inesperadas.
 
 {% endwarning %}
 
-{% data reusables.user-settings.access_settings %}
-{% data reusables.user-settings.codespaces-tab %}
-1. Under "Dotfiles", select **Automatically install dotfiles** so that {% data variables.product.prodname_codespaces %} automatically installs your dotfiles into every new codespace you create.
-   ![Installing dotfiles](/assets/images/help/codespaces/install-custom-dotfiles.png)
-2. Choose the repository you want to install dotfiles from.
-   ![Selecting a dotfiles repo](/assets/images/help/codespaces/select-dotfiles-repo.png)
+{% data reusables.user-settings.access_settings %} {% data reusables.user-settings.codespaces-tab %}
+1. En "Dotfiles", seleccione **Instalar dotfiles automáticamente** para que {% data variables.product.prodname_codespaces %} instale los dotfiles de forma automática en cada codespace que cree.
+   ![Instalación de dotfiles](/assets/images/help/codespaces/install-custom-dotfiles.png)
+2. Elige el repositorio desde el cual quieras instalar dotfiles.
+   ![Selección de un repositorio de dotfiles](/assets/images/help/codespaces/select-dotfiles-repo.png)
 
-You can add further script, preferences, configuration files to your dotfiles repository or edit existing files whenever you want. Changes to settings will only be picked up by new codespaces.
+Puedes agregar más scripts, preferencias o archivos de configuración a tu repositorio de dotfiles o editar los archivos existentes cuando lo desees. Solo los codespaces nuevos tomarán los cambios a los ajustes.
 
-If your codespace fails to pick up configuration settings from dotfiles, see "[Troubleshooting dotfiles for {% data variables.product.prodname_codespaces %}](/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces)."
+Si el codespace no puede seleccionar las opciones de configuración de los dotfiles, vea "[Solución de problemas de dotfiles para {% data variables.product.prodname_codespaces %}](/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces)".
 
-## Other available settings
+## <a name="other-available-settings"></a>Otros ajustes disponibles
 
-You can also personalize {% data variables.product.prodname_codespaces %} using additional [{% data variables.product.prodname_codespaces %} settings](https://github.com/settings/codespaces):
+También puede personalizar {% data variables.product.prodname_codespaces %} mediante [valores de {% data variables.product.prodname_codespaces %}](https://github.com/settings/codespaces) adicionales:
 
-- To set your default region, see "[Setting your default region for {% data variables.product.prodname_codespaces %}](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)."
-- To set your editor, see "[Setting your default editor for {% data variables.product.prodname_codespaces %}](/codespaces/managing-your-codespaces/setting-your-default-editor-for-codespaces)."
-- To add encrypted secrets, see "[Managing encrypted secrets for {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-encrypted-secrets-for-codespaces)."
-- To enable GPG verification, see "[Managing GPG verification for {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-gpg-verification-for-codespaces)."
-- To allow your codespaces to access other repositories, see "[Managing access and security for {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-access-and-security-for-codespaces)."
+- Para establecer la región predeterminada, vea "[Establecimiento de la región predeterminada para {% data variables.product.prodname_codespaces %}](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)".
+- Para establecer el editor, vea "[Establecimiento del editor predeterminado para {% data variables.product.prodname_codespaces %}](/codespaces/managing-your-codespaces/setting-your-default-editor-for-codespaces)".
+- Para agregar secretos cifrados, vea "[Administración de secretos cifrados para {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-encrypted-secrets-for-codespaces)".
+- Para habilitar la comprobación de GPG, vea "[Administración de la comprobación de GPG para {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-gpg-verification-for-codespaces)".
+- Para permitir que los codespaces accedan a otros repositorios, vea "[Administración del acceso y la seguridad para {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-access-and-security-for-codespaces)".
 
-## Further reading
+## <a name="further-reading"></a>Información adicional
 
-* "[Creating a new repository](/github/creating-cloning-and-archiving-repositories/creating-a-new-repository)"
+* "[Creación de un repositorio](/github/creating-cloning-and-archiving-repositories/creating-a-new-repository)"

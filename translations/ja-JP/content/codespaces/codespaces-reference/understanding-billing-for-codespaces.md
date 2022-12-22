@@ -1,62 +1,67 @@
 ---
-title: Understanding billing for Codespaces
-intro: 'Learn how your {% data variables.product.prodname_codespaces %} usage is billed.'
+title: Codespaces の課金について
+intro: '{% data variables.product.prodname_codespaces %} の使用状況に対する課金のしくみについて学びます。'
 versions:
   fpt: '*'
   ghec: '*'
 redirect_from:
-  - /github/developing-online-with-codespaces/about-billing-for-codespaces
-  - /codespaces/getting-started-with-codespaces/about-billing-for-codespaces
-  - /codespaces/codespaces-reference/about-billing-for-codespaces
+- /github/developing-online-with-codespaces/about-billing-for-codespaces
+- /codespaces/getting-started-with-codespaces/about-billing-for-codespaces
+- /codespaces/codespaces-reference/about-billing-for-codespaces
 type: reference
 topics:
-  - Codespaces
-  - Billing
+- Codespaces
+- Billing
 product: '{% data reusables.gated-features.codespaces %}'
 shortTitle: Understanding billing
+ms.openlocfilehash: e8a5b24808e4d1c8dbf216933c1a519c26a46ad4
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145125350"
 ---
+この記事では、codespace の課金のしくみについて説明します。また、Organization の課金マネージャーの役割についても説明します。
 
-This article explains how billing works for your codespaces, and explains how your organization's billing manager can help.
+## <a name="getting-access-to--data-variablesproductprodname_codespaces-"></a>{% data variables.product.prodname_codespaces %} へのアクセス権を取得する
 
-## Getting access to {% data variables.product.prodname_codespaces %}
+Enterprise 管理者が {% data variables.product.prodname_codespaces %} の使用を特定の個人アカウントのみに制限している場合があります。 アクセス権を取得するには、課金マネージャーに問い合わせる必要があります。 詳しい情報については、[codespace のアクセス権とセキュリティの管理](/codespaces/managing-your-codespaces/managing-access-and-security-for-your-codespaces)に関するページを参照してください。
 
-Your organization's administrator might limit {% data variables.product.prodname_codespaces %} usage to only specific personal accounts. To get access, you will need to contact your billing manager. For more information, see "[Managing access and security for your codespaces](/codespaces/managing-your-codespaces/managing-access-and-security-for-your-codespaces)."
+## <a name="how-much-it-costs-to-use--data-variablesproductprodname_codespaces-"></a>{% data variables.product.prodname_codespaces %} の使用にかかるコスト
 
-## How much it costs to use {% data variables.product.prodname_codespaces %}
+{% data variables.product.prodname_codespaces %} の使用料金を確認するには、「[{% data variables.product.prodname_codespaces %} の価格](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces#codespaces-pricing)」を参照してください。
 
-To see the pricing for {% data variables.product.prodname_codespaces %} usage, see "[{% data variables.product.prodname_codespaces %} pricing](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces#codespaces-pricing)."
+## <a name="how-your-codespace-usage-is-billed"></a>Codespace の使用に対する課金のしくみ
 
-## How your codespace usage is billed
+Codespace は、コンピューティング時間 (分) とディスク上で使用するストレージ容量に応じて課金されます。
 
-Your codespace is billed for its compute minutes and for the amount of storage it uses on disk.
+Codespace のプレビルドを有効にすると、追加料金がかかります。 詳細については、「[About Codespaces prebuilds (codespace プレビルドの概要)](/codespaces/prebuilding-your-codespaces/about-codespaces-prebuilds#about-billing-for-codespaces-prebuilds)」を参照してください。
 
-If you enable prebuilding of codespaces this will incur additional charges. For more information, see "[About Codespaces prebuilds](/codespaces/prebuilding-your-codespaces/about-codespaces-prebuilds#about-billing-for-codespaces-prebuilds)."
+### <a name="understanding-what-compute-minutes-are"></a>コンピューティング時間 (分) について
+Codespace は、アクティブな時間に応じて分単位で課金されます。 Codespace ウィンドウが 30 分間アイドル状態のままになっていると、自動的にシャットダウンします。Codespace のコンピューティング課金は、codespace を次に起動するまで停止します。
 
-### Understanding what compute minutes are
-Your codespace is billed for the number of minutes that it's active. If your codespaces window is left idle for 30 minutes, it will automatically shutdown, and compute billing for the codespace will end until you start the codespace again.
+### <a name="understanding-how-codespace-storage-is-billed"></a>Codespace ストレージの課金方法について
+{% data variables.product.prodname_codespaces %} の場合、ストレージは、クローンされたリポジトリ、構成ファイル、拡張機能など、codespace に関連するすべてのファイルを含むように定義されます。 このストレージは、codespace のシャットダウン中の課金が行われます。 Codespace のストレージの課金は、 https://github.com/codespaces から手動で削除すると停止します。
 
-### Understanding how codespace storage is billed
-For {% data variables.product.prodname_codespaces %}, storage is defined to include any files relating to your codespace, such as the cloned repository, configuration files, and extensions, among others. This storage is billed while your codespace is shutdown. The storage billing for a codespace ends when you manually delete it from https://github.com/codespaces.
+## <a name="how-spending-limits-work"></a>利用上限のしくみ
 
-## How spending limits work
+Organization で {% data variables.product.prodname_codespaces %} を使う前に、課金マネージャーが利用上限を設定する必要があります。 詳しい情報については、「[{% data variables.product.prodname_codespaces %} の利用上限の管理](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)」を参照してください。 
 
-Before your organization can use {% data variables.product.prodname_codespaces %}, your billing manager will need to set a spending limit. For more information, see "[Managing spending limits for {% data variables.product.prodname_codespaces %}](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)."
-
-## 利用上限に達した際の変更のエクスポート
+## <a name="exporting-changes-when-you-have-reached-your-spending-limit"></a>利用上限に達した際の変更のエクスポート
 
 {% data reusables.codespaces.exporting-changes %}
 
-## Checking your current usage and limits
-If you need to check your current usage or spending limit, contact your organization's billing manager. For more information, see "[Viewing your Codespaces usage](/billing/managing-billing-for-github-codespaces/viewing-your-codespaces-usage)."
+## <a name="checking-your-current-usage-and-limits"></a>現在の使用状況と利用上限を確認する
+現在の使用状況や利用上限を確認する場合は、Organization の課金マネージャーに問い合わせてください。 詳しい情報については、「[Codespaces の使用状況の表示](/billing/managing-billing-for-github-codespaces/viewing-your-codespaces-usage)」を参照してください。
 
-## Codespaces can be automatically deleted
+## <a name="codespaces-can-be-automatically-deleted"></a>Codespace が自動的に削除される場合
 
-Your codespace will be automatically deleted when you are removed from an organization or repository.
+Organization やリポジトリから削除されたユーザーの codespace は、自動的に削除されます。
 
-## Deleting your unused codespaces
+## <a name="deleting-your-unused-codespaces"></a>使用していない codespace を削除する
 
-You can manually delete your codespaces in https://github.com/codespaces and from within {% data variables.product.prodname_vscode %}. To reduce the size of a codespace, you can manually delete files using the terminal or from within {% data variables.product.prodname_vscode %}.
+https://github.com/codespaces や {% data variables.product.prodname_vscode %} 内からの codespace は、手動で削除できます。 Codespace のサイズを小さくするには、ターミナルを使うか、{% data variables.product.prodname_vscode %} 内から、ファイルを手動で削除できます。
 
-## 参考リンク
+## <a name="further-reading"></a>参考資料
 
-- 「[Organization内のCodespacesの支払いの管理](/codespaces/managing-codespaces-for-your-organization/managing-billing-for-codespaces-in-your-organization)」
+- 「[Organization での codespace の課金の管理](/codespaces/managing-codespaces-for-your-organization/managing-billing-for-codespaces-in-your-organization)」

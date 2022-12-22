@@ -1,19 +1,24 @@
 ---
-title: Managing accessibility settings
-intro: 'You can disable character key shortcuts on {% data variables.product.prodname_dotcom %} in your accessibility settings.'
+title: アクセシビリティ設定の管理
+intro: You can disable character key shortcuts on {% data variables.product.prodname_dotcom %} in your accessibility settings.
 versions:
   feature: keyboard-shortcut-accessibility-setting
+ms.openlocfilehash: 9cd1aa981642a9372731fcbf39a614e5b93b1273
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145088887"
 ---
+## <a name="about-accessibility-settings"></a>アクセシビリティ設定について
 
-## About accessibility settings
+{% data variables.product.product_name %} には、サイト全体で移動にマウスを使用せず操作を実行できる、さまざまなキーボード ショートカットがあります。 ショートカットは時間を節約でき便利ですが、{% data variables.product.prodname_dotcom %} の使用やアクセスが難しくなる場合があります。
 
-{% data variables.product.product_name %} includes a variety of keyboard shortcuts so that you can perform actions across the site without using your mouse to navigate. While shortcuts are useful to save time, they can sometimes make {% data variables.product.prodname_dotcom %} harder to use and less accessible.
+{% data variables.product.product_name %} では、すべてのキーボード ショートカットがデフォルトで有効になっていますが、ご自分のアクセシビリティ設定で文字キー ショートカットを無効にすることもできます。 この設定は、Web ブラウザーのキーボード ショートカットや、<kbd>Control</kbd> や <kbd>Command</kbd> などの修飾子キーを使用する {% data variables.product.prodname_dotcom %} のショートカットには影響しません。
 
-All keyboard shortcuts are enabled by default on {% data variables.product.product_name %}, but you can choose to disable character key shortcuts in your accessibility settings. This setting does not affect keyboard shortcuts provided by your web browser or {% data variables.product.prodname_dotcom %} shortcuts that use a modifier key such as <kbd>Control</kbd> or <kbd>Command</kbd>.
+## <a name="managing-character-key-shortcuts"></a>文字キー ショートカットの管理
 
-## Managing character key shortcuts
-
-{% data reusables.user-settings.access_settings %}
-{% data reusables.user-settings.accessibility_settings %}
-1. Select or deselect the **Enable character key shortcuts** checkbox. ![Screenshot of the 'Enable character key shortcuts' checkbox](/assets/images/help/settings/disable-character-key-shortcuts.png)
-2. [**Save**] をクリックします。
+{% data reusables.user-settings.access_settings %} {% data reusables.user-settings.accessibility_settings %}
+1. **[文字キー ショートカットを有効にする]** チェック ボックスをオンまたはオフにします。
+   ![[文字キー ショートカットを有効にする] チェック ボックスのスクリーンショット](/assets/images/help/settings/disable-character-key-shortcuts.png)
+2. **[保存]** をクリックします。

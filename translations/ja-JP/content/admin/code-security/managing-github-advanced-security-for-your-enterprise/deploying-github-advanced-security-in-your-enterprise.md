@@ -1,403 +1,408 @@
 ---
-title: Deploying GitHub Advanced Security in your enterprise
-intro: 'Learn how to plan, prepare, and implement a phased approach for rolling out {% data variables.product.prodname_GH_advanced_security %} (GHAS) in your enterprise.'
+title: エンタープライズでの GitHub Advanced Security のデプロイ
+intro: Enterprise に {% data variables.product.prodname_GH_advanced_security %} (GHAS) を段階的にロールアウトするアプローチを計画、準備、実装する方法について説明します。
 product: '{% data reusables.gated-features.advanced-security %}'
 redirect_from:
-  - /admin/advanced-security/deploying-github-advanced-security-in-your-enterprise
+- /admin/advanced-security/deploying-github-advanced-security-in-your-enterprise
 miniTocMaxHeadingLevel: 3
 versions:
   ghes: '*'
   ghec: '*'
 type: how_to
 topics:
-  - Advanced Security
-  - Code scanning
-  - Enterprise
-  - Security
+- Advanced Security
+- Code scanning
+- Enterprise
+- Security
+ms.openlocfilehash: 7990891fd4b90127ae5f32aa262d6c096d23acab
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "147060755"
 ---
-
-## Overview of the deployment process
+## <a name="overview-of-the-deployment-process"></a>デプロイ プロセスの概要
 
 {% data reusables.security.overview-of-phased-approach-for-ghas-rollout %}
 
-For a high-level summary of these different phases, see "[Overview of {% data variables.product.prodname_GH_advanced_security %} Deployment](/admin/advanced-security/overview-of-github-advanced-security-deployment)."
+これらのさまざまなフェーズの概要については、「[{% data variables.product.prodname_GH_advanced_security %} のデプロイの概要](/admin/advanced-security/overview-of-github-advanced-security-deployment)」を参照してください。
 
-Before starting your deployment, we recommend you review the prerequisites for installing GHAS and best practices for GHAS deployment in "[Overview of {% data variables.product.prodname_GH_advanced_security %} Deployment](/admin/advanced-security/overview-of-github-advanced-security-deployment)."
+デプロイを始める前に、「[{% data variables.product.prodname_GH_advanced_security %} のデプロイの概要](/admin/advanced-security/overview-of-github-advanced-security-deployment)」で GHAS をインストールするための前提条件と GHAS のデプロイに関するベスト プラクティスを確認することをお勧めします。
 
-## {% octicon "milestone" aria-label="The milestone icon" %} Phase 0: Planning & kickoff
-
-{% note %}
-
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 0 may last roughly between 1-4 weeks. This range can vary depending on your release needs and any necessary approvals your company may need on the deployment plan.
-
-{% endnote %}
-
-The goal of the planning and kickoff phase is to ensure that you have all of your people, processes, and technologies set up and ready for implementing GHAS.
-
-To help you reach buy-in from the executive sponsor, we recommend preparing and aligning on a rollout plan and goals before releasing GHAS in your enterprise.
-
-As a part of a phased rollout strategy, we recommend that you identify high-impact and critical teams or applications that should be targeted to join GHAS before the rest of your enterprise.
-
-If a phased rollout doesn't work for your enterprise, you can skip to the [pilot project phase](#--phase-1-pilot-projects).
-
-If you’re working with {% data variables.product.prodname_professional_services %}, during this phase you will also establish a plan for how your teams will work together throughout the rollout and implementation process. The {% data variables.product.prodname_professional_services_team %} team can support you with the creation of the phased rollout plan and goals as needed.
-
-### Step 1: Kickoff meeting with {% data variables.product.prodname_professional_services %} (optional)
-
-If you signed up for {% data variables.product.prodname_professional_services %}, you’ll begin the rollout and implementation process by meeting with your Services representative.
-
-If you haven't signed up for {% data variables.product.prodname_professional_services %}, you can skip to the next step.
-
-The goal of this meeting is to align the two teams on the necessary information to begin crafting a rollout and implementation plan that will work best for your company. In preparation for this meeting, we have created a survey that will help us better prepare for the discussion. Your Services representative will send you this survey.
-
-To help you prepare for this initial meeting, review these topics.
-
--  Aligning on how your company and {% data variables.product.prodname_professional_services %} will work best together
-  - Setting expectations on how to best utilize service hours/days purchased
-  - Communications plans/frequency of meetings
-  - Roles and responsibilities
-- Review of how GHAS works within the Software Development Life cycle (SDLC). Your {% data variables.product.prodname_professional_services %} representative will explain how GHAS works.
-- Review of best practices for deploying GHAS. This is offered as a refresher if your team finds it valuable or if your enterprise did not participate in the Proof of Concept (POC) exercise. This review includes a discussion of your existing Application Security program and its level of maturity, against something like the DevSecOps maturity model.
--  Alignment on next steps for your GHAS deployment. Your {% data variables.product.prodname_professional_services %} representative will outline your next steps and the support you can expect from your partnership.
-
-To help you plan your rollout strategy, you can also expect to discuss these questions:
-  - How many teams will be enabled?
-  - What is the anatomy of the teams’ repositories? (Tech stack, current tooling, etc.)
-    - Some of this might have already been covered during the Proof of Concept exercise if your company participated. If not, this is a crucial time to discuss this.
-   - What level of adoption do we expect to be organic, assisted, or inorganic?
-   - What does assisted adoption look like from a resourcing and documentation perspective?
-   - How will you manage inorganic adoption down the line? (For example, using policy enforcement or centrally managed workflows.)
-
-### Step 2: Internal kickoff at your company
-
-Whether or not your company chooses to work with {% data variables.product.prodname_professional_services %}, we always recommend you hold your own kickoff meeting to align your own team(s).
-
-During this kickoff meeting, it's important to ensure there is a clear understanding of goals, expectations, and that a plan is in place for how to move forward with your rollout and implementation.
-
-In addition, this is a good time to begin thinking about training and preparations for your team to ensure they have the right tools and expertise to support the rollout and implementation of GHAS.
-
-#### Topics for your internal kickoff meeting
-
-We recommend you cover these topics in your internal kickoff meeting at your company if you haven't already covered these with the same group in your kickoff meeting with {% data variables.product.prodname_professional_services %}.
-
-- What are your business success metrics, how do you plan to measure and report on those measures?
-  - If these have not been defined, please define them. If they have been defined, communicate them and talk about how you plan to provide data-driven progress updates.
-- Review of how GHAS works within the SDLC (Software Development Life cycle) and how this is expected to work for your company.
-- Review of best practices if your company did not participate in the Proof of Concept exercise (or a refresher if your team finds value in this review)
-  - How does this compare/contrast with your existing Application Security Program?
-- Discuss and agree how your internal team will work best together throughout rollout and implementation.
-  - Align on your communications plans and frequency of meetings for your internal team
-  - Review tasks for rollout and implementation completion, defining roles and responsibilities. We have outlined the majority of the tasks in this article, but there may be additional tasks your company requires we have not included.
-  - Consider establishing a “Champions Program” for scaled enablement
-  - Begin discussing timing for the completion of tasks
-- Begin working on ideal rollout approaches that will work best for your company. This will include understanding a few important items:
-  - How many teams will be enabled? Some of this might have already been covered during the POC (Proof of Concept) exercise if your company participated. If not, this is a crucial time to discuss this.
-  - Of the critical applications identified for the initial rollout, how many are built on a technology supported by GHAS?
-  - How much organizational preparation is needed? To learn more, see "[Phase 2](#--phase-2-organizational-buy-in--rollout-preparation)."
-
-### Step 3: Prepare your rollout & implementation plan and goals
-
-Before you can move forward with pilot project(s) for the first phase of the rollout, it’s crucial to ensure a rollout plan and business goals have been established for how your company plans to proceed.
-
-If you’re working with {% data variables.product.prodname_professional_services %}, they can play a significant role in the creation of this plan.
-
-If you’re working independently, this section outlines some things to ensure are included in your plan as you prepare to move forward.
-
-Plans for process changes (if needed) and training for team members as needed:
-  - Documented team assignments for roles and responsibilities. For more information on the permissions required for each feature, see "[Repository roles for an organization](/organizations/managing-access-to-your-organizations-repositories/repository-roles-for-an-organization#access-requirements-for-security-features)."
-  - Documented plan of tasks and timelines/timeframes where possible. This should include infrastructure changes, process changes/training, and all subsequent phases of enablement of GHAS, allowing for timeframes for remediations and configuration adjustments as needed. For more information, see "[Phase 1: Pilot projects(s)](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise#--phase-1-pilot-projects)" below.
-  - Prioritized plan for which projects/teams will have GHAS enabled first, and subsequent plans for which projects/teams will come in following phases
-  - Success metrics based on business goals. This will be a crucial reference point following the Pilot Project(s) to gain buy-in for the full rollout.
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon--phase-0-planning--kickoff"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 0: 計画とキックオフ
 
 {% note %}
 
-**Note:** To ensure awareness, buy-in, and adoption comes from all groups in your company, it's important to set realistic expectations around the rollout timing and impact on your company's infrastructure, processes, and general day-to-day development workflows. For a smoother and more successful rollout, ensure your security and development teams understand the impact of GHAS.
+{% octicon "clock" aria-label="Clock" %} **推定所要時間:** フェーズ 0 には、約 1 から 4 週間かかる可能性があるものと思われます。 この範囲は、リリースのニーズと、会社がデプロイ計画で必要になる場合がある承認によって、変化する可能性があります。
 
 {% endnote %}
 
-{% ifversion ghes %}
+計画とキックオフ フェーズの目標は、すべての人、プロセス、テクノロジを用意し、GHAS を実装できる状態にすることです。
 
-For {% data variables.product.prodname_ghe_server %} customers, to help ensure your instance can support the rollout and implementation of GHAS, review the following:
+エグゼクティブ スポンサーからの了承を得るため、社内に GHAS をリリースする前に、ロールアウト計画と目標を準備して調整することをお勧めします。
 
-- While upgrading to GHES 3.0 is not required, you must upgrade to GHES 3.0 or higher to take advantage of feature combinations such as code scanning and {% data variables.product.prodname_actions %}. 詳細は「[{% data variables.product.prodname_ghe_server %} をアップグレードする](/admin/enterprise-management/updating-the-virtual-machine-and-physical-resources/upgrading-github-enterprise-server)」を参照してください。
+段階的なロールアウト戦略の一環として、企業の他の部分より前に GHAS への参加対象にする必要がある、影響の大きい重要なチームまたはアプリケーションを明らかにすることをお勧めします。
 
-- High Availability 設定では、完全に冗長なセカンダリの {% data variables.product.prodname_ghe_server %} アプライアンスは、すべての主要なデータストアのレプリケーションによってプライマリアプライアンスとの同期を保ちます。 For more information on setting up high availability, see "[Configuring High Availability](/admin/enterprise-management/configuring-high-availability)."
+段階的なロールアウトが適していない企業の場合は、[パイロット プロジェクト フェーズ](#--phase-1-pilot-projects)までスキップできます。
 
-- To help support any discussions regarding potential changes to your company's set up, you can review the {% data variables.product.prodname_ghe_server %} system overview. 詳しい情報については「[システムの概要](/admin/overview/system-overview)」を参照してください。
+{% data variables.product.prodname_professional_services %} と協力している場合、このフェーズの間に、ロールアウトと実装プロセスを通じてチームがどのように連携するかも計画します。 {% data variables.product.prodname_professional_services_team %} チームは、必要に応じて、段階的ロールアウトの計画と目標の作成をサポートできます。
 
-{% endif %}
+### <a name="step-1-kickoff-meeting-with--data-variablesproductprodname_professional_services--optional"></a>ステップ 1: {% data variables.product.prodname_professional_services %} とのキックオフ ミーティング (省略可能)
 
-### Step 4: Establish a baseline of organizational insights
+{% data variables.product.prodname_professional_services %} と契約した場合は、Services の担当者と会ってロールアウトと実装プロセスを開始します。
 
-As your company prepares to begin your pilot project(s), it’s crucial to ensure that you have set a baseline for where your enterprise is today and have defined clear success metrics to measure your pilot project(s) progress against.
+{% data variables.product.prodname_professional_services %} と契約していない場合は、次のステップにスキップできます。
 
-There are likely key business goals your company has that will need to be measured against, but there are other metrics we can identify to help gauge your pilot’s success.
+この会議の目的は、会社に最適なロールアウトと実装計画の作成を開始するために必要な情報について 2 つのチームを一致させることです。 この会議に向けて、ディスカッションの準備を深めるのに役立つアンケートを作成しました。 Services の担当者からこのアンケートが送られます。
 
-As a starting point, some of these metrics might include:
-  - The mean time to remediation for GHAS vulnerabilities versus the previous tooling and practices the pilot project(s) / team(s) utilized.
-  - The code scanning integration's findings for the top X most critical applications.
-  - The number of applications that have SAST (Static application security testing) integrated versus before the engagement.
+この最初の会議の準備のため、次のトピックを確認してください。
 
-If you participated in the POC exercise prior to purchasing GHAS, these objectives might look familiar. This success criteria includes several objectives for the following high-level roles:
-  - Implementation & Administration teams
-  - Security / CISO (Chief Information Security Officer)
-  - Application Development Teams
+-  お客様の会社と {% data variables.product.prodname_professional_services %} が最適に連携する方法の調整
+  - 購入したサービスの日数や時間数を最適に利用する方法について期待値の設定
+  - コミュニケーション計画と会議の頻度
+  - ロールと責任
+- ソフトウェア開発ライフサイクル (SDLC) での GHAS のしくみのレビュー。 {% data variables.product.prodname_professional_services %} の担当者が GHAS のしくみを説明します。
+- GHAS デプロイに関するベスト プラクティスのレビュー。 これは、お客様のチームがそれに価値があると判断した場合に再教育として、またはお客様の会社が概念実証 (POC) 演習に参加しなかった場合に、提供されます。 このレビューには、DevSecOps 成熟度モデルのようなものに対する、既存のアプリケーション セキュリティ プログラムとその成熟度のレベルの検討が含まれます。
+-  お客様の GHAS デプロイの次の手順についての意識合わせ。 {% data variables.product.prodname_professional_services %} 担当者が、次の手順と、お客様がパートナーシップから期待できるサポートについて説明します。
 
-If you’d like to take things a step further, you can look at utilizing OWASP’s DevSecOps Maturity Model (DSOMM) to work towards reaching a Level 1 maturity. There are four main evaluation criteria in DSOMM:
+ロールアウト戦略の計画に役立つよう、次の質問について話し合うこともできます。
+  - 有効にするチームの数はいくつか。
+  - チームのリポジトリの構造はどのようなものか。 (技術スタック、現在のツールなど)
+    - この一部は、お客様の会社が概念実証演習に参加している場合は、既にカバーされている可能性があります。 そうでない場合は、これについて話し合う重要な時期です。
+   - 導入のレベルは、有機的、支援付き、または無機的のどれであると予想されるか。
+   - リソースとドキュメントの観点から、支援付き導入はどのようなものになるか。
+   - 無機的な導入をどのように管理するか。 (たとえば、ポリシーの適用や、一元的に管理されたワークフローの使用)。
 
-- **Static depth:** How comprehensive is the static code scan that you’re performing within the AppSec CI pipeline
-- **Dynamic depth:** How comprehensive is the dynamic scan that is being run within the AppSec CI pipeline
-- **Intensity:** Your schedule frequency for the security scans running in AppSec CI pipeline
-- **Consolidation:** Your remediation workflow for handling findings and process completeness
+### <a name="step-2-internal-kickoff-at-your-company"></a>ステップ 2: お客様の社内キックオフ
 
-To learn more about this approach and how to implement it in GHAS, you can download our white paper "[Achieving DevSecOps Maturity with GitHub](https://resources.github.com/whitepapers/achieving-devsecops-maturity-github/)."
+お客様の会社が {% data variables.product.prodname_professional_services %} との連携を選択しているかどうかに関係なく、お客様のチーム内の統一のためのキックオフ ミーティングを開催することを常にお勧めします。
 
-Based on your wider company’s goals and current levels of DevSecOps maturity, we can help you determine how to best measure your pilot’s progress and success.
+このキックオフ ミーティングでは、目標と期待が明確に理解されていて、ロールアウトと実装を進める方法についての計画が設けられていることを、確認することが重要です。
 
-## {% octicon "milestone" aria-label="The milestone icon" %}  Phase 1: Pilot project(s)
+さらに、これは、GHAS のロールアウトと実装をサポートするための適切なツールと専門知識をチームが持っていることを確認するために、チームのトレーニングと準備について考え始めるのに適した時期です。
+
+#### <a name="topics-for-your-internal-kickoff-meeting"></a>社内キックオフ ミーティングに関するトピック
+
+キックオフ ミーティングと同じグループと {% data variables.product.prodname_professional_services %} の間で次のトピックをまだ話し合っていない場合は、お客様の社内キックオフ ミーティングでこれらを取り上げすることをお勧めします。
+
+- ビジネスの成功のメトリックは何で、それらのメジャーをどうのように測定して報告しますか。
+  - これらが定義されていない場合は、それらを定義してください。 定義されている場合は、それらを伝え、データ主導の進行状況の更新を提供する方法について説明します。
+- SDLC (ソフトウェア開発ライフ サイクル) 内での GHAS のしくみと、お客様の会社でそれがどのように機能すると期待されるかをレビューします。
+- お客様の会社が概念実証演習に参加していない場合、ベスト プラクティスをレビューします (または、お客様のチームがこの確認に価値があると判断した場合は再教育)
+  - これを、お客様の既存のアプリケーション セキュリティ プログラムと比較すると何が異なりますか。
+- ロールアウトと実装を通じて、社内チームが最適に連携する方法について話し合い、同意します。
+  - 社内チームのコミュニケーション計画とミーティングの頻度について意見を統一します。
+  - ロールアウトと実装を実施するためのタスクをレビューし、役割と責任を定義します。 この記事では、タスクの大部分を説明しましたが、お客様の会社で必要な他のタスクが含まれていない可能性があります。
+  - スケーリングを有効にするための "チャンピオン プログラム" の確立を検討します
+  - タスクの完了のタイミングについての検討を始めます
+- お客様の会社にとって最適なロールアウト アプローチについての作業を始めます。 これには、いくつかの重要な項目の理解が含まれます。
+  - 有効にするチームの数はいくつか。 この一部は、お客様の会社が POC (概念実証) 演習に参加している場合は、既にカバーされている可能性があります。 そうでない場合は、これについて話し合う重要な時期です。
+  - 最初のロールアウトの対象に選ばれた重要なアプリケーションのうち、GHAS によってサポートされるテクノロジに基づくものはいくつあるか。
+  - 組織の準備はどの程度必要か。 詳細については、「[フェーズ 2](#--phase-2-organizational-buy-in--rollout-preparation)」を参照してください。
+
+### <a name="step-3-prepare-your-rollout--implementation-plan-and-goals"></a>ステップ 3: ロールアウトと実装の計画と目標を準備する
+
+ロールアウトの最初のフェーズのパイロット プロジェクトを進める前に、会社の計画の進め方に関するロールアウト計画とビジネス目標が確立されていることを確認することが重要です。
+
+{% data variables.product.prodname_professional_services %} と協力している場合は、その担当者がこの計画の作成において重要な役割を果たすことができます。
+
+独立して作業している場合は、このセクションで、作業を進める準備として計画に含まれる必要がある事項について説明します。
+
+プロセスの変更 (必要な場合) と、必要に応じたチーム メンバーのトレーニングを計画します。
+  - 文書化された、役割と責任に関するチームの割り当て。 各機能に必要なアクセス許可の詳細については、「[Organization のリポジトリ ロール](/organizations/managing-access-to-your-organizations-repositories/repository-roles-for-an-organization#access-requirements-for-security-features)」を参照してください。
+  - 文書化された、タスクとタイムラインおよび期間の計画 (可能な場合)。 これには、インフラストラクチャの変更、プロセスの変更とトレーニング、GHAS の有効化に関する後続のすべてのフェーズが含まれる必要があります。これにより、必要に応じて、修復および構成の調整のための期間を設けることができます。 詳細については、後の「[フェーズ 1: パイロット プロジェクト](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise#--phase-1-pilot-projects)」を参照してください。
+  - プロジェクトやチームが最初に GHAS を有効にする優先順位付けされた計画と、プロジェクトやチームが次のフェーズに入る後続の計画
+  - ビジネス目標に基づく成功メトリック。 これは、完全なロールアウトの了承を得るための、パイロット プロジェクトに続く重要な基準点になります。
 
 {% note %}
 
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 1 may last roughly between 2 weeks to 3+ months. This range can vary largely depending on your company’s infrastructure or systems complexity, internal processes to manage/approve these changes, as well as if larger organizational process changes are needed to move forward with GHAS.
+**注:** お客様の会社のすべてのグループが確実に認識、了承、導入するためには、ロールアウトのタイミングと、お客様の会社のインフラストラクチャ、プロセス、日常的な開発ワークフローへの影響に関して、現実的な期待を設定することが重要です。 より円滑で成功したロールアウトにするには、セキュリティ チームと開発チームが GHAS の影響を理解していることを確認します。
 
 {% endnote %}
 
-To begin enabling GHAS across your company, we recommend beginning with a few high-impact projects or teams to pilot an initial rollout. This will allow an initial group within your company to get familiar with GHAS and build a solid foundation on GHAS before rolling out to the remainder of your company.
-
-Before you start your pilot project(s), we recommend that you schedule some checkpoint meetings for your team(s), such as an initial meeting, midpoint review, and a wrap-up session when the pilot is complete. These checkpoint meetings will help you all make adjustments as needed and ensure your team(s) are prepared and supported to complete the pilot successfully.
-
-These steps will help you enable GHAS on your enterprise, begin using its features, and review your results.
-
-If you’re working with {% data variables.product.prodname_professional_services %}, they can provide additional assistance through this process through onboarding sessions, GHAS workshops, and troubleshooting as needed.
-
-### Step 1: GHAS set-up & installation
-
 {% ifversion ghes %}
 
-If you haven't already enabled GHAS for your {% data variables.product.prodname_ghe_server %} instance, see "[Enabling GitHub Advanced Security for your enterprise](/admin/advanced-security/enabling-github-advanced-security-for-your-enterprise)."
+{% data variables.product.prodname_ghe_server %} をご利用の場合は、お客様のインスタンスが GHAS のロールアウトと実装を確実にサポートできるようにするために、次のことを確認してください。
+
+- GHES 3.0 へのアップグレードは必須ではありませんが、code scanning と {% data variables.product.prodname_actions %} のような機能の組み合わせを利用するには、GHES 3.0 以降にアップグレードする必要があります。 詳細については、「[{% data variables.product.prodname_ghe_server %} をアップグレードする](/admin/enterprise-management/updating-the-virtual-machine-and-physical-resources/upgrading-github-enterprise-server)」を参照してください。
+
+- High Availability 設定では、完全に冗長なセカンダリの {% data variables.product.prodname_ghe_server %} アプライアンスは、すべての主要なデータストアのレプリケーションによってプライマリアプライアンスとの同期を保ちます。 高可用性を設定する方法の詳細については、「[高可用性の構成](/admin/enterprise-management/configuring-high-availability)」を参照してください。
+
+- 会社のセットアップに対する変更の可能性に関する検討をサポートするには、{% data variables.product.prodname_ghe_server %} システムの概要を確認できます。 詳細については、「[システムの概要](/admin/overview/system-overview)」をご覧ください。
 
 {% endif %}
 
-You need to enable GHAS for each pilot project, either by enabling the GHAS feature for each repository or for all repositories in any organizations taking part in the project. For more information, see "[Managing security and analysis settings for your repository](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)" or "[Managing security and analysis settings for your organization](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)"
+### <a name="step-4-establish-a-baseline-of-organizational-insights"></a>ステップ 4: 組織の分析情報のベースラインを確立する
 
-The vast majority of GHAS set-up and installation is centered around enabling and configuring code scanning on your enterprise and in your repositories.
+お客様の会社がパイロット プロジェクトを開始する準備を進めるときは、会社の現在のベースラインを設定し、パイロット プロジェクトの進行状況を測定するための明確な成功メトリックを定義しておくことが重要です。
 
-Code scanning allows you to analyze code in a {% data variables.product.prodname_dotcom %} repository to find security vulnerabilities and coding errors. Code scanning can be used to find, triage, and prioritize fixes for existing problems in your code, as well as help prevent developers from introducing new problems that may otherwise reach production. 詳しい情報については、「[コードスキャニングについて](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning)」を参照してください。
+お客様の会社には測定する必要がある重要なビジネス目標がおそらくありますが、パイロットの成功を測定するために特定できるメトリックは他にもあります。
 
-### Step 2: Set up {% data variables.product.prodname_code_scanning_capc %}
+出発点として、これらのメトリックには次のものが含まれる場合があります。
+  - GHAS の脆弱性に対する修復までの平均時間と、パイロット プロジェクトおよびチームが使用した以前のツールとプラクティス。
+  - 最も重要な上位 X つのアプリケーションの code scanning 統合の結果。
+  - SAST (静的アプリケーション セキュリティ テスト) が統合されているアプリケーションとエンゲージメント前のアプリケーションの数。
+
+GHAS を購入する前に POC 演習に参加した場合、これらの目標は見覚えがあるかもしれません。 この成功基準には、次の大まかな役割に関するいくつかの目標が含まれます。
+  - 実装チームと管理チーム
+  - セキュリティと CISO (最高情報セキュリティ責任者)
+  - アプリケーション開発チーム
+
+さらに一歩踏み込みたい場合は、OWASP の DevSecOps 成熟度モデル (DSOMM) を利用して、レベル 1 の成熟度になるように作業できます。 DSOMM には次の 4 つの主要評価基準があります。
+
+- **静的な深度:** AppSec CI パイプライン内で実行される静的コード スキャンがどれだけ包括的であるか
+- **動的な深度:** AppSec CI パイプライン内で実行される動的スキャンがどれだけ包括的であるか
+- **強度:** AppSec CI パイプラインで実行されるセキュリティ スキャンのスケジュール頻度
+- **統合:** 結果とプロセスの完全性を処理するための修復ワークフロー
+
+このアプローチとそれを GHAS で実装する方法の詳細については、「[GitHub での DevSecOps 成熟度の達成](https://resources.github.com/whitepapers/achieving-devsecops-maturity-github/)」ホワイト ペーパーをダウンロードしてください。
+
+より広い会社の目標と現在の DevSecOps 成熟度レベルを基にすると、パイロットの進行状況と成功を最適に測定する方法を決定するのに役立ちます。
+
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-1-pilot-projects"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 1: パイロット プロジェクト
+
+{% note %}
+
+{% octicon "clock" aria-label="Clock" %} **推定所要時間:** フェーズ 1 には、約 2 週間から 3 か月以上かかる可能性があるものと思われます。 この範囲は、会社のインフラストラクチャまたはシステムの複雑さ、これらの変更を管理および承認するための内部プロセス、GHAS を進めるために大規模な組織プロセスの変更が必要かどうかによって、大きく異なる場合があります。
+
+{% endnote %}
+
+会社全体で GHAS を有効にする作業を始めるには、いくつかの影響の大きいプロジェクトまたはチームから始めて、最初のロールアウトをパイロットにすることをお勧めします。 これにより、社内の最初のグループが GHAS に慣れ、GHAS に関する強固な基盤を構築してから、会社の残りの部分にロールアウトすることができます。
+
+パイロット プロジェクトを始める前に、最初のミーティング、中間レビュー、パイロット完了時の総括セッションなど、チームのチェックポイント ミーティングをスケジュールすることをお勧めします。 これらのチェックポイント ミーティングは、必要に応じて調整を行い、チームがパイロットを正常に完了できる状態で、サポートを受けていることを確認するのに役立ちます。
+
+これらの手順は、お客様の会社で GHAS を有効にし、その機能を使い始めて、結果を確認するのに役立ちます。
+
+{% data variables.product.prodname_professional_services %} と協力している場合は、担当者がオンボーディング セッション、GHAS ワークショップ、必要に応じたトラブルシューティングを通じて、このプロセス全体の追加の支援を提供できます。
+
+### <a name="step-1-ghas-set-up--installation"></a>ステップ 1: GHAS のセットアップとインストール
 
 {% ifversion ghes %}
 
-To enable {% data variables.product.prodname_code_scanning %} on your {% data variables.product.prodname_ghe_server %} instance, see "[Configuring code scanning for your appliance](/admin/advanced-security/configuring-code-scanning-for-your-appliance)."
+{% data variables.product.prodname_ghe_server %} インスタンスに対して GHAS をまだ有効にしていない場合は、「[エンタープライズの GitHub Advanced Security の有効化](/admin/advanced-security/enabling-github-advanced-security-for-your-enterprise)」を参照してください。
 
 {% endif %}
 
-To set up code scanning, you must decide whether you'll run code scanning with [{% data variables.product.prodname_actions %}](#using-github-actions-for-code-scanning) or your own [third-party CI system](#using-a-third-party-ci-system-with-the-codeql-cli-for-code-scanning).
+リポジトリごとに GHAS 機能を有効にするか、プロジェクトに参加しているすべての組織のすべてのリポジトリで GHAS 機能を有効にすることにより、各パイロット プロジェクトについて GHAS を有効にする必要があります。 詳細については、「[リポジトリのセキュリティと分析設定を管理する](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)」または「[Organization のセキュリティと分析設定を管理する](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)」を参照してください。
 
-#### Using {% data variables.product.prodname_actions %} for {% data variables.product.prodname_code_scanning %}
+GHAS をセットアップしてインストールする作業の大部分の中心になるのは、お客様の会社とリポジトリでの code scanning の有効化と構成です。
+
+code scanning を使用すると、{% data variables.product.prodname_dotcom %} リポジトリ内のコードを分析して、セキュリティの脆弱性とコーディング エラーを見つけることができます。 code scanning を使用すると、コード内の既存の問題に対する修正の発見、トリアージ、優先順位付けを行うことができるだけでなく、開発者が新しい問題を作り出すのを防ぐことができます。コード スキャンを使用しないと、そのような問題が運用環境まで残る可能性があります。 詳細については、「[コード スキャンについて](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning)」を参照してください。
+
+### <a name="step-2-set-up--data-variablesproductprodname_code_scanning_capc-"></a>ステップ 2: {% data variables.product.prodname_code_scanning_capc %} を設定する
 
 {% ifversion ghes %}
 
-To set up code scanning with {% data variables.product.prodname_actions %} for {% data variables.product.prodname_ghe_server %}, you'll need to provision one or more self-hosted {% data variables.product.prodname_actions %} runners in your environment. For more information, see "[Setting up a self-hosted runner](/admin/advanced-security/configuring-code-scanning-for-your-appliance#running-code-scanning-using-github-actions)."
+{% data variables.product.prodname_ghe_server %} インスタンスで {% data variables.product.prodname_code_scanning %} を有効にするには、「[アプライアンスのコード スキャンの構成](/admin/advanced-security/configuring-code-scanning-for-your-appliance)」を参照してください。
 
 {% endif %}
 
-For {% data variables.product.prodname_ghe_cloud %}, you can start to create a {% data variables.product.prodname_actions %} workflow using the [CodeQL action](https://github.com/github/codeql-action/) to run code scanning on a repository. {% data variables.product.prodname_code_scanning_capc %} uses [GitHub-hosted runners](/actions/using-github-hosted-runners/about-github-hosted-runners) by default, but this can be customized if you plan to host your own runner with your own hardware specifications. 詳しい情報については「[セルフホストランナーについて](/actions/hosting-your-own-runners)」を参照してください。
+code scanning を設定するには、[{% data variables.product.prodname_actions %}](#using-github-actions-for-code-scanning) または独自の[サードパーティ CI システム](#using-a-third-party-ci-system-with-the-codeql-cli-for-code-scanning)のどちらで code scanning を実行するかを決める必要があります。
 
-For more information about {% data variables.product.prodname_actions %}, see:
-  - "[Learn GitHub Actions](/actions/learn-github-actions)"
-  - "[Understanding GitHub Actions](/actions/learn-github-actions/understanding-github-actions)"
+#### <a name="using--data-variablesproductprodname_actions--for--data-variablesproductprodname_code_scanning-"></a>{% data variables.product.prodname_code_scanning %} に {% data variables.product.prodname_actions %} を使用する
+
+{% ifversion ghes %}
+
+{% data variables.product.prodname_ghe_server %} 用に {% data variables.product.prodname_actions %} で code scanning を設定するには、環境内に 1 つ以上のセルフホステッド {% data variables.product.prodname_actions %} ランナーをプロビジョニングする必要があります。 詳細については、[セルフホステッド ランナーの設定](/admin/advanced-security/configuring-code-scanning-for-your-appliance#running-code-scanning-using-github-actions)に関するページを参照してください。
+
+{% endif %}
+
+{% data variables.product.prodname_ghe_cloud %} の場合は、リポジトリで code scanning を実行するための [CodeQL アクション](https://github.com/github/codeql-action/)を使用して、{% data variables.product.prodname_actions %} ワークフローの作成を始めることができます。 {% data variables.product.prodname_code_scanning_capc %} は既定では [GitHub ホステッド ランナー](/actions/using-github-hosted-runners/about-github-hosted-runners)を使用しますが、独自のハードウェア仕様で独自のランナーをホストする予定の場合は、これをカスタマイズできます。 詳細については、[セルフホステッド ランナー](/actions/hosting-your-own-runners)に関する記述をご覧ください。
+
+{% data variables.product.prodname_actions %} の詳細については、次を参照してください。
+  - [GitHub Actions について](/actions/learn-github-actions)
+  - [GitHub Actions を理解する](/actions/learn-github-actions/understanding-github-actions)
   - [ワークフローをトリガーするイベント](/actions/learn-github-actions/events-that-trigger-workflows)
-  - "[Filter Pattern Cheat Sheet](/actions/learn-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet)"
+  - [フィルター パターンのチート シート](/actions/learn-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet)
 
-#### Using a third-party CI system with the CodeQL CLI for {% data variables.product.prodname_code_scanning %}
+#### <a name="using-a-third-party-ci-system-with-the-codeql-cli-for--data-variablesproductprodname_code_scanning-"></a>{% data variables.product.prodname_code_scanning %} 用に CodeQL CLI でサードパーティの CI システムを使用する
 
-If you’re not using {% data variables.product.prodname_actions %} and have your own continuous integration system, you can use the CodeQL CLI to perform CodeQL code scanning in a third-party CI system.
+{% data variables.product.prodname_actions %} を使用せず、独自の継続的インテグレーション システムがある場合は、CodeQL CLI を使用して、サードパーティの CI システムで CodeQL の code scanning を実行できます。
 
-詳しい情報については、以下を参照してください。
-  - "[About CodeQL code scanning in your CI system](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system/about-codeql-code-scanning-in-your-ci-system)"
+詳細については、次を参照してください。
+  - [CI システムでの CodeQL の code scanning について](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system/about-codeql-code-scanning-in-your-ci-system)
 
-### Step 3: Enable {% data variables.product.prodname_code_scanning_capc %} in repositories
+### <a name="step-3-enable--data-variablesproductprodname_code_scanning_capc--in-repositories"></a>ステップ 3: リポジトリで {% data variables.product.prodname_code_scanning_capc %} を有効にする
 
-If you’re using a phased approach to roll out GHAS, we recommend enabling {% data variables.product.prodname_code_scanning %} on a repository-by-repository basis as part of your rollout plan. For more information, see "[Setting up code scanning for a repository](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/setting-up-code-scanning-for-a-repository)."
+GHAS のロールアウトに段階的なアプローチを使用している場合は、ロールアウト計画の一環として、リポジトリごとに {% data variables.product.prodname_code_scanning %} を有効にすることをお勧めします。 詳細については、「[リポジトリの code scanning の設定](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/setting-up-code-scanning-for-a-repository)」を参照してください。
 
-If you’re not planning on a phased rollout approach and want to enable code scanning for many repositories, you may want to script the process.
+段階的ロールアウト アプローチを計画していない場合に、多くのリポジトリで code scanning を有効にするには、プロセスをスクリプト化することができます。
 
-For an example of a script that opens pull requests to add a {% data variables.product.prodname_actions %} workflow to multiple repositories, see the [`jhutchings1/Create-ActionsPRs`](https://github.com/jhutchings1/Create-ActionsPRs) repository for an example using PowerShell, or [`nickliffen/ghas-enablement`](https://github.com/NickLiffen/ghas-enablement) for teams who do not have PowerShell and instead would like to use NodeJS.
+{% data variables.product.prodname_actions %} ワークフローを複数のリポジトリに追加する pull request を開くスクリプトの例については、PowerShell を使用する例の場合は [`jhutchings1/Create-ActionsPRs`](https://github.com/jhutchings1/Create-ActionsPRs) リポジトリを、PowerShell を使わず代わりに NodeJS を使用したいチームの場合は [`nickliffen/ghas-enablement`](https://github.com/NickLiffen/ghas-enablement) を参照してください。
 
-### Step 4: Run code scans and review your results
+### <a name="step-4-run-code-scans-and-review-your-results"></a>ステップ 4: コード スキャンを実行して結果を確認する
 
-With code scanning enabled in the necessary repositories, you're ready to help your development team(s) understand how to run code scans and reports, view reports, and process results.
+必要なリポジトリで code scanning を有効にしたら、開発チームがコード スキャンとレポートを実行し、レポートを表示して、結果を処理する方法を理解するのを支援できるようになります。
 
-#### {% data variables.product.prodname_code_scanning_capc %}
+#### <a name="-data-variablesproductprodname_code_scanning_capc-"></a>{% data variables.product.prodname_code_scanning_capc %}
 
-With code scanning, you can find vulnerabilities and errors in your project's code on GitHub, as well as view, triage, understand, and resolve the related {% data variables.product.prodname_code_scanning %} alerts.
+code scanning を使用すると、GitHub でプロジェクトのコード内の脆弱性とエラーを見つけるだけでなく、関連する {% data variables.product.prodname_code_scanning %} アラートの表示、トリアージ、理解、解決を行うことができます。
 
-When code scanning identifies a problem in a pull request, you can review the highlighted code and resolve the alert. 詳しい情報については、「[プルリクエストで {% data variables.product.prodname_code_scanning %} アラートをトリガーする](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/triaging-code-scanning-alerts-in-pull-requests)」を参照してください。
+code scanning で pull request の問題が見つかったら、強調表示されたコードを確認してアラートを解決できます。 詳細については、「[pull request の {% data variables.product.prodname_code_scanning %} アラートのトリアージ](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/triaging-code-scanning-alerts-in-pull-requests)」を参照してください。
 
-If you have write permission to a repository you can manage code scanning alerts for that repository. With write permission to a repository, {% if delete-code-scanning-alerts %}you can view, fix, dismiss, or delete alerts {% else %}you can view, fix, or dismiss alerts{% endif %} for potential vulnerabilities or errors in your repository's code. 詳しい情報については、「[リポジトリの Code scanningアラートを管理する](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository)」を参照してください。
+リポジトリに対する書き込みアクセス許可がある場合は、そのリポジトリの code scanning アラートを管理できます。 リポジトリへの書き込みアクセス許可があれば、リポジトリのコード内の潜在的な脆弱性またはエラーに関する{% ifversion delete-code-scanning-alerts %}アラートの表示、修正、却下、または削除{% else %}アラートの表示、修正、または却下{% endif %}を行うことができます。 詳細については、「[リポジトリの code scanning アラートの管理](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository)」を参照してください。
 
-#### Generate reports of {% data variables.product.prodname_code_scanning %} alerts
+#### <a name="generate-reports-of--data-variablesproductprodname_code_scanning--alerts"></a>{% data variables.product.prodname_code_scanning %} アラートのレポートを生成する
 
-If you’d like to create a report of your code scanning alerts, you can use the {% data variables.product.prodname_code_scanning_capc %} API. 詳しい情報については、「[{% data variables.product.prodname_code_scanning_capc %} API](/rest/reference/code-scanning)」を参照してください。
+code scanning アラートのレポートを作成する場合は、{% data variables.product.prodname_code_scanning_capc %} API を使用できます。 詳細については、「[{% data variables.product.prodname_code_scanning_capc %} API](/rest/reference/code-scanning)」を参照してください。
 
-For an example of how to use the {% data variables.product.prodname_code_scanning_capc %} API, see the [`get-code-scanning-alerts-in-org-sample`](https://github.com/jhutchings1/get-code-scanning-alerts-in-org-sample) repository.
+{% data variables.product.prodname_code_scanning_capc %} API の使用方法の例については、[`get-code-scanning-alerts-in-org-sample`](https://github.com/jhutchings1/get-code-scanning-alerts-in-org-sample) リポジトリを参照してください。
 
-### Step 5: Configure {% data variables.product.prodname_code_scanning_capc %} to fine tune your results
+### <a name="step-5-configure--data-variablesproductprodname_code_scanning_capc--to-fine-tune-your-results"></a>ステップ 5: 結果を微調整するように {% data variables.product.prodname_code_scanning_capc %} を構成する
 
-When running initial code scans, you may find that no results are found or that an unusual number of results are returned. You may want to adjust what is flagged in future scans.
+初めてコード スキャンを実行すると、結果が見つからなかったり、普通ではない数の結果が返されたりする場合があります。 以降のスキャンでフラグが設定される内容を調整できます。
 
-詳しい情報については、「[コードスキャンを設定する](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning)」を参照してください。
+詳細については、「[code scanning を構成する](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning)」を参照してください。
 
-If your company wants to use other third-party code analysis tools with GitHub code scanning, you can use actions to run those tools within GitHub. Alternatively, you can upload results, generated by third-party tools as SARIF files, to code scanning. For more information, see "[Integrating with code scanning](/code-security/code-scanning/integrating-with-code-scanning)."
+GitHub code scanning で他のサードパーティ製コード分析ツールを使用する場合は、アクションを使用して、それらのツールを GitHub 内で実行できます。 または、サードパーティ製ツールによって生成された結果を SARIF ファイルとして code scanning にアップロードすることもできます。 詳細については、「[code scanning と統合する](/code-security/code-scanning/integrating-with-code-scanning)」を参照してください。
 
-### Step 6: Set up secret scanning
+### <a name="step-6-set-up-secret-scanning"></a>ステップ 6: シークレットのスキャンを設定する
 
-GitHub scans repositories for known types of secrets, to prevent fraudulent use of secrets that were committed accidentally.
+GitHub は、誤ってコミットされたシークレットの不正使用を防ぐために、リポジトリで既知の種類のシークレットをスキャンします。
 
 {% ifversion ghes %}
 
-To enable secret scanning for your {% data variables.product.prodname_ghe_server %} instance, see "[Configuring secret scanning for your appliance](/admin/advanced-security/configuring-secret-scanning-for-your-appliance)."
+{% data variables.product.prodname_ghe_server %} インスタンスでシークレットのスキャンを有効にするには、「[アプライアンスでシークレットのスキャンを構成する](/admin/advanced-security/configuring-secret-scanning-for-your-appliance)」を参照してください。
 
 {% endif %}
 
-You need to enable secret scanning for each pilot project, either by enabling the feature for each repository or for all repositories in any organizations taking part in the project. For more information, see "[Managing security and analysis settings for your repository](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)" or "[Managing security and analysis settings for your organization](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)"
+リポジトリごとにシークレット スキャン機能を有効にするか、プロジェクトに参加しているすべての組織のすべてのリポジトリで機能を有効にすることにより、各パイロット プロジェクトについて機能を有効にする必要があります。 詳細については、「[リポジトリのセキュリティと分析設定を管理する](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)」または「[Organization のセキュリティと分析設定を管理する](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)」を参照してください。
 
-To learn how to view and close alerts for secrets checked into your repository, see "[Managing alerts from secret scanning](/code-security/secret-scanning/managing-alerts-from-secret-scanning)."
+リポジトリにチェックインされたシークレットのアラートを表示して閉じる方法については、「[Secret scanning からのアラートを管理する](/code-security/secret-scanning/managing-alerts-from-secret-scanning)」を参照してください。
 
-### Step 7: Set up dependency management
+### <a name="step-7-set-up-dependency-management"></a>ステップ 7: 依存関係の管理を設定する
 
-GitHub helps you avoid using third-party software that contains known vulnerabilities. We provide the following tools for removing and avoiding vulnerable dependencies.
+GitHub は、既知の脆弱性を含むサードパーティ製ソフトウェアの使用を回避するのに役立ちます。 脆弱な依存関係を更新{% ifversion GH-advisory-db-supports-malware %}し、マルウェアを削除{% endif %}するために、次のツールが用意されています。
 
-| Dependency Management Tool                     | 説明                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dependabot Alerts                              | You can track your repository's dependencies and receive Dependabot alerts when your enterprise detects vulnerable dependencies. 詳しい情報については、「[{% data variables.product.prodname_dependabot_alerts %} について](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-alerts-for-vulnerable-dependencies)」を参照してください。                                                  |
-| 依存関係グラフ                                        | 依存関係グラフは、リポジトリに保存されているマニフェストファイルおよびロックファイルのサマリーです。 コードベースが依存するエコシステムとパッケージ（依存関係）、およびプロジェクトに依存するリポジトリとパッケージ（依存関係）が表示されます。 詳しい情報については、「[依存関係グラフについて](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph)」を参照してください。 |{% ifversion ghes > 3.1 or ghec %}
-| 依存関係のレビュー                                      | プルリクエストに依存関係への変更が含まれている場合は、変更内容の概要と、依存関係に既知の脆弱性があるかどうかを確認できます。 For more information, see "[About dependency review](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review)" or  "[Reviewing Dependency Changes in a Pull Request](/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request)." |{% endif %} {% ifversion ghec or ghes > 3.2 %}
-| Dependabot Security Updates                    | Dependabot can fix vulnerable dependencies for you by raising pull requests with security updates. For more information, see "[About Dependabot security updates](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-dependabot-security-updates)."                                                                                                              |
-| Dependabot Version Updates                     | Dependabot can be used to keep the packages you use updated to the latest versions. 詳しい情報については、「[ Dependabot のバージョン更新について](/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/about-dependabot-version-updates)」を参照してください。 | {% endif %}
+| 依存関係管理ツール | 説明 |
+|----|----|
+| Dependabot Alerts | Enterprise で安全ではない依存関係が検出されたら、リポジトリの依存関係を追跡して、Dependabot アラートを受け取ることができます。 詳細については、「[{% data variables.product.prodname_dependabot_alerts %}について](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-alerts-for-vulnerable-dependencies)」を参照してください。 |
+| 依存関係グラフ | 依存関係グラフは、リポジトリに保存されているマニフェストファイルおよびロックファイルのサマリーです。 コードベースが依存するエコシステムとパッケージ（依存関係）、およびプロジェクトに依存するリポジトリとパッケージ（依存関係）が表示されます。 詳細については、「[依存関係グラフの概要](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph)」を参照してください。 |{% ifversion ghes or ghec %}
+| 依存関係レビュー | プルリクエストに依存関係への変更が含まれている場合は、変更内容の概要と、依存関係に既知の脆弱性があるかどうかを確認できます。 詳細については、「[依存関係レビューについて](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review)」または「[pull request 内の依存関係の変更をレビューする](/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request)」を参照してください。 | {% endif %} {% ifversion ghec or ghes > 3.2 %}
+| Dependabot セキュリティ アップデート | Dependabot は、セキュリティ更新プログラムを使用して pull request を発行することにより、脆弱な依存関係を自動的に修正できます。 詳細については、「[Dependabot のセキュリティ更新プログラムについて](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-dependabot-security-updates)」を参照してください。 |
+| Dependabot バージョン アップデート | Dependabot を使用して、使用するパッケージを最新バージョンに更新しておくことができます。 詳細については、「[GitHub Dependabot のバージョン アップデートについて](/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/about-dependabot-version-updates)」を参照してください。 | {% endif %}
 
 {% data reusables.dependabot.beta-security-and-version-updates-onboarding %}
 
-### Step 8: Establish a remediation process
+### <a name="step-8-establish-a-remediation-process"></a>ステップ 8: 修復プロセスを確立する
 
-Once your team(s) have been able to run scans, identify vulnerabilities and dependencies, and can consume the results of each security feature, the next step is to ensure that they can remediate the vulnerabilities identified within their normal development processes without involving your security team.
+お客様のチームがスキャンを実行し、脆弱性と依存関係を特定し、各セキュリティ機能の結果を使用できるようになったら、次のステップは、セキュリティ チームが関与することなく、通常の開発プロセス内で特定された脆弱性を確実に修復できるようにすることです。
 
-This means that the development teams understand how to utilize the GHAS features throughout the development process, can run scans, read reports, consume the results, and remediate vulnerabilities within their normal development workflows, without having to have a separate security phase at the end of development, or have a need to involve your security team to understand reports/results.
+つまり、開発チームは、開発プロセス全体で GHAS の機能を利用する方法を理解しており、通常の開発ワークフロー内でスキャンの実行、レポートの読み取り、結果の使用、脆弱性の修復を行うことができます。開発の最後に独立してセキュリティ フェーズを設けたり、レポートや結果を理解するためにセキュリティ チームに頼ったりする必要はありません。
 
-### Step 9: Set up custom analysis if needed
+### <a name="step-9-set-up-custom-analysis-if-needed"></a>ステップ 9: 必要に応じてカスタム分析を設定する
 
-Custom analysis is an optional deeper use of code scanning when custom CodeQL queries are needed beyond the available default (and community) set of queries. The need for custom queries is rare.
+カスタム分析とは、既定で (およびコミュニティで) 使用できるクエリのセット以外の、カスタム CodeQL クエリが必要な場合に、オプションとして code scanning をより高度に使用することです。 カスタム クエリが必要になることはまれです。
 
-Custom queries are used to identify custom security alerts or help developers follow coding standards by detecting certain code patterns.
+カスタム クエリは、カスタム セキュリティ アラートを識別したり、開発者がコーディング標準に従うために特定のコード パターンを検出したりするために使用されます。
 
-If your company is interested in writing custom CodeQL queries, there are certain requirements your company should meet.
+カスタム CodeQL クエリを記述することに関心がある会社は、特定の要件を満たす必要があります。
 
-If your team can provide some examples of existing vulnerabilities you'd like to find via CodeQL, please let the GitHub team know and we can schedule an introductory session to review the basics of the language and discuss how to tackle one of your problems. If you want to cover CodeQL in more depth, then we offer additional engagement options to cover more topics to enable your team to build their own queries.
+お客様のチームが CodeQL を使用して見つけたい既存の脆弱性の例をいくつか提供できる場合は、GitHub のチームに知らせてください。言語の基本を確認し、いずれかの問題に対処する方法について話し合うための入門セッションを、こちらでスケジュールできます。 CodeQL についてさらに詳しく知りたい場合は、お客様のチームが独自のクエリを作成できるように、より多くのトピックを取り上げる追加のエンゲージメント オプションを提供します。
 
-You can learn more about [CodeQL queries](https://codeql.github.com/docs/writing-codeql-queries/codeql-queries/) in our [CodeQL documentation](https://codeql.github.com/docs/codeql-overview/), or reach out to your {% data variables.product.prodname_professional_services %} team or sales representative.
+[CodeQL クエリ](https://codeql.github.com/docs/writing-codeql-queries/codeql-queries/)の詳細については、[CodeQL のドキュメント](https://codeql.github.com/docs/codeql-overview/)を参照するか、{% data variables.product.prodname_professional_services %} チームまたは営業担当者にお問い合わせください。
 
-### Step 10: Create & maintain documentation
+### <a name="step-10-create--maintain-documentation"></a>ステップ 10: ドキュメントを作成して管理する
 
-All throughout the pilot phase, it’s essential to create and maintain high-quality internal documentation of the infrastructure and process changes made within your company, as well as learnings from the pilot process and configuration changes made as your team(s) progress throughout the rollout and implementation process.
+パイロット フェーズ全体を通じて、お客様の社内で行われたインフラストラクチャとプロセスの変更に関する高品質の内部ドキュメントと、お客様のチームによるロールアウトと実装プロセスの過程で行われたパイロット プロセスと構成の変更から得られたことを、作成して管理することが不可欠です。
 
-Having thorough and complete documentation helps make the remaining phases of your rollout more of a repeatable process. Good documentation also ensures that new teams can be onboarded consistently throughout the rollout process and as new team members join your team(s).
+綿密で完全なドキュメントを用意すると、ロールアウトの残りのフェーズをより反復可能なプロセスにするのに役立ちます。
+また、優れたドキュメントがあると、ロールアウト プロセス全体を通して、新しいチームのオンボードや、新しいチーム メンバーのチームへの参加を、一貫して行うこともできます。
 
-Good documentation doesn’t end when rollout and implementation are complete. The most helpful documentation is actively updated and evolves as your teams expand their experience using GHAS and as their needs grow.
+適切なドキュメントは、ロールアウトと実装が完了した時点で終わるわけではありません。 最も役に立つドキュメントは、チームによる GHAS の使用経験の蓄積や、ニーズの拡大に合わせて、積極的に更新され、進化します。
 
-In addition to your documentation, we recommend your company provides clear channels to your team(s) for support and guidance all throughout rollout, implementation, and beyond. Depending on the level of change your company needs to take on in order to support the rollout and implementation of GHAS, having well-supported teams will help ensure a successful adoption into your development teams’ daily workflow.
+ドキュメントに加えて、お客様の会社からチームに、ロールアウト、実装、その他のサポートとガイダンスに関する明確なチャネルを提供することをお勧めします。 GHAS のロールアウトと実装をサポートするためにお客様の会社が行う必要がある変更のレベルに応じて、チームを適切にサポートすると、開発チームの毎日のワークフローへの導入を成功させるのに役立ちます。
 
-## {% octicon "milestone" aria-label="The milestone icon" %}  Phase 2: Organizational buy-in & rollout preparation
-
-{% note %}
-
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 2 may last roughly between 1 week to over a month. This range can vary largely depending on your company’s internal approval processes.
-
-{% endnote %}
-
-One of the main goals of this phase is to ensure you have the organizational buy-in to make the full deployment of GHAS successful.
-
-During this phase, your company reviews the results of the pilot project(s) to determine if the pilot was successful, what adjustments may need to be made, and if the company is ready to continue forward with the rollout.
-
-Depending on your company’s approval process, organizational buy-in from your executive sponsor may be necessary to continue forward. In most cases, organizational buy-in from your team(s) is necessary to begin utilizing the value of GHAS for your company.
-
-Before moving forward to the next phase of rolling out GHAS more widely across your company, modifications are often made to the original rollout plan based on learnings from the pilot.
-
-Any changes that may impact the documentation should also be made to ensure it is current for continued rollout.
-
-We also recommend that you consider your plan to train any teams or team members that will be introduced to GHAS in the next phases of your rollout if you haven't already.
-
-### Step 1: Organize results
-
-At the completion of Phase 1, your team(s) should have {% ifversion ghes %} GHAS enabled on your {% data variables.product.prodname_ghe_server %} instance and have{% endif %} been able to utilize all of the key features of GHAS successfully, potentially with some configuration changes to optimize results. If your company clearly defined success metrics in Phase 0, you should be able to measure against these metrics to determine the success of your pilot.
-
-It’s important to revisit your baseline metrics when preparing your results to ensure that incremental progress can be demonstrated based on metrics collected from the pilot against your original business goals. If you need assistance with this information, GitHub can help by ensuring that your company has the right metrics to measure your progress against. For more information on help available, see "[GitHub services and support](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)."
-
-### Step 2: Secure organizational buy-in
-
-Organizational buy-in will vary depending on a variety of factors, including your company’s size, approval process, or even the level of change required to rollout GHAS to name a few.
-
-For some companies, securing buy-in is a one-time meeting, but for others, this process can take quite some time (potentially weeks or months). Buy-in may require approval from your executive sponsor or may require the adoption of GHAS into your teams’ daily workflows.
-
-This duration of this stage is entirely up to your company and how quickly you would like to proceed. We recommend seeking support or services from GitHub where possible to help answer questions and provide any recommendations that may be needed to help support this process. For more information on help available, see "[GitHub services and support](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)."
-
-### Step 3: Revise and update documentation
-
-Review the results and findings from your pilot project(s) and the needs of the remaining teams at your company. Based on your findings and needs analysis, update/revise your documentation.
-
-We've found that it’s essential to ensure that your documentation is up-to-date before continuing with the rollout to the remainder of your company's enterprise.
-
-### Step 4: Prepare a full rollout plan for your company
-
-Based on what you learned from your pilot project(s), update the rollout plan you designed in stage 0. To prepare for rolling out to your company, consider any training your teams will need, such as training on using GHAS, process changes, or migration training if your enterprise is migrating to GitHub.
-
-## {% octicon "milestone" aria-label="The milestone icon" %}  Phase 3: Full organizational rollout & change management
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-2-organizational-buy-in--rollout-preparation"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 2: 組織としての了承とロールアウトの準備
 
 {% note %}
 
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 3 may
-last anywhere from 2 weeks to multiple months. This range can vary largely depending on your company’s size, number of repositories/teams, level of change the GHAS rollout will be for your company, etc.
+{% octicon "clock" aria-label="Clock" %} **推定所要時間:** フェーズ 2 には、約 1 週間から 1 か月以上かかる可能性があるものと思われます。 この範囲は、お客様の会社の内部承認プロセスによって大きく異なる場合があります。
 
 {% endnote %}
 
-Once your company has aligned on the results and findings from your pilot project(s) and all rollout preparation steps have been completed from Phase 2, you can move forward with the full rollout to your company based on your plan.
+このフェーズの主な目標の 1 つは、GHAS の完全なデプロイを成功させるために組織の了承を得ることです。
 
-### Step 1: Evaluate your rollout as you go
+このフェーズの間に、お客様の会社は、パイロット プロジェクトの結果を検討し、パイロットが成功したかどうか、どのような調整を行う必要があるか、ロールアウトを続ける準備ができているかどうかを判断します。
 
-If you're using a phased approach to rolling out GHAS, we recommend taking a brief pause and completing a short evaluation after rolling out GHAS to a different segment of your company to ensure the rollout is moving forward smoothly. Your evaluation can ensure that teams are enabled and trained properly, that any unique GHAS configuration needs are met, and that plans and documentation can be adjusted as needed.
+会社の承認プロセスによっては、作業を続けるには、エグゼクティブ スポンサーからの組織としての了承が必要な場合があります。 ほとんどの場合、会社で GHAS の価値の利用を始めるには、チームからの組織的な了承が必要です。
 
-### Step 2: Set up any needed training
+会社全体により広く GHAS をロールアウトする次のフェーズに進む前に、多くの場合、パイロットからの学習に基づいて、元のロールアウト計画を修正します。
 
-When rolling GHAS out to any teams beyond your pilot project team(s), it’s important to ensure teams are either trained or there are training resources available to provide additional support where needed.
+変更によってドキュメントが影響を受ける可能性がある場合は、最新の状態にしてロールアウトを続けられるようにする必要もあります。
 
-These are the main areas where we see companies needing further support:
-  - training on GHAS
-  - training for customers new to GitHub
-  - training on how to migrate to GitHub
+また、まだ実施していない場合は、ロールアウトの次のフェーズで GHAS に導入されるチームまたはチーム メンバーをトレーニングする計画を検討することをお勧めします。
 
-Our {% data variables.product.prodname_professional_services_team %} team provides a variety of training services, bootcamps, and just general advice to help support your team(s) throughout the rollout and implementation process. For more information, see "[GitHub services and support](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)."
+### <a name="step-1-organize-results"></a>ステップ 1: 結果を整理する
 
-To help support your teams, here's a recap of relevant GitHub documentation.
+フェーズ 1 が完了すると、{% ifversion ghes %} {% data variables.product.prodname_ghe_server %} インスタンスで GHAS が有効になっており、{% endif %}チームは GHAS のすべての主要な機能を正常に利用できるようになっているはずであり、結果を最適化するために構成が変更されている可能性があります。 フェーズ 0 で成功メトリックを明確に定義してある場合、これらのメトリックを測定してパイロットの成功を判断できるはずです。
 
-For documentation on how to enable GHAS, see:
-  - "[Enabling Advanced Security features](/get-started/learning-about-github/about-github-advanced-security)"
-  - 「[Organization のセキュリティと分析設定を管理する](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)」
-  - 「[リポジトリのセキュリティおよび分析設定を管理する](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)」
+結果を準備するときにベースライン メトリックを見直し、元のビジネス目標に対してパイロットから収集されたメトリックに基づいて、段階的な進行状況を確実に実証できるようにすることが重要です。 この情報に関してサポートが必要な場合、GitHub は、お客様の会社が進捗状況を測定するための適切なメトリックを確実に得られるように支援できます。 利用できるサポートについて詳しくは、「[GitHub のサービスとサポート](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)」を参照してください。
 
-For documentation on how to migrate to GitHub, see:
-  - 「[GitHub にソースコードをインポートする](/github/importing-your-projects-to-github/importing-source-code-to-github)」
+### <a name="step-2-secure-organizational-buy-in"></a>ステップ 2: 組織の了承を確実に得る
 
-For documentation on getting started with GitHub, see:
-  - "[Get started](/get-started)"
+組織の了承は、会社の規模、承認プロセス、GHAS をロールアウトするために必要な変更レベルなど、さまざまな要因によって異なります。
 
-### Step 3: Help your company manage change
+企業によって、1 回の会議で了承を得られる場合もあれば、このプロセスにかなりの時間 (数週間または数か月) が必要な場合もあります。 了承には、エグゼクティブ スポンサーからの承認が必要な場合もあれば、チームの毎日のワークフローへの GHAS の導入が必要な場合もあります。
 
-In step 4 of phase 2, we recommended that you update the initial rollout plan based on your learnings from the pilot project(s). Ensure that you continue to update your plan as you implement any necessary organizational changes to successfully roll out GHAS to your company.
+このステージの長さは、完全にお客様の会社次第であり、どれくらい速く作業を進めたいかによって決まります。 可能な場合は、GitHub のサポートまたはサービスから、質問への回答と、このプロセスをサポートするために必要な推奨事項を得ることをお勧めします。 利用できるサポートについて詳しくは、「[GitHub のサービスとサポート](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)」を参照してください。
 
-Successful GHAS rollouts and the adoption of best practices into daily workflows depend on ensuring that your teams understand why it’s necessary to include security in their work.
+### <a name="step-3-revise-and-update-documentation"></a>ステップ 3: ドキュメントを修正および更新する
 
-### Step 4: Continued customization
+パイロット プロジェクトの結果、そこから得られたこと、および会社の残りのチームのニーズを確認します。 結果とニーズの分析に基づいて、ドキュメントを更新および修正します。
 
-Configuration and customization of GHAS are not complete once it’s rolled out across your company's enterprise. Further custom configuration changes should continue to be made over time to ensure GHAS continues to support your company's changing needs.
+会社の残りの組織へのロールアウトを続ける前に、ドキュメントを最新の状態にすることが不可欠であることがわかっています。
 
-As your team becomes more experienced and skilled with GHAS over time, this will create additional opportunities for further customization.
+### <a name="step-4-prepare-a-full-rollout-plan-for-your-company"></a>ステップ 4: 会社への完全なロールアウト計画を準備する
+
+パイロット プロジェクトから学習した内容に基づいて、ステージ 0 で設計したロールアウト計画を更新します。 会社へのロールアウトを準備をするには、GHAS の使用のトレーニング、プロセスの処理、会社が GitHub に移行している場合は移行トレーニングなど、チームが必要とするトレーニングを検討します。
+
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-3-full-organizational-rollout--change-management"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 3: 組織への全体なロールアウトと変更管理
+
+{% note %}
+
+{% octicon "clock" aria-label="Clock" %} **推定所要時間:** フェーズ 3 には、約 2 週間から複数月がかかる可能性があるものと思われます。 この範囲は、会社の規模、リポジトリやチームの数、GHAS ロールアウトの変更レベルなどによって大きく異なる場合があります。
+
+{% endnote %}
+
+パイロット プロジェクトの結果が会社に反映され、フェーズ 2 のすべてのロールアウト準備手順が完了したら、計画に基づいて会社への完全なロールアウトを進めることができます。
+
+### <a name="step-1-evaluate-your-rollout-as-you-go"></a>ステップ 1: 現時点でのロールアウトを評価する
+
+段階的アプローチを使用して GHAS をロールアウトしている場合は、会社の異なるセグメントに GHAS をロールアウトした後で少し時間を取って簡単な評価を行い、ロールアウトが円滑に進んでいることを確認することをお勧めします。 評価により、チームが適切に有効化およびトレーニングされていること、GHAS の固有の構成ニーズが満たされていること、および必要に応じて計画とドキュメントを調整できることを確認できます。
+
+### <a name="step-2-set-up-any-needed-training"></a>ステップ 2: 必要なトレーニングを設定する
+
+パイロット プロジェクト チーム以外のチームに GHAS をロールアウトする場合は、チームをトレーニングするか、必要に応じて追加のサポートを提供するトレーニング リソースを利用できるようにすることが重要です。
+
+主に次のような領域で、追加のサポートが必要になります。
+  - GHAS に関するトレーニング
+  - GitHub の新規顧客向けトレーニング
+  - GitHub への移行に関するトレーニング
+
+{% data variables.product.prodname_professional_services_team %} チームは、さまざまなトレーニング サービス、ブートキャンプ、一般的なアドバイスを提供して、お客様のチームによるロールアウトと実装のプロセス全体をサポートします。 詳細については、「[GitHub のサービスとサポート](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)」を参照してください。
+
+お客様のチームのサポートに役立つよう、関連する GitHub ドキュメントを次にまとめておきます。
+
+GHAS を有効にする方法のドキュメントについては、次を参照してください。
+  - [Advanced Security の機能を有効にする](/get-started/learning-about-github/about-github-advanced-security)
+  - [Organization のセキュリティおよび分析設定を管理する](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)
+  - 「[リポジトリのセキュリティと分析設定を管理する](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)」
+
+GitHub に移行する方法のドキュメントについては、次を参照してください。
+  - [GitHub にソース コードをインポートする](/github/importing-your-projects-to-github/importing-source-code-to-github)
+
+GitHub の概要に関するドキュメントについては、次を参照してください。
+  - [始めましょう!](/get-started)
+
+### <a name="step-3-help-your-company-manage-change"></a>ステップ 3: 会社の変更管理を支援する
+
+フェーズ 2 のステップ 4 では、パイロット プロジェクトからの学習に基づいて初期ロールアウト計画を更新することをお勧めしました。 会社への GHAS のロールアウトを成功させるため、組織で必要な変更を実装したら、引き続き計画を更新してください。
+
+GHAS のロールアウトと、毎日のワークフローへのベスト プラクティスの導入が成功するかどうかは、作業にセキュリティを組み込むことが必要である理由をチームに確実に理解させることにかかっています。
+
+### <a name="step-4-continued-customization"></a>ステップ 4: カスタマイズを続ける
+
+会社の組織全体へのロールアウトが済んでも、GHAS の構成とカスタマイズは終わりではありません。 GHAS が会社の変化するニーズを引き続きサポートできるよう、さらにカスタム構成の変更を継続する必要があります。
+
+お客様のチームが時間の経過と共に GHAS の経験とスキルを高めるにつれて、さらなるカスタマイズの機会が生まれます。

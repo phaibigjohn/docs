@@ -1,71 +1,77 @@
 ---
-title: About Enterprise Managed Users
+title: 关于 Enterprise 托管用户
 shortTitle: About managed users
-intro: 'You can centrally manage identity and access for your enterprise members on {% data variables.product.prodname_dotcom %} from your identity provider.'
+intro: You can centrally manage identity and access for your enterprise members on {% data variables.product.prodname_dotcom %} from your identity provider.
 product: '{% data reusables.gated-features.emus %}'
 redirect_from:
-  - /early-access/github/articles/get-started-with-managed-users-for-your-enterprise
-  - /github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
-  - /admin/authentication/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
-  - /admin/identity-and-access-management/managing-iam-with-enterprise-managed-users/about-enterprise-managed-users
+- /early-access/github/articles/get-started-with-managed-users-for-your-enterprise
+- /github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
+- /admin/authentication/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
+- /admin/identity-and-access-management/managing-iam-with-enterprise-managed-users/about-enterprise-managed-users
 versions:
   ghec: '*'
 type: overview
 topics:
-  - Accounts
-  - Authentication
-  - Enterprise
-  - SSO
+- Accounts
+- Authentication
+- Enterprise
+- SSO
+ms.openlocfilehash: 9ca2be64f3806cf8b7b449ea64532c5ae2b17782
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145099044"
 ---
+## <a name="about--data-variablesproductprodname_emus-"></a>关于 {% data variables.product.prodname_emus %}
 
-## About {% data variables.product.prodname_emus %}
+使用 {% data variables.product.prodname_emus %}，可以通过标识提供者 (IdP) 控制企业成员的用户帐户。 可以使用 SAML 单一登录 (SSO) 简化身份验证，并为企业成员预配、更新和取消预配用户帐户。 IdP 中分配给 {% data variables.product.prodname_emu_idp_application %} 应用程序的用户将会预配为 {% data variables.product.prodname_dotcom %} 上的新用户帐户，并添加到企业中。 可以通过 IdP 控制用户名、配置文件数据、团队成员身份和存储库访问权限。
 
-With {% data variables.product.prodname_emus %}, you can control the user accounts of your enterprise members through your identity provider (IdP). You can simplify authentication with SAML single sign-on (SSO) and provision, update, and deprovision user accounts for your enterprise members. Users assigned to the {% data variables.product.prodname_emu_idp_application %} application in your IdP are provisioned as new user accounts on {% data variables.product.prodname_dotcom %} and added to your enterprise. You control usernames, profile data, team membership, and repository access from your IdP.
+在 IdP 中，你可以为每个 {% data variables.product.prodname_managed_user %} 提供用户、企业所有者或帐单管理员的角色。 {% data variables.product.prodname_managed_users_caps %} 可以拥有企业内的组织，并且可以将其他 {% data variables.product.prodname_managed_users %} 添加到组织和其中的团队。 有关详细信息，请参阅“[企业中的角色](/github/setting-up-and-managing-your-enterprise/managing-users-in-your-enterprise/roles-in-an-enterprise)”和“[关于组织](/organizations/collaborating-with-groups-in-organizations/about-organizations)”。
 
-In your IdP, you can give each {% data variables.product.prodname_managed_user %} the role of user, enterprise owner, or billing manager. {% data variables.product.prodname_managed_users_caps %} can own organizations within your enterprise and can add other {% data variables.product.prodname_managed_users %} to the organizations and teams within. For more information, see "[Roles in an enterprise](/github/setting-up-and-managing-your-enterprise/managing-users-in-your-enterprise/roles-in-an-enterprise)" and "[About organizations](/organizations/collaborating-with-groups-in-organizations/about-organizations)."
+将 {% data variables.product.prodname_managed_users %} 添加到连接到组织内团队的 IdP 组后，可以手动管理或自动更新组织成员身份。 将 {% data variables.product.prodname_managed_user %} 手动添加到组织后，从 IdP 上的 {% data variables.product.prodname_emu_idp_application %} 应用程序中取消分配它们将暂停用户，但不会将其从组织中删除。 有关自动管理组织和团队成员身份的详细信息，请参阅“[使用标识提供者组管理团队成员身份](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/managing-team-memberships-with-identity-provider-groups)”。
 
-Organization membership can be managed manually or updated automatically as {% data variables.product.prodname_managed_users %} are added to IdP groups that are connected to teams within the organization. When a {% data variables.product.prodname_managed_user %} is manually added to an organization, unassigning them from the {% data variables.product.prodname_emu_idp_application %} application on your IdP will suspend the user but not remove them from the organization. For more information about managing organization and team membership automatically, see "[Managing team memberships with identity provider groups](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/managing-team-memberships-with-identity-provider-groups)."
+可以授予 {% data variables.product.prodname_managed_users %} 访问权限以及参与企业内部存储库的能力，但 {% data variables.product.prodname_managed_users %} 无法创建公共内容，也不能与其他用户、组织和企业协作处理 {% data variables.product.prodname_dotcom %} 的其余部分。 不能邀请为企业预配的 {% data variables.product.prodname_managed_users %} 加入企业外部的组织或存储库，也不能邀请 {% data variables.product.prodname_managed_users %} 加入其他企业。 {% data variables.product.prodname_emus %} 不支持外部协作者。
 
-You can grant {% data variables.product.prodname_managed_users %} access and the ability to contribute to repositories within your enterprise, but {% data variables.product.prodname_managed_users %} cannot create public content or collaborate with other users, organizations, and enterprises on the rest of {% data variables.product.prodname_dotcom %}. The {% data variables.product.prodname_managed_users %} provisioned for your enterprise cannot be invited to organizations or repositories outside of the enterprise, nor can the {% data variables.product.prodname_managed_users %} be invited to other enterprises. Outside collaborators are not supported by {% data variables.product.prodname_emus %}.
-
-The usernames of your enterprise's {% data variables.product.prodname_managed_users %} and their profile information, such as display names and email addresses, are set by through your IdP and cannot be changed by the users themselves. For more information, see "[Usernames and profile information](#usernames-and-profile-information)."
+企业的 {% data variables.product.prodname_managed_users %} 的用户名及其个人资料信息（例如显示名称和电子邮件地址）通过 IdP 设置，用户无法自行更改。 有关详细信息，请参阅“[用户名和个人资料信息](#usernames-and-profile-information)”。
 
 {% data reusables.enterprise-accounts.emu-forks %}
 
-Enterprise owners can audit all of the {% data variables.product.prodname_managed_users %}' actions on {% data variables.product.prodname_dotcom %}.
+企业所有者可以审核 {% data variables.product.prodname_dotcom %} 上的所有 {% data variables.product.prodname_managed_users %}' 操作。
 
-To use {% data variables.product.prodname_emus %}, you need a separate type of enterprise account with {% data variables.product.prodname_emus %} enabled. For more information about creating this account, see "[About enterprises with managed users](#about-enterprises-with-managed-users)."
+若要使用 {% data variables.product.prodname_emus %}，需要启用了 {% data variables.product.prodname_emus %} 的单独企业帐户类型。 有关创建此帐户的详细信息，请参阅“[关于具有托管用户的企业](#about-enterprises-with-managed-users)”。
 
 
-## Identity provider support
+## <a name="identity-provider-support"></a>标识提供者支持
 
-{% data variables.product.prodname_emus %} supports the following IdPs:
+{% data variables.product.prodname_emus %} 支持以下 IdP：
 
 {% data reusables.enterprise-accounts.emu-supported-idps %}
 
-## Abilities and restrictions of {% data variables.product.prodname_managed_users %}
+## <a name="abilities-and-restrictions-of--data-variablesproductprodname_managed_users-"></a>{% data variables.product.prodname_managed_users %} 的功能和限制
 
-{% data variables.product.prodname_managed_users_caps %} can only contribute to private and internal repositories within their enterprise and private repositories owned by their user account. {% data variables.product.prodname_managed_users_caps %} have read-only access to the wider {% data variables.product.prodname_dotcom %} community. These visibility and access restrictions for users and content apply to all requests, including API requests.
+{% data variables.product.prodname_managed_users_caps %} 只能参与企业中的专用和内部存储库及其用户帐户拥有的专用存储库。 {% data variables.product.prodname_managed_users_caps %} 对更广泛的 {% data variables.product.prodname_dotcom %} 社区具有只读访问权限。 这些针对用户和内容的可见性和访问限制适用于所有请求，包括 API 请求。
 
-* {% data variables.product.prodname_managed_users_caps %} cannot create issues or pull requests in, comment or add reactions to, nor star, watch, or fork repositories outside of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} can view all public repositories on {% data variables.product.prodname_dotcom_the_website %}, but cannot push code to repositories outside of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} and the content they create is only visible to other members of the enterprise. 
-* {% data variables.product.prodname_managed_users_caps %} cannot follow users outside of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} cannot create gists or comment on gists.
-* {% data variables.product.prodname_managed_users_caps %} cannot install {% data variables.product.prodname_github_apps %} on their user accounts.
-* Other {% data variables.product.prodname_dotcom %} users cannot see, mention, or invite a {% data variables.product.prodname_managed_user %} to collaborate.
-* {% data variables.product.prodname_managed_users_caps %} can only own private repositories and {% data variables.product.prodname_managed_users %} can only invite other enterprise members to collaborate on their owned repositories.
-* Only private and internal repositories can be created in organizations owned by an {% data variables.product.prodname_emu_enterprise %}, depending on organization and enterprise repository visibility settings. 
+* {% data variables.product.prodname_managed_users_caps %} 无法在企业外部的存储库中创建问题或拉取请求、添加评论或添加反应，也不能加注星标、监视或创建分支。
+* {% data variables.product.prodname_managed_users_caps %} 可以查看 {% data variables.product.prodname_dotcom_the_website %} 上的所有公共存储库，但无法将代码推送到企业外部的存储库。
+* {% data variables.product.prodname_managed_users_caps %} 和创建的内容只对企业的其他成员可见。 
+* {% data variables.product.prodname_managed_users_caps %} 无法关注企业外部的用户。
+* {% data variables.product.prodname_managed_users_caps %} 无法创建 Gist 或对 Gist 添加评论。
+* {% data variables.product.prodname_managed_users_caps %} 无法在其用户帐户上安装 {% data variables.product.prodname_github_apps %}。
+* 其他 {% data variables.product.prodname_dotcom %} 用户无法查看、提及或邀请 {% data variables.product.prodname_managed_user %} 进行协作。
+* {% data variables.product.prodname_managed_users_caps %} 只能拥有专用数据库，而 {% data variables.product.prodname_managed_users %} 只能邀请其他企业成员在其自己的存储库上进行协作。
+* 只能在 {% data variables.product.prodname_emu_enterprise %} 拥有的组织中创建专用和内部存储库，具体取决于组织和企业存储库可见性设置。 
+* {% data variables.product.prodname_managed_users_caps %} 在使用 {% data variables.product.prodname_pages %} 方面受到限制。 有关详细信息，请参阅“[关于 {% data variables.product.prodname_pages %}](/pages/getting-started-with-github-pages/about-github-pages#limitations-for-enterprise-managed-users)”。
 
-## About enterprises with managed users
+## <a name="about-enterprises-with-managed-users"></a>关于具有托管用户的企业
 
-To use {% data variables.product.prodname_emus %}, you need a separate type of enterprise account with {% data variables.product.prodname_emus %} enabled. To try out {% data variables.product.prodname_emus %} or to discuss options for migrating from your existing enterprise, please contact [{% data variables.product.prodname_dotcom %}'s Sales team](https://enterprise.github.com/contact).
+若要使用 {% data variables.product.prodname_emus %}，需要启用了 {% data variables.product.prodname_emus %} 的单独企业帐户类型。 若要试用 {% data variables.product.prodname_emus %} 或讨论从现有企业迁移的选项，请联系 [{% data variables.product.prodname_dotcom %} 的销售团队](https://enterprise.github.com/contact)。
 
-Your contact on the GitHub Sales team will work with you to create your new {% data variables.product.prodname_emu_enterprise %}. You'll need to provide the email address for the user who will set up your enterprise and a short code that will be used as the suffix for your enterprise members' usernames. {% data reusables.enterprise-accounts.emu-shortcode %} For more information, see "[Usernames and profile information](#usernames-and-profile-information)."
+GitHub 销售团队的联系人将与你合作创建新的 {% data variables.product.prodname_emu_enterprise %}。 你需要为将设置企业的用户提供电子邮件地址，以及一个短代码，该代码将用作企业成员用户名的后缀。 {% data reusables.enterprise-accounts.emu-shortcode %} 有关详细信息，请参阅“[用户名和个人资料信息](#usernames-and-profile-information)”。
 
-After we create your enterprise, you will receive an email from {% data variables.product.prodname_dotcom %} inviting you to choose a password for your enterprise's setup user, which will be the first owner in the enterprise. Use an incognito or private browsing window when setting the password. The setup user is only used to configure SAML single sign-on and SCIM provisioning integration for the enterprise. It will no longer have access to administer the enterprise account once SAML is successfully enabled.
+创建企业后，你将收到来自 {% data variables.product.prodname_dotcom %} 的电子邮件，邀请你为企业的设置用户选择密码，该用户将是企业的第一个所有者。 设置密码时，请使用隐身或专用浏览窗口。 设置用户仅用于为企业配置 SAML 单一登录和 SCIM 预配集成。 成功启用 SAML 后，设置用户将不再有权管理企业帐户。
 
-The setup user's username is your enterprise's shortcode suffixed with `_admin`. After you log in to your setup user, you can get started by configuring SAML SSO for your enterprise. For more information, see "[Configuring SAML single sign-on for Enterprise Managed Users](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/configuring-saml-single-sign-on-for-enterprise-managed-users)."
+设置用户的用户名是企业的短代码，后缀为 `_admin`。 登录到设置用户后，可以开始为企业配置 SAML SSO。 有关详细信息，请参阅“[为 Enterprise Managed User 配置 SAML 单一登录](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/configuring-saml-single-sign-on-for-enterprise-managed-users)”。
 
 {% note %}
 
@@ -73,34 +79,24 @@ The setup user's username is your enterprise's shortcode suffixed with `_admin`.
 
 {% endnote %}
 
-## Authenticating as a {% data variables.product.prodname_managed_user %}
+## <a name="authenticating-as-a--data-variablesproductprodname_managed_user-"></a>作为 {% data variables.product.prodname_managed_user %} 进行身份验证
 
-{% data variables.product.prodname_managed_users_caps %} must authenticate through their identity provider. To authenticate, a {% data variables.product.prodname_managed_user %} can visit their IdP application portal or use the login page on {% data variables.product.prodname_dotcom_the_website %}.
+{% data variables.product.prodname_managed_users_caps %} 必须通过其标识提供者进行身份验证。 若要进行身份验证，{% data variables.product.prodname_managed_user %} 可以访问其 IdP 应用程序门户或使用 {% data variables.product.prodname_dotcom_the_website %} 上的登录页。
 
-{% data reusables.enterprise-accounts.about-recovery-codes %} For more information, see "[Managing recovery codes for your enterprise](/admin/identity-and-access-management/managing-recovery-codes-for-your-enterprise)."
+{% data reusables.enterprise-accounts.about-recovery-codes %} 有关详细信息，请参阅“[管理企业的恢复代码](/admin/identity-and-access-management/managing-recovery-codes-for-your-enterprise)”。
 
-### Authenticating as a {% data variables.product.prodname_managed_user %} via {% data variables.product.prodname_dotcom_the_website %}
+### <a name="authenticating-as-a--data-variablesproductprodname_managed_user--via--data-variablesproductprodname_dotcom_the_website-"></a>通过 {% data variables.product.prodname_dotcom_the_website %} 作为 {% data variables.product.prodname_managed_user %} 进行身份验证
 
-1. Navigate to [https://github.com/login](https://github.com/login).
-1. In the "Username or email address" text box, enter your username including the underscore and short code.
-  ![Screenshot showing login form](/assets/images/help/enterprises/emu-login-username.png)
-  When the form recognizes your username, the form will update. You do not need to enter your password on this form.
-1. To continue to your identity provider, click **Sign in with your identity provider**.
-  ![Screenshot showing "Sign in with your identity provider" button](/assets/images/help/enterprises/emu-login-submit.png)
+1. 导航到 [https://github.com/login](https://github.com/login)。
+1. 在“用户名或电子邮件地址”文本框中，输入用户名，包括下划线和短代码。
+  ![显示登录表单的屏幕截图](/assets/images/help/enterprises/emu-login-username.png) 表单识别用户名后将更新。 无需在此表单中输入密码。
+1. 若要继续访问标识提供者，请单击“使用标识提供者登录”。
+  ![显示“使用标识提供者登录”按钮的屏幕截图](/assets/images/help/enterprises/emu-login-submit.png)
 
-## Usernames and profile information
+## <a name="usernames-and-profile-information"></a>用户名和个人资料信息
 
-When your {% data variables.product.prodname_emu_enterprise %} is created, you will choose a short code that will be used as the suffix for your enterprise member's usernames. {% data reusables.enterprise-accounts.emu-shortcode %} The setup user who configures SAML SSO has a username in the format of **@<em>SHORT-CODE</em>_admin**.
+{% data variables.product.product_name %} 通过规范 IdP 提供的标识符自动为每个用户创建用户名。 有关详细信息，请参阅“[外部身份验证的用户名注意事项](/admin/identity-and-access-management/managing-iam-for-your-enterprise/username-considerations-for-external-authentication)”。
 
-When you provision a new user from your identity provider, the new {% data variables.product.prodname_managed_user %} will have a {% data variables.product.prodname_dotcom %} username in the format of **@<em>IDP-USERNAME</em>_<em>SHORT-CODE</em>**.
+如果在规范化期间删除 IdP 提供的标识符的唯一部分，则预配用户时可能会发生冲突。 如果由于用户名冲突而无法预配用户，则应修改 IdP 提供的用户名。 有关详细信息，请参阅“[解决用户名冲突](/admin/identity-and-access-management/managing-iam-for-your-enterprise/username-considerations-for-external-authentication#resolving-username-conflicts)”。
 
-| Identity provider                 | {% data variables.product.prodname_dotcom %} username  |
-|-----------------------------------|----------------------|
-| Azure Active Directory (Azure AD) | <ul><li>_IDP-USERNAME_ is formed by normalizing the characters preceding the `@` character in the UPN (User Principal Name).</li><li>Guest accounts will have `#EXT` removed from the UPN.</li></ul> |
-| Okta                              | <ul><li>_IDP-USERNAME_ is the normalized username attribute provided by the IdP.</li></ul>                |
-
-It's possible for a conflict to occur when provisioning users if the unique parts of the username provided by your IdP are removed when it is normalized. If you are unable to provision a user due to a username conflict, you should modify the username provided by your IdP.
-
-The username of the new account provisioned on {% data variables.product.prodname_dotcom %}, including underscore and short code, must not exceed 39 characters.
-
-The profile name and email address of a {% data variables.product.prodname_managed_user %} is also provided by the IdP. {% data variables.product.prodname_managed_users_caps %} cannot change their profile name or email address on {% data variables.product.prodname_dotcom %}.
+IdP 还提供了 {% data variables.product.prodname_managed_user %} 的个人资料名称和电子邮件地址。 {% data variables.product.prodname_managed_users_caps %} 无法更改 {% data variables.product.prodname_dotcom %} 上的个人资料名称或电子邮件地址。

@@ -1,65 +1,69 @@
 ---
-title: Enabling Codespaces for your organization
+title: 为组织启用 Codespaces
 shortTitle: Enable Codespaces
-intro: 'You can control which users in your organization can use {% data variables.product.prodname_codespaces %}.'
+intro: 您可以控制组织中的哪些用户可以使用 {% data variables.product.prodname_codespaces %}。
 product: '{% data reusables.gated-features.codespaces %}'
-permissions: 'To manage user permissions for {% data variables.product.prodname_codespaces %} for an organization, you must be an organization owner.'
+permissions: To manage user permissions for {% data variables.product.prodname_codespaces %} for an organization, you must be an organization owner.
 redirect_from:
-  - /codespaces/managing-codespaces-for-your-organization/managing-user-permissions-for-your-organization
+- /codespaces/managing-codespaces-for-your-organization/managing-user-permissions-for-your-organization
 versions:
   fpt: '*'
   ghec: '*'
 type: how_to
 topics:
-  - Codespaces
-  - Permissions
-  - Administrator
+- Codespaces
+- Permissions
+- Administrator
+ms.openlocfilehash: bd4518ef6db3887e504b13459abb5c6a682c8659
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145099874"
 ---
+## <a name="about-enabling--data-variablesproductprodname_codespaces--for-your-organization"></a>关于为组织启用 {% data variables.product.prodname_codespaces %}
 
+组织所有者可以控制组织中的哪些用户可以创建和使用代码空间。
 
-## About enabling {% data variables.product.prodname_codespaces %} for your organization
+要在组织中使用 Codespaces，必须执行以下操作：
 
-Organization owners can control which users in your organization can create and use codespaces.
+- 确保用户对他们要在其中使用代码空间的存储库[至少具有写入权限](/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization)。 
+- [为组织中的用户启用 {% data variables.product.prodname_codespaces %}](#enable-codespaces-for-users-in-your-organization)。 您可以选择允许所选用户使用 {% data variables.product.prodname_codespaces %} ，也可以选择仅允许特定用户使用。
+- [设置支出限制](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)
+- 确保您的组织未启用 IP 地址允许列表。 有关详细信息，请参阅 {% data variables.product.prodname_ghe_cloud %} 文档中的“[管理组织允许的 IP 地址](/{% ifversion fpt %}enterprise-cloud@latest/{% endif %}organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list){% ifversion fpt %}”。{% else %}."{% endif %}
 
-To use codespaces in your organization, you must do the following:
+默认情况下，代码空间只能访问从中创建它的存储库。 如果希望组织中的代码空间能够访问代码空间创建者可以访问的其他组织存储库，请参阅“[管理 {% data variables.product.prodname_codespaces %} 的访问和安全](/codespaces/managing-codespaces-for-your-organization/managing-access-and-security-for-your-organizations-codespaces)”。
 
-- Ensure that users have [at least write access](/organizations/managing-access-to-your-organizations-repositories/repository-permission-levels-for-an-organization) to the repositories where they want to use a codespace. 
-- [Enable {% data variables.product.prodname_codespaces %} for users in your organization](#enable-codespaces-for-users-in-your-organization). You can choose to allow {% data variables.product.prodname_codespaces %} for selected users or only for specific users.
-- [Set a spending limit](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)
-- Ensure that your organization does not have an IP address allow list enabled. For more information, see "[Managing allowed IP addresses for your organization](/{% ifversion fpt %}enterprise-cloud@latest/{% endif %}organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list){% ifversion fpt %}" in the {% data variables.product.prodname_ghe_cloud %} documentation.{% else %}."{% endif %}
+## <a name="enable--data-variablesproductprodname_codespaces--for-users-in-your-organization"></a>为组织中的用户启用 {% data variables.product.prodname_codespaces %}
 
-By default, a codespace can only access the repository from which it was created. If you want codespaces in your organization to be able to access other organization repositories that the codespace creator can access, see "[Managing access and security for {% data variables.product.prodname_codespaces %}](/codespaces/managing-codespaces-for-your-organization/managing-access-and-security-for-your-organizations-codespaces)."
+{% ifversion fpt %} {% note %}
 
-## Enable {% data variables.product.prodname_codespaces %} for users in your organization
+注意：如果你是经过验证的教师或老师，则必须从 {% data variables.product.prodname_classroom %} 启用 {% data variables.product.prodname_codespaces %} 来使用 {% data variables.product.prodname_codespaces %} 教育权益。 有关详细信息，请参阅“[将 GitHub Codespaces 与 GitHub Classroom 配合使用](/education/manage-coursework-with-github-classroom/integrate-github-classroom-with-an-ide/using-github-codespaces-with-github-classroom#about-the-codespaces-education-benefit-for-verified-teachers)”。
 
-{% data reusables.profile.access_org %}
-{% data reusables.profile.org_settings %}
-{% data reusables.organizations.click-codespaces %}
-1. Under "User permissions", select one of the following options:
+{% endnote %} {% endif %} {% data reusables.profile.access_org %} {% data reusables.profile.org_settings %} {% data reusables.organizations.click-codespaces %}
+1. 在“User permissions（用户权限）”下，选择以下选项之一：
 
-   * **Selected users** to select specific organization members to use {% data variables.product.prodname_codespaces %}.
-   * **Allow for all members** to allow all your organization members to use {% data variables.product.prodname_codespaces %}.
-   * **Allow for all members and outside collaborators** to allow all your organization members as well as outside collaborators to use {% data variables.product.prodname_codespaces %}.
+   * “所选用户”，以选择特定组织成员使用 {% data variables.product.prodname_codespaces %}。
+   * “允许所有成员”，以允许所有组织成员使用 {% data variables.product.prodname_codespaces %}。
+   * “允许所有成员和外部协作者”，以允许所有组织成员以及外部协作者使用 {% data variables.product.prodname_codespaces %}。
 
-   ![Radio buttons for "User permissions"](/assets/images/help/codespaces/org-user-permission-settings-outside-collaborators.png)
+   ![“用户权限”的单选按钮](/assets/images/help/codespaces/org-user-permission-settings-outside-collaborators.png)
 
    {% note %}
 
-   **Note:** When you select **Allow for all members and outside collaborators**,  all outside collaborators who have been added to specific repositories can create and use {% data variables.product.prodname_codespaces %}. Your organization will be billed for all usage incurred by outside collaborators. For more information on managing outside collaborators, see "[About outside collaborators](/organizations/managing-access-to-your-organizations-repositories/adding-outside-collaborators-to-repositories-in-your-organization#about-outside-collaborators)."
+   **注意：** 选择“允许所有成员和外部协作者”时，所有已添加到特定存储库的外部协作者都可以创建和使用 {% data variables.product.prodname_codespaces %}。 您的组织将对外部协作者发生的所有使用付费。 有关管理外部协作者的详细信息，请参阅“[关于外部协作者](/organizations/managing-access-to-your-organizations-repositories/adding-outside-collaborators-to-repositories-in-your-organization#about-outside-collaborators)”。
 
    {% endnote %}
 
-1. Click **Save**.
+1. 单击“ **保存**”。
 
-## Disabling {% data variables.product.prodname_codespaces %} for your organization
+## <a name="disabling--data-variablesproductprodname_codespaces--for-your-organization"></a>为组织禁用 {% data variables.product.prodname_codespaces %}
 
-{% data reusables.profile.access_org %}
-{% data reusables.profile.org_settings %}
-{% data reusables.organizations.click-codespaces %}
-1. Under "User permissions", select **Disabled**.
+{% data reusables.profile.access_org %} {% data reusables.profile.org_settings %} {% data reusables.organizations.click-codespaces %}
+1. 在“用户权限”下，选择“禁用”。
 
-## Setting a spending limit
+## <a name="setting-a-spending-limit"></a>设置支出限制
 
 {% data reusables.codespaces.codespaces-spending-limit-requirement %} 
 
-For information on managing and changing your account's spending limit, see "[Managing your spending limit for {% data variables.product.prodname_codespaces %}](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)."
+有关管理和更改帐户支出限制的信息，请参阅“[管理 {% data variables.product.prodname_codespaces %} 的支出限制](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)”。

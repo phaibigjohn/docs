@@ -1,71 +1,77 @@
 ---
-title: About Enterprise Managed Users
+title: Enterprise Managed User について
 shortTitle: About managed users
-intro: 'You can centrally manage identity and access for your enterprise members on {% data variables.product.prodname_dotcom %} from your identity provider.'
+intro: You can centrally manage identity and access for your enterprise members on {% data variables.product.prodname_dotcom %} from your identity provider.
 product: '{% data reusables.gated-features.emus %}'
 redirect_from:
-  - /early-access/github/articles/get-started-with-managed-users-for-your-enterprise
-  - /github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
-  - /admin/authentication/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
-  - /admin/identity-and-access-management/managing-iam-with-enterprise-managed-users/about-enterprise-managed-users
+- /early-access/github/articles/get-started-with-managed-users-for-your-enterprise
+- /github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
+- /admin/authentication/managing-your-enterprise-users-with-your-identity-provider/about-enterprise-managed-users
+- /admin/identity-and-access-management/managing-iam-with-enterprise-managed-users/about-enterprise-managed-users
 versions:
   ghec: '*'
 type: overview
 topics:
-  - Accounts
-  - Authentication
-  - Enterprise
-  - SSO
+- Accounts
+- Authentication
+- Enterprise
+- SSO
+ms.openlocfilehash: 9ca2be64f3806cf8b7b449ea64532c5ae2b17782
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145116606"
 ---
+## <a name="about--data-variablesproductprodname_emus-"></a>{% data variables.product.prodname_emus %} について
 
-## {% data variables.product.prodname_emus %}について
+{% data variables.product.prodname_emus %} を使用すると、ID プロバイダー (IdP) を使用して Enterprise メンバーのユーザー アカウントを制御できます。 SAML シングル サインオン (SSO) を使用して認証を簡略化し、Enterprise メンバーのユーザー アカウントをプロビジョニング、更新、プロビジョニング解除できます。 IdP で {% data variables.product.prodname_emu_idp_application %} アプリケーションに割り当てられたユーザーは、{% data variables.product.prodname_dotcom %} の新しいユーザー アカウントとしてプロビジョニングされ、Enterprise に追加されます。 IdP からユーザー名、プロファイル データ、Team メンバーシップ、リポジトリへのアクセスを制御します。
 
-With {% data variables.product.prodname_emus %}, you can control the user accounts of your enterprise members through your identity provider (IdP). You can simplify authentication with SAML single sign-on (SSO) and provision, update, and deprovision user accounts for your enterprise members. Users assigned to the {% data variables.product.prodname_emu_idp_application %} application in your IdP are provisioned as new user accounts on {% data variables.product.prodname_dotcom %} and added to your enterprise. You control usernames, profile data, team membership, and repository access from your IdP.
+IdP では、各 {% data variables.product.prodname_managed_user %} に、ユーザー、Enterprise 所有者、または課金マネージャーのロールを付与できます。 {% data variables.product.prodname_managed_users_caps %} は、Enterprise 内の Organization を所有でき、他の {% data variables.product.prodname_managed_users %} を Organization とその中の Team に追加できます。 詳細については、「[Enterprise におけるロール](/github/setting-up-and-managing-your-enterprise/managing-users-in-your-enterprise/roles-in-an-enterprise)」および「[Organization について](/organizations/collaborating-with-groups-in-organizations/about-organizations)」を参照してください。
 
-In your IdP, you can give each {% data variables.product.prodname_managed_user %} the role of user, enterprise owner, or billing manager. {% data variables.product.prodname_managed_users_caps %} can own organizations within your enterprise and can add other {% data variables.product.prodname_managed_users %} to the organizations and teams within. For more information, see "[Roles in an enterprise](/github/setting-up-and-managing-your-enterprise/managing-users-in-your-enterprise/roles-in-an-enterprise)" and "[About organizations](/organizations/collaborating-with-groups-in-organizations/about-organizations)."
+{% data variables.product.prodname_managed_users %} は、Organization 内の Team に接続されている IdP に追加されるため、Organization メンバーシップは、手動で管理することも、自動的に更新することもできます。 {% data variables.product.prodname_managed_user %} を Organization に手動で追加した場合、それらを IdP 上の {% data variables.product.prodname_emu_idp_application %} アプリケーションから割り当て解除すると、ユーザーは中断されますが、Organization からは削除されません。 Organization と Team のメンバーシップを自動的に管理する方法の詳細については、「[Managing team memberships with identity provider groups](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/managing-team-memberships-with-identity-provider-groups)」 (ID プロバイダー グループを使用した Team メンバーシップの管理) を参照してください。
 
-Organization membership can be managed manually or updated automatically as {% data variables.product.prodname_managed_users %} are added to IdP groups that are connected to teams within the organization. When a {% data variables.product.prodname_managed_user %} is manually added to an organization, unassigning them from the {% data variables.product.prodname_emu_idp_application %} application on your IdP will suspend the user but not remove them from the organization. For more information about managing organization and team membership automatically, see "[Managing team memberships with identity provider groups](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/managing-team-memberships-with-identity-provider-groups)."
+{% data variables.product.prodname_managed_users %} アクセス権と、Enterprise 内のリポジトリに投稿する機能を付与できますが、{% data variables.product.prodname_managed_users %} では、パブリック コンテンツを作成したり、残りの {% data variables.product.prodname_dotcom %} で他のユーザー、Organization、Enterprise と共同作業を行ったりすることはできません。 Enterprise 用にプロビジョニングされた {% data variables.product.prodname_managed_users %} は、Enterprise 外部の Organization またはリポジトリに招待することも、{% data variables.product.prodname_managed_users %} を他の Enterprise に招待することもできません。 外部のコラボレーターは、{% data variables.product.prodname_emus %} ではサポートされていません。
 
-You can grant {% data variables.product.prodname_managed_users %} access and the ability to contribute to repositories within your enterprise, but {% data variables.product.prodname_managed_users %} cannot create public content or collaborate with other users, organizations, and enterprises on the rest of {% data variables.product.prodname_dotcom %}. The {% data variables.product.prodname_managed_users %} provisioned for your enterprise cannot be invited to organizations or repositories outside of the enterprise, nor can the {% data variables.product.prodname_managed_users %} be invited to other enterprises. Outside collaborators are not supported by {% data variables.product.prodname_emus %}.
-
-The usernames of your enterprise's {% data variables.product.prodname_managed_users %} and their profile information, such as display names and email addresses, are set by through your IdP and cannot be changed by the users themselves. For more information, see "[Usernames and profile information](#usernames-and-profile-information)."
+Enterprise の {% data variables.product.prodname_managed_users %} のユーザー名とそのプロファイル情報 (表示名やメール アドレスなど) は、IdP によって設定され、ユーザー自身が変更することはできません。 詳細については、「[ユーザー名とプロファイル情報](#usernames-and-profile-information)」を参照してください。
 
 {% data reusables.enterprise-accounts.emu-forks %}
 
-Enterprise owners can audit all of the {% data variables.product.prodname_managed_users %}' actions on {% data variables.product.prodname_dotcom %}.
+Enterprise 所有者は、{% data variables.product.prodname_dotcom %} に対する {% data variables.product.prodname_managed_users %} のすべてのアクションを監査できます。
 
-To use {% data variables.product.prodname_emus %}, you need a separate type of enterprise account with {% data variables.product.prodname_emus %} enabled. For more information about creating this account, see "[About enterprises with managed users](#about-enterprises-with-managed-users)."
+{% data variables.product.prodname_emus %} を使用するには、{% data variables.product.prodname_emus %} を有効にした別の種類の Enterprise アカウントが必要です。 このアカウントの作成の詳細については、「[Managed User を含む Enterprise について](#about-enterprises-with-managed-users)」を参照してください。
 
 
-## Identity provider support
+## <a name="identity-provider-support"></a>ID プロバイダーのサポート
 
-{% data variables.product.prodname_emus %} supports the following IdPs:
+{% data variables.product.prodname_emus %} では、次の IdP がサポートされています。
 
 {% data reusables.enterprise-accounts.emu-supported-idps %}
 
-## Abilities and restrictions of {% data variables.product.prodname_managed_users %}
+## <a name="abilities-and-restrictions-of--data-variablesproductprodname_managed_users-"></a>{% data variables.product.prodname_managed_users %} の機能と制限
 
-{% data variables.product.prodname_managed_users_caps %} can only contribute to private and internal repositories within their enterprise and private repositories owned by their user account. {% data variables.product.prodname_managed_users_caps %} have read-only access to the wider {% data variables.product.prodname_dotcom %} community. These visibility and access restrictions for users and content apply to all requests, including API requests.
+{% data variables.product.prodname_managed_users_caps %} は、ユーザー アカウントが所有するエンタープライズ リポジトリとプライベート リポジトリ内のプライベート リポジトリと内部リポジトリにのみ投稿できます。 {% data variables.product.prodname_managed_users_caps %} には、より広い {% data variables.product.prodname_dotcom %} コミュニティへの読み取り専用アクセス権があります。 ユーザーとコンテンツに対するこれらの可視性とアクセスの制限は、API 要求を含むすべての要求に適用されます。
 
-* {% data variables.product.prodname_managed_users_caps %} cannot create issues or pull requests in, comment or add reactions to, nor star, watch, or fork repositories outside of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} can view all public repositories on {% data variables.product.prodname_dotcom_the_website %}, but cannot push code to repositories outside of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} and the content they create is only visible to other members of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} cannot follow users outside of the enterprise.
-* {% data variables.product.prodname_managed_users_caps %} cannot create gists or comment on gists.
-* {% data variables.product.prodname_managed_users_caps %} cannot install {% data variables.product.prodname_github_apps %} on their user accounts.
-* Other {% data variables.product.prodname_dotcom %} users cannot see, mention, or invite a {% data variables.product.prodname_managed_user %} to collaborate.
-* {% data variables.product.prodname_managed_users_caps %} can only own private repositories and {% data variables.product.prodname_managed_users %} can only invite other enterprise members to collaborate on their owned repositories.
-* Only private and internal repositories can be created in organizations owned by an {% data variables.product.prodname_emu_enterprise %}, depending on organization and enterprise repository visibility settings.
+* {% data variables.product.prodname_managed_users_caps %} は、Enterprise 外部のリポジトリでの Issue または pull request の作成、リアクションに対するコメントまたはリアクションの追加、Star、Watch または Fork 操作を行うことはできません。
+* {% data variables.product.prodname_managed_users_caps %} は、{% data variables.product.prodname_dotcom_the_website %} のすべてのパブリック リポジトリを表示できますが、Enterprise 外部のリポジトリにコードをプッシュすることはできません。
+* {% data variables.product.prodname_managed_users_caps %} および作成したコンテンツは、Enterprise の他のメンバーにのみ表示されます。 
+* {% data variables.product.prodname_managed_users_caps %} は、Enterprise 外部のユーザーをフォローできません。
+* {% data variables.product.prodname_managed_users_caps %} は、gists を作成したり、gists に対してコメントしたりすることはできません。
+* {% data variables.product.prodname_managed_users_caps %} は、そのユーザー アカウントに {% data variables.product.prodname_github_apps %} をインストールできません。
+* 他の {% data variables.product.prodname_dotcom %} ユーザーは、{% data variables.product.prodname_managed_user %} の表示またはメンションを行ったり、共同作業に招待したりすることはできません。
+* {% data variables.product.prodname_managed_users_caps %} はプライベート リポジトリのみを所有でき、{% data variables.product.prodname_managed_users %} は、所有するリポジトリで共同作業するためにのみ他のエンタープライズ メンバーを招待できます。
+* Organization および Enterprise リポジトリの可視性の設定に応じて、{% data variables.product.prodname_emu_enterprise %} が所有する Organization では、プライベートおよび内部リポジトリのみを作成できます。 
+* {% data variables.product.prodname_managed_users_caps %} は、{% data variables.product.prodname_pages %} の使用に制限があります。 詳細については、「[{% data variables.product.prodname_pages %} について](/pages/getting-started-with-github-pages/about-github-pages#limitations-for-enterprise-managed-users)」を参照してください。
 
-## About enterprises with managed users
+## <a name="about-enterprises-with-managed-users"></a>Managed User を含む Enterprise について
 
-To use {% data variables.product.prodname_emus %}, you need a separate type of enterprise account with {% data variables.product.prodname_emus %} enabled. To try out {% data variables.product.prodname_emus %} or to discuss options for migrating from your existing enterprise, please contact [{% data variables.product.prodname_dotcom %}'s Sales team](https://enterprise.github.com/contact).
+{% data variables.product.prodname_emus %} を使用するには、{% data variables.product.prodname_emus %} を有効にした別の種類の Enterprise アカウントが必要です。 {% data variables.product.prodname_emus %} を試用するか、既存の Enterprise から移行するためのオプションについて検討するには、[{% data variables.product.prodname_dotcom %} の営業チーム](https://enterprise.github.com/contact)にお問い合わせください。
 
-Your contact on the GitHub Sales team will work with you to create your new {% data variables.product.prodname_emu_enterprise %}. You'll need to provide the email address for the user who will set up your enterprise and a short code that will be used as the suffix for your enterprise members' usernames. {% data reusables.enterprise-accounts.emu-shortcode %} For more information, see "[Usernames and profile information](#usernames-and-profile-information)."
+GitHub 営業チームの窓口担当者が、新しい {% data variables.product.prodname_emu_enterprise %} を作成するために協力します。 Enterprise を設定するユーザーのメール アドレスと、Enterprise メンバーのユーザー名のサフィックスとして使用されるショートコードを指定する必要があります。 {% data reusables.enterprise-accounts.emu-shortcode %} 詳細については、「[ユーザー名とプロファイル情報](#usernames-and-profile-information)」を参照してください。
 
-After we create your enterprise, you will receive an email from {% data variables.product.prodname_dotcom %} inviting you to choose a password for your enterprise's setup user, which will be the first owner in the enterprise. Use an incognito or private browsing window when setting the password. The setup user is only used to configure SAML single sign-on and SCIM provisioning integration for the enterprise. It will no longer have access to administer the enterprise account once SAML is successfully enabled.
+Enterprise を作成すると、{% data variables.product.prodname_dotcom %} からメールが届き、Enterprise のセットアップ ユーザーのパスワードを選択するよう求められます。このユーザーは、Enterprise の最初の所有者になります。 パスワードを設定する際は、Incognito ウィンドウまたはプライベート ブラウズ ウィンドウを使用します。 セットアップ ユーザーは、Enterprise の SAML シングル サインオンと SCIM プロビジョニング統合を構成するためにのみ使用されます。 SAML が正常に有効になると、Enterprise アカウントを管理するためのアクセス権はなくなります。
 
-The setup user's username is your enterprise's shortcode suffixed with `_admin`. After you log in to your setup user, you can get started by configuring SAML SSO for your enterprise. For more information, see "[Configuring SAML single sign-on for Enterprise Managed Users](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/configuring-saml-single-sign-on-for-enterprise-managed-users)."
+セットアップ ユーザーのユーザー名は、Enterprise のショートコードにサフィックス `_admin` が付きます。 セットアップ ユーザーにログインすると、Enterprise 向けに SAML SSO を構成して開始できます。 詳細については、「[Configuring SAML single sign-on for Enterprise Managed Users](/github/setting-up-and-managing-your-enterprise/managing-your-enterprise-users-with-your-identity-provider/configuring-saml-single-sign-on-for-enterprise-managed-users)」 (Enterprise Managed Users 向けの SAML シングル サインオンの構成) を参照してください。
 
 {% note %}
 
@@ -73,31 +79,24 @@ The setup user's username is your enterprise's shortcode suffixed with `_admin`.
 
 {% endnote %}
 
-## {% data variables.product.prodname_managed_user %} として認証を行う
+## <a name="authenticating-as-a--data-variablesproductprodname_managed_user-"></a>{% data variables.product.prodname_managed_user %} として認証を行う
 
-{% data variables.product.prodname_managed_users_caps %} must authenticate through their identity provider. To authenticate, a {% data variables.product.prodname_managed_user %} can visit their IdP application portal or use the login page on {% data variables.product.prodname_dotcom_the_website %}.
+{% data variables.product.prodname_managed_users_caps %} は ID プロバイダーを介して認証を行う必要があります。 {% data variables.product.prodname_managed_user %} は、認証を行うために、IdP アプリケーション ポータルにアクセスするか、{% data variables.product.prodname_dotcom_the_website %} のログイン ページを使用できます。
 
-{% data reusables.enterprise-accounts.about-recovery-codes %} For more information, see "[Managing recovery codes for your enterprise](/admin/identity-and-access-management/managing-recovery-codes-for-your-enterprise)."
+{% data reusables.enterprise-accounts.about-recovery-codes %} 詳細については、「[Managing recovery codes for your enterprise](/admin/identity-and-access-management/managing-recovery-codes-for-your-enterprise)」 (Enterprise の復旧コードの管理) を参照してください。
 
-### Authenticating as a {% data variables.product.prodname_managed_user %} via {% data variables.product.prodname_dotcom_the_website %}
+### <a name="authenticating-as-a--data-variablesproductprodname_managed_user--via--data-variablesproductprodname_dotcom_the_website-"></a>{% data variables.product.prodname_dotcom_the_website %} を介して {% data variables.product.prodname_managed_user %} として認証を行う
 
-1. Navigate to [https://github.com/login](https://github.com/login).
-1. In the "Username or email address" text box, enter your username including the underscore and short code. ![Screenshot showing login form](/assets/images/help/enterprises/emu-login-username.png) When the form recognizes your username, the form will update. You do not need to enter your password on this form.
-1. To continue to your identity provider, click **Sign in with your identity provider**. ![Screenshot showing "Sign in with your identity provider" button](/assets/images/help/enterprises/emu-login-submit.png)
+1. [https://github.com/login](https://github.com/login) に移動します。
+1. [Username or email address] テキスト ボックスに、アンダースコアとショートコードを含むユーザー名を入力します。
+  ![ログイン フォームを示すスクリーンショット](/assets/images/help/enterprises/emu-login-username.png) このフォームでユーザー名が認識されると、フォームは更新されます。 このフォームでパスワードを入力する必要はありません。
+1. ID プロバイダーに進むには、 **[Sign in with your identity provider]** をクリックします。
+  ![[Sign in with your identity provider] ボタンを示すスクリーンショット](/assets/images/help/enterprises/emu-login-submit.png)
 
-## Usernames and profile information
+## <a name="usernames-and-profile-information"></a>ユーザー名とプロファイル情報
 
-When your {% data variables.product.prodname_emu_enterprise %} is created, you will choose a short code that will be used as the suffix for your enterprise member's usernames. {% data reusables.enterprise-accounts.emu-shortcode %} The setup user who configures SAML SSO has a username in the format of **@<em>SHORT-CODE</em>_admin**.
+{% data variables.product.product_name %} は、IdP から提供された識別子を正規化することにより、各自のユーザー名を自動的に作成します。 詳細については、「[外部認証におけるユーザー名の考慮事項](/admin/identity-and-access-management/managing-iam-for-your-enterprise/username-considerations-for-external-authentication)」を参照してください。
 
-When you provision a new user from your identity provider, the new {% data variables.product.prodname_managed_user %} will have a {% data variables.product.prodname_dotcom %} username in the format of **@<em>IDP-USERNAME</em>_<em>SHORT-CODE</em>**.
+IdP から提供された識別子の一意の部分が正規化中に削除されると、ユーザーをプロビジョニングするときに競合が発生する場合があります。 ユーザー名の競合が原因でユーザーをプロビジョニングできない場合は、IdP によって提供されるユーザー名を変更する必要があります。 詳細については、[ユーザー名の競合の解決](/admin/identity-and-access-management/managing-iam-for-your-enterprise/username-considerations-for-external-authentication#resolving-username-conflicts)に関するページを参照してください。
 
-| Identity provider                 | {% data variables.product.prodname_dotcom %} username |
-| --------------------------------- | ----------------------------------------------------- |
-| Azure Active Directory (Azure AD) | <ul><li>_IDP-USERNAME_ is formed by normalizing the characters preceding the `@` character in the UPN (User Principal Name).</li><li>Guest accounts will have `#EXT` removed from the UPN.</li></ul>                             |
-| Okta                              | <ul><li>_IDP-USERNAME_ is the normalized username attribute provided by the IdP.</li></ul>                             |
-
-It's possible for a conflict to occur when provisioning users if the unique parts of the username provided by your IdP are removed when it is normalized. If you are unable to provision a user due to a username conflict, you should modify the username provided by your IdP.
-
-The username of the new account provisioned on {% data variables.product.prodname_dotcom %}, including underscore and short code, must not exceed 39 characters.
-
-The profile name and email address of a {% data variables.product.prodname_managed_user %} is also provided by the IdP. {% data variables.product.prodname_managed_users_caps %} cannot change their profile name or email address on {% data variables.product.prodname_dotcom %}.
+{% data variables.product.prodname_managed_user %} のプロファイル名とメール アドレスも IdP によって提供されます。 {% data variables.product.prodname_managed_users_caps %} は、{% data variables.product.prodname_dotcom %} 上のプロファイル名またはメール アドレスを変更できません。

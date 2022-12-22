@@ -1,26 +1,29 @@
 ---
-title: About Codespaces prebuilds
+title: Codespaces のプレビルドについて
 shortTitle: About prebuilds
-intro: Codespaces prebuilds help to speed up the creation of new codespaces.
+intro: Codespaces プレビルドは、大規模または複雑なリポジトリの新しい codespace の作成を高速化するのに役立ちます。
 versions:
   fpt: '*'
   ghec: '*'
 topics:
-  - Codespaces
+- Codespaces
 product: '{% data reusables.gated-features.codespaces %}'
+ms.openlocfilehash: 4653ead4a97ff1ff87ac8029fb215fdc8ae56566
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "146381188"
 ---
+## <a name="overview"></a>概要
 
-{% data reusables.codespaces.prebuilds-beta-note %}
+codespace をプレビルドすると、生産性が高まり、codespace にすばやくアクセスできます。特に、リポジトリが大規模であるか、複雑であり、新しい codespace の開始に現状、2 分以上かかる場合に有効です。 これは、プロジェクト用の codespace を作成する前に、ソース コード、エディター拡張機能、プロジェクトの依存関係、コマンド、構成が既にダウンロード、インストール、適用されているためです。 プレビルドは、codespace のための "準備ができている" テンプレートと考えてください。 
 
-## 概要
+既定では、リポジトリに変更をプッシュするたびに、{% data variables.product.prodname_codespaces %} は {% data variables.product.prodname_actions %} を使って、プレビルドを自動的に更新します。
 
-Prebuilding your codespaces allows you to be more productive and access your codespace faster, regardless of the size and complexity of your project. This is because any source code, editor extensions, project dependencies, commands, and configurations have already been downloaded, installed, and applied before you create a codespace for your project. Think of a prebuild as a "ready-to-go" template for a codespace.
+リポジトリの特定のブランチおよびお使いのリージョンでプレビルドを使用できると、codespace を作成するとき、コンピューターの種類の一覧に、[{% octicon "zap" aria-label="The zap icon" %} プレビルドあり] というラベルが表示されます。 プレビルドがまだ作成中の場合、"{% octicon "history" aria-label="The history icon" %} プレビルド進行中" ラベルが表示されます。 詳細については、「[codespace を作成する](/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace)」を参照してください。
 
-By default, whenever you push changes to your repository, {% data variables.product.prodname_codespaces %} uses {% data variables.product.prodname_actions %} to automatically update your prebuilds.
-
-When prebuilds are available for a particular branch of a repository, and for your region, you'll see the "{% octicon "zap" aria-label="The zap icon" %} Prebuild ready" label in the list of machine type options when you create a codespace. 詳しい情報については、「[codespace を作成する](/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace)」を参照してください。
-
-![The dialog box for choosing a machine type](/assets/images/help/codespaces/choose-custom-machine-type.png)
+![コンピューターの種類を選択するためのダイアログ ボックス](/assets/images/help/codespaces/choose-custom-machine-type.png)
 
 {% note %}
 
@@ -28,23 +31,23 @@ When prebuilds are available for a particular branch of a repository, and for yo
 
 {% endnote %}
 
-## About billing for {% data variables.product.prodname_codespaces %} prebuilds
+## <a name="about-billing-for--data-variablesproductprodname_codespaces--prebuilds"></a>{% data variables.product.prodname_codespaces %} のプレビルドに対する支払いについて
 
-{% data reusables.codespaces.billing-for-prebuilds %} For details of {% data variables.product.prodname_codespaces %} storage pricing, see "[About billing for {% data variables.product.prodname_codespaces %}](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces)."
+{% data reusables.codespaces.billing-for-prebuilds %}{% data variables.product.prodname_codespaces %} のストレージの価格の詳細については、「[{% data variables.product.prodname_codespaces %} の支払いについて](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces)」を参照してください。 
 
-Use of codespaces created using prebuilds is charged at the same rate as regular codespaces.
+プレビルドを使用して作成された codespace の使用は、通常の codespace と同じレートで課金されます。
 
-## About pushing changes to prebuild-enabled branches
+## <a name="about-pushing-changes-to-prebuild-enabled-branches"></a>プレビルドが有効なブランチへの変更のプッシュについて
 
-By default, each push to a branch that has a prebuild configuration results in a {% data variables.product.prodname_dotcom %}-managed Actions workflow run to update the prebuild template. The prebuild workflow has a concurrency limit of one workflow run at a time for a given prebuild configuration, unless changes were made that affect the dev container configuration for the associated repository. For more information, see "[Introduction to dev containers](/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers)." If a run is already in progress, the workflow run that was queued most recently queued will run next, after the current run completes.
+既定では、プレビルドが構成されているブランチにプッシュするたびに、プレビルドテンプレートを更新するための {% data variables.product.prodname_dotcom %} で管理される Actions ワークフロー実行が作成されます。 関連するリポジトリの開発コンテナー構成に影響を与える変更が行われたのでない限り、プレビルド ワークフローには、特定のプレビルド構成に対して一度に 1 つのワークフロー実行というコンカレンシー制限があります。 詳細については、「[開発コンテナーの概要](/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers)」をご覧ください。 実行が既に進行中の場合は、現在の実行が完了した後、最後にキューに登録されたワークフロー実行が次に実行されます。 
 
-With the prebuild template set to be updated on each push, it means that if there are very frequent pushes to your repository, prebuild template updates will occur at least as often as it takes to run the prebuild workflow. That is, if your workflow run typically takes one hour to complete, prebuilds will be created for your repository roughly hourly, if the run succeeds, or more often if there were pushes that change the dev container configuration on the branch.
+プッシュのたびにプレビルドテンプレートが更新されるように設定すると、リポジトリへのプッシュが非常に多いとき、プレビルドテンプレートは少なくとも、プレビルドワークフローの実行に必要なだけ更新されます。 つまり、ワークフローの実行が完了するまでに通常 1 時間かかるとすると、実行が成功する場合は約 1 時間ごと、ブランチの開発コンテナー構成を変更するプッシュがあった場合はさらに頻繁に、リポジトリに対してプレビルドが作成されます。
 
-For example, let's imagine 5 pushes are made, in quick succession, against a branch that has a prebuild configuration. In this situation:
+たとえば、プレビルドが構成されたブランチに対し、プッシュが 5 回立て続けに行われるとします。 この状況では、次のようになります。
 
-* A workflow run is started for the first push, to update the prebuild template.
-* If the 4 remaining pushes do not affect the dev container configuration, the workflow runs for these are queued in a "pending" state.
+* 1 番目のプッシュに対するワークフローの実行が開始され、プレビルド テンプレートが更新されます。
+* 残りの 4 つのプッシュが開発コンテナーの構成に影響しない場合、これらに対するワークフロー実行は "保留中" 状態でキューに入れられます。 
+  
+  残りの 4 つのプッシュのいずれかが開発コンテナーの構成を変更する場合は、サービスはそれをスキップせず、プレビルド作成ワークフローを直ちに実行して、成功した場合はそれに応じてプレビルドを更新します。 
 
-  If any of the remaining 4 pushes change the dev container configuration, then the service will not skip that one and will immediately run the prebuild creation workflow, updating the prebuild accordingly if it succeeds.
-
-* Once the first run completes, workflow runs for pushes 2, 3, and 4 will be canceled, and the last queued workflow (for push 5) will run and update the prebuild template. 
+* 最初の実行が完了すると、プッシュ 2、3、4 に対するワークフローの実行は取り消されて、最後にキューに入れられたワークフロー (プッシュ 5 に対するもの) が実行され、プレビルド テンプレートが更新されます。 

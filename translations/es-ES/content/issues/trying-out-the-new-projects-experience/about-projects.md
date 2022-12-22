@@ -1,6 +1,6 @@
 ---
 title: Acerca de los proyectos (beta)
-intro: 'Los proyectos son una herramienta flexible y personalizable para planear y rastrear el trabajo en {% data variables.product.company_short %}.'
+intro: Los proyectos son una herramienta flexible y personalizable para planear y rastrear el trabajo en {% data variables.product.company_short %}.
 allowTitleToDifferFromFilename: true
 miniTocMaxHeadingLevel: 3
 versions:
@@ -8,20 +8,25 @@ versions:
   ghec: '*'
 type: overview
 topics:
-  - Projects
+- Projects
+ms.openlocfilehash: eee2010b449aa65795f03ffa513138abcf3d5caf
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145135379"
 ---
-
 {% data reusables.projects.projects-beta %}
 
-## Acerca de los proyectos
+## <a name="about-projects"></a>Acerca de los proyectos
 
 Un proyecto es una hoja de cálculo personalizable que se integra con tus propuestas y solicitudes de cambios en {% data variables.product.company_short %}. Puedes personalziar el diseño si filtras, clasificas y agrupas tus propuestas y solicitudes de cambios. También puedes personalizar los campos para rastrear metadatos. Los proyectos son flexibles para que tu equipo pueda trabajar de la misma forma que es mejor para ellos.
 
-### Mantenerse actualizado
+### <a name="staying-up-to-date"></a>Mantenerse actualizado
 
 Tu proyecto se mantiene actualizado automáticamente con la información de {% data variables.product.company_short %}. Cuando cambia una solicitud de cambios o propuesta, tu proyecto refleja dicho cambio. Esta integración también trabaja de ambas formas, así que, cuando cambies la información sobre una solicitud de cambios o propuesta de tu proyecto, esta reflejará la información.
 
-### Agregar metadatos a tus tareas
+### <a name="adding-metadata-to-your-tasks"></a>Agregar metadatos a tus tareas
 
 Puedes utilizar los campos personalizados para agregar metadatos a tus tareas. Por ejemplo, puedes rastrear los siguientes metadatos:
 
@@ -31,7 +36,7 @@ Puedes utilizar los campos personalizados para agregar metadatos a tus tareas. P
 - un campo de texto para agregar una nota rápida
 - un campo de iteración para planear trabajo semana a semana, incluyendo compatibilidad para pausas
 
-### Visualizar tu proyecto desde perspectivas diferentes
+### <a name="viewing-your-project-from-different-perspectives"></a>Visualizar tu proyecto desde perspectivas diferentes
 
 Puedes ver tu proyecto como un diseño de tabla de densidad alta:
 
@@ -45,20 +50,20 @@ Para ayudar a que te enfoques en aspectos específicos de tu proyecto, puedes ag
 
 ![Vista de proyecto](/assets/images/help/issues/project_view.png)
 
-Para obtener más información, consulta la sección "[Personalizar las vistas de tu proyecto](/issues/trying-out-the-new-projects-experience/customizing-your-project-views)".
+Para más información, vea "[Personalización de las vistas del proyecto](/issues/trying-out-the-new-projects-experience/customizing-your-project-views)".
 
-### Trabajar con la paleta de comandos del proyecto
+### <a name="working-with-the-project-command-palette"></a>Trabajar con la paleta de comandos del proyecto
 
-Puedes utilizar la paleta de comandos del proyecto para cambiar de vista o agregar campos rápidamente. La paleta de comandos te guía para que no necesites memorizar los atajos de teclado personalizados. Para obtener más información, consulta la sección "[Personalizar las vistas de tu proyecto](/issues/trying-out-the-new-projects-experience/customizing-your-project-views)".
+Puedes utilizar la paleta de comandos del proyecto para cambiar de vista o agregar campos rápidamente. La paleta de comandos te guía para que no necesites memorizar los atajos de teclado personalizados. Para más información, vea "[Personalización de las vistas del proyecto](/issues/trying-out-the-new-projects-experience/customizing-your-project-views)".
 
-### Automatizar las tareas de administración de proyectos
+### <a name="automating-project-management-tasks"></a>Automatizar las tareas de administración de proyectos
 
-Los proyectos (beta) ofrecen flujos de trabajo integrados. Por ejemplo, cuando se cierra una propuesta, puedes configurar el estado automáticamente a "Hecho". También puedes utilizar la API de GraphQl y las {% data variables.product.prodname_actions %} para automatizar las tareas de administración de proyectos rutinarias. Para obtener más información, consulta las secciones "[Automatizar proyectos](/issues/trying-out-the-new-projects-experience/automating-projects)" y "[Utilizar la API para administrar proyectos](/issues/trying-out-the-new-projects-experience/using-the-api-to-manage-projects)".
+Los proyectos (beta) ofrecen flujos de trabajo integrados. Por ejemplo, cuando se cierra una propuesta, puedes configurar el estado automáticamente a "Hecho". También puedes utilizar la API de GraphQl y las {% data variables.product.prodname_actions %} para automatizar las tareas de administración de proyectos rutinarias. Para obtener más información, vea "[Automatización de proyectos](/issues/trying-out-the-new-projects-experience/automating-projects)" y "[Uso de la API para administrar proyectos](/issues/trying-out-the-new-projects-experience/using-the-api-to-manage-projects)".
 
-## Comparar proyectos (beta) con los proyectos no beta
+## <a name="comparing-projects-beta-with-the-non-beta-projects"></a>Comparar proyectos (beta) con los proyectos no beta
 
-Los proyectos (beta) es una versión nueva y personalizable de proyectos. Para obtener más información sobre la versión no beta de los proyectos, consulta la sección "[Organizar tu trabajo con tableros de proyecto](/issues/organizing-your-work-with-project-boards)".
+Los proyectos (beta) es una versión nueva y personalizable de proyectos. Para obtener más información sobre la versión distinta de beta de los proyectos, vea "[Organización del trabajo con paneles de proyectos](/issues/organizing-your-work-with-project-boards)".
 
-## Compartir retroalimentación
+## <a name="sharing-feedback"></a>Compartir la retroalimentación
 
-Puedes compartir tu retroalimentación sobre los proyectos (beta) con {% data variables.product.company_short %}. Para unirte a la conversación, consulta el [debate de retroalimentación](https://github.com/github/feedback/discussions/categories/issues-feedback).
+Puedes compartir tu retroalimentación sobre los proyectos (beta) con {% data variables.product.company_short %}. Para unirse a la conversación, vea [el debate sobre los comentarios](https://github.com/github/feedback/discussions/categories/issues-feedback).

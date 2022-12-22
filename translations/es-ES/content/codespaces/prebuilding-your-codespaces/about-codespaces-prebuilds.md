@@ -1,24 +1,27 @@
 ---
-title: About Codespaces prebuilds
+title: Acerca de las precompilaciones de Codespaces
 shortTitle: About prebuilds
-intro: Codespaces prebuilds help to speed up the creation of new codespaces.
+intro: Las precompilaciones de Codespaces ayudan a acelerar la creación de codespaces para repositorios grandes o complejos.
 versions:
   fpt: '*'
   ghec: '*'
 topics:
-  - Codespaces
+- Codespaces
 product: '{% data reusables.gated-features.codespaces %}'
+ms.openlocfilehash: 4653ead4a97ff1ff87ac8029fb215fdc8ae56566
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "146381191"
 ---
+## <a name="overview"></a>Información general
 
-{% data reusables.codespaces.prebuilds-beta-note %}
+La precompilación de codespaces aumenta la productividad y permite acceder más rápido al codespace, sobre todo si el repositorio es grande o complejo y los nuevos codespaces tardan más de dos minutos en iniciarse. Esto se debe a que cualquier código fuente, extensiones del editor, dependencias del proyecto, comandos y configuraciones ya se han descargado, instalado y aplicado antes de crear un codespace para el proyecto. Una precompilación se puede considerar una plantilla "lista para usar" para codespace. 
 
-## Resumen
+De manera predeterminada, siempre que insertes cambios en el repositorio, {% data variables.product.prodname_codespaces %} usa {% data variables.product.prodname_actions %} para actualizar automáticamente las precompilaciones.
 
-Prebuilding your codespaces allows you to be more productive and access your codespace faster, regardless of the size and complexity of your project. This is because any source code, editor extensions, project dependencies, commands, and configurations have already been downloaded, installed, and applied before you create a codespace for your project. Think of a prebuild as a "ready-to-go" template for a codespace.
-
-By default, whenever you push changes to your repository, {% data variables.product.prodname_codespaces %} uses {% data variables.product.prodname_actions %} to automatically update your prebuilds.
-
-When prebuilds are available for a particular branch of a repository, and for your region, you'll see the "{% octicon "zap" aria-label="The zap icon" %} Prebuild ready" label in the list of machine type options when you create a codespace. Para obtener más información, consulta la sección "[Crear un codespace](/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace)".
+Cuando las precompilaciones estén disponibles para una rama determinada de un repositorio y, para la región, verás la etiqueta "{% octicon "zap" aria-label="The zap icon" %} Listo para precompilación" en la lista de opciones de tipos de máquinas al crear un codespace. Si todavía se está creando una precompilación, verás la etiqueta "{% octicon "history" aria-label="The history icon" %} Precompilación en curso". Para obtener más información, consulte "[Creación de un codespace](/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace)".
 
 ![La caja de diálogo para elegir un tipo de máquina](/assets/images/help/codespaces/choose-custom-machine-type.png)
 
@@ -28,23 +31,23 @@ When prebuilds are available for a particular branch of a repository, and for yo
 
 {% endnote %}
 
-## About billing for {% data variables.product.prodname_codespaces %} prebuilds
+## <a name="about-billing-for--data-variablesproductprodname_codespaces--prebuilds"></a>Acerca de la facturación para precompilaciones de {% data variables.product.prodname_codespaces %}
 
-{% data reusables.codespaces.billing-for-prebuilds %} For details of {% data variables.product.prodname_codespaces %} storage pricing, see "[About billing for {% data variables.product.prodname_codespaces %}](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces)."
+{% data reusables.codespaces.billing-for-prebuilds %} Para más información sobre los precios de almacenamiento de {% data variables.product.prodname_codespaces %}, vea "[Acerca de la facturación de {% data variables.product.prodname_codespaces %}](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces)". 
 
-Use of codespaces created using prebuilds is charged at the same rate as regular codespaces.
+El uso de codespaces creados con precompilaciones se cobra a la misma frecuencia que los codespaces normales.
 
-## About pushing changes to prebuild-enabled branches
+## <a name="about-pushing-changes-to-prebuild-enabled-branches"></a>Acerca de la inserción de cambios en ramas habilitadas para precompilación
 
-By default, each push to a branch that has a prebuild configuration results in a {% data variables.product.prodname_dotcom %}-managed Actions workflow run to update the prebuild template. The prebuild workflow has a concurrency limit of one workflow run at a time for a given prebuild configuration, unless changes were made that affect the dev container configuration for the associated repository. Para obtener más información, consulta la sección "[Introducción a los contenedores dev](/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers)". If a run is already in progress, the workflow run that was queued most recently queued will run next, after the current run completes.
+De manera predeterminada, cada inserción en una rama que tiene una configuración de precompilación da como resultado una ejecución de flujo de trabajo de acciones administrada por {% data variables.product.prodname_dotcom %} para actualizar la plantilla de precompilación. El flujo de trabajo de precompilación tiene un límite de simultaneidad de una ejecución de flujo de trabajo a la vez para una configuración de precompilación determinada, a menos que se realicen cambios que afecten a la configuración del contenedor de desarrollo para el repositorio asociado. Para más información, vea "[Introducción a los contenedores de desarrollo](/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers)". Si una ejecución ya está en curso, la ejecución del flujo de trabajo que se ha puesto en cola más recientemente se ejecutará después, una vez que se complete la ejecución actual. 
 
-With the prebuild template set to be updated on each push, it means that if there are very frequent pushes to your repository, prebuild template updates will occur at least as often as it takes to run the prebuild workflow. That is, if your workflow run typically takes one hour to complete, prebuilds will be created for your repository roughly hourly, if the run succeeds, or more often if there were pushes that change the dev container configuration on the branch.
+Con la plantilla de precompilación establecida para actualizarse en cada inserción, si hay inserciones muy frecuentes en el repositorio, las actualizaciones de plantillas de precompilación se producirá al menos con la misma frecuencia con la que se tarda en ejecutar el flujo de trabajo de precompilación. Es decir, si la ejecución del flujo de trabajo suele tardar una hora en completarse, se crearán precompilaciones para el repositorio aproximadamente cada hora, si la ejecución se ejecuta correctamente, o con más frecuencia si se han realizado inserciones que cambian la configuración del contenedor de desarrollo en la rama.
 
-For example, let's imagine 5 pushes are made, in quick succession, against a branch that has a prebuild configuration. In this situation:
+Por ejemplo, imagine que se realizan cinco inserciones consecutivas en una rama que tiene una configuración de precompilación. En esta situación:
 
-* A workflow run is started for the first push, to update the prebuild template.
-* If the 4 remaining pushes do not affect the dev container configuration, the workflow runs for these are queued in a "pending" state.
+* Se inicia una ejecución de flujo de trabajo para la primera inserción, a fin de actualizar la plantilla de precompilación.
+* Si las cuatro inserciones restantes no afectan a la configuración del contenedor de desarrollo, sus ejecuciones de flujo de trabajo se ponen en cola en un estado "pendiente". 
+  
+  Si alguna de las cuatro inserciones restantes cambia la configuración del contenedor de desarrollo, el servicio no la omitirá y ejecutará inmediatamente el flujo de trabajo de creación de la precompilación, y la actualizará en consecuencia si se realiza correctamente. 
 
-  If any of the remaining 4 pushes change the dev container configuration, then the service will not skip that one and will immediately run the prebuild creation workflow, updating the prebuild accordingly if it succeeds.
-
-* Once the first run completes, workflow runs for pushes 2, 3, and 4 will be canceled, and the last queued workflow (for push 5) will run and update the prebuild template. 
+* Una vez que se complete la primera ejecución, las ejecuciones de flujo de trabajo para las inserciones 2, 3 y 4 se cancelarán, y el último flujo de trabajo en cola (para la inserción 5) se ejecutará y actualizará la plantilla de precompilación. 

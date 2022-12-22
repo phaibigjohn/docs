@@ -1,11 +1,19 @@
-1. In the "Change policy target" area, click the dropdown button.
-1. Choose either **All repositories** or **Selected repositories** to determine which repositories this policy will apply to.
-1. [**Selected repositories**] を選択した場合、以下の手順に従います。
-   1. {% octicon "gear" aria-label="The settings icon" %} をクリックします。
+---
+ms.openlocfilehash: fdfc4d75663309d617b1f30d36e1744fd6a8806e
+ms.sourcegitcommit: fb047f9450b41b24afc43d9512a5db2a2b750a2a
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 09/11/2022
+ms.locfileid: "145113142"
+---
+1. [ポリシー ターゲットの変更] 領域で、ドロップダウン ボタンをクリックします。
+1. **[すべてのリポジトリ]** または **[選択したリポジトリ]** を選択して、このポリシーが適用されるリポジトリを決定します。
+1. **[選択したリポジトリ]** を選択した場合は、次のようにします。
+   1. {% octicon "歯車" aria-label="歯車アイコン" %} をクリックします。
 
-      ![Edit the settings for the policy](/assets/images/help/codespaces/policy-edit.png)
+      ![ポリシーの設定を編集する](/assets/images/help/codespaces/policy-edit.png)
 
-   2. Select the repositories you want this policy to apply to.
-   3. At the bottom of the repository list, click **Select repositories**.
+   2. このポリシーを適用するリポジトリを選択します。
+   3. リポジトリ リストの下部にある **[リポジトリの選択]** をクリックします。
 
-      ![Select repositories for this policy](/assets/images/help/codespaces/policy-select-repos.png)
+      ![このポリシーのリポジトリを選択する](/assets/images/help/codespaces/policy-select-repos.png)

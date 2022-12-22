@@ -1,30 +1,34 @@
-With per-user pricing, each person consumes one license. {% data variables.product.company_short %} identifies individuals by primary email address.
+---
+ms.openlocfilehash: c8432b756590deab759f023a78453a482b8091fd
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145113606"
+---
+ユーザー単位の価格設定により、1 人あたり 1 ライセンスを使用します。 {% data variables.product.company_short %} は、プライマリ メール アドレスで個人を特定します。
 
-{% data variables.product.company_short %} bills for the following people.
-
-{%- ifversion ghec %}
-- Enterprise owners who are a member or owner of at least one organization in the enterprise
-{%- endif %}
-- Organization members, including owners
-- Outside collaborators on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-- Anyone with a pending invitation to become an organization owner or member
-- Anyone with a pending invitation to become an outside collaborator on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-{%- ifversion ghec %}
-- Each user on any {% data variables.product.prodname_ghe_server %} instance that you deploy
-{% endif %}
-
-{% data variables.product.company_short %} does not bill for any of the following people.
+{% data variables.product.company_short %} は、次のユーザーに課金します。
 
 {%- ifversion ghec %}
-- Enterprise owners who are not a member or owner of at least one organization in the enterprise
-- Enterprise billing managers
-{%- endif %}
-- Organization billing managers{% ifversion ghec %} for individual organizations on {% data variables.product.prodname_ghe_cloud %}{% endif %}
-- Anyone with a pending invitation to become an{% ifversion ghec %} enterprise or{% endif %} organization billing manager
-- Anyone with a pending invitation to become an outside collaborator on a public repository owned by your organization
+- エンタープライズ内の少なくとも 1 つの組織のメンバーまたは所有者である Enterprise 所有者 {%- endif %}
+- 所有者を含む組織のメンバー
+- フォークを除く、組織が所有するプライベート{% ifversion ghec %}または内部{% endif %}のリポジトリでの外部コラボレーター
+- 組織の所有者かメンバーになるための保留中の招待があるユーザー
+- フォークを除く、組織が所有するプライベート{% ifversion ghec %}または内部{% endif %}のリポジトリで、外部コラボレーターになるための保留中の招待があるユーザー{%- ifversion ghec %}
+- デプロイした {% data variables.product.prodname_ghe_server %} インスタンス上の各ユーザー{% endif %}
+
+{% data variables.product.company_short %} は、次のどのユーザーに対しても課金しません。
+
+{%- ifversion ghec %}
+- エンタープライズ内の少なくとも 1 つの組織のメンバーまたは所有者でない Enterprise 所有者
+- Enterprise 課金マネージャー{%- endif %}
+- {% ifversion ghec %}{% data variables.product.prodname_ghe_cloud %} 上の個々の{% endif %}組織の課金マネージャー
+- {% ifversion ghec %}エンタープライズまたは{% endif %}組織の課金マネージャーになるための保留中の招待があるユーザー
+- 組織が所有するパブリック リポジトリの外部コラボレーターになるための保留中の招待があるユーザー
 
 {% note %}
 
-**注釈**: {% data reusables.organizations.org-invite-scim %}
+**注**: {% data reusables.organizations.org-invite-scim %}
 
 {% endnote %}

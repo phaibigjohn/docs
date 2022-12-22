@@ -1,27 +1,31 @@
-With per-user pricing, each person consumes one license. {% data variables.product.company_short %} identifies individuals by primary email address.
+---
+ms.openlocfilehash: c8432b756590deab759f023a78453a482b8091fd
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145094200"
+---
+Com os preços por usuário, cada pessoa consome uma licença. O {% data variables.product.company_short %} identifica as pessoas pelo endereço de email principal.
 
-{% data variables.product.company_short %} bills for the following people.
-
-{%- ifversion ghec %}
-- Enterprise owners who are a member or owner of at least one organization in the enterprise
-{%- endif %}
-- Organization members, including owners
-- Outside collaborators on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-- Anyone with a pending invitation to become an organization owner or member
-- Anyone with a pending invitation to become an outside collaborator on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-{%- ifversion ghec %}
-- Each user on any {% data variables.product.prodname_ghe_server %} instance that you deploy
-{% endif %}
-
-{% data variables.product.company_short %} does not bill for any of the following people.
+O {% data variables.product.company_short %} gera cobrança para as pessoas a seguir.
 
 {%- ifversion ghec %}
-- Enterprise owners who are not a member or owner of at least one organization in the enterprise
-- Enterprise billing managers
-{%- endif %}
-- Organization billing managers{% ifversion ghec %} for individual organizations on {% data variables.product.prodname_ghe_cloud %}{% endif %}
-- Anyone with a pending invitation to become an{% ifversion ghec %} enterprise or{% endif %} organization billing manager
-- Anyone with a pending invitation to become an outside collaborator on a public repository owned by your organization
+- Proprietários da empresa que são membros ou proprietários de, pelo menos, uma organização na empresa {%- endif %}
+- Membros da organização, incluindo proprietários
+- Colaboradores externos em repositórios privados{% ifversion ghec %} ou internos{% endif %} pertencentes à sua organização, excluindo forks
+- Qualquer pessoa com um convite pendente para se tornar proprietário ou membro da organização
+- Qualquer pessoa com um convite pendente para se tornar um colaborador externo em repositórios privados{% ifversion ghec %} ou internos{% endif %} pertencentes à sua organização, excluindo os forks {%- ifversion ghec %}
+- Cada usuário em qualquer instância do {% data variables.product.prodname_ghe_server %} implantada por você {% endif %}
+
+O {% data variables.product.company_short %} não gera cobrança para nenhuma das pessoas a seguir.
+
+{%- ifversion ghec %}
+- Proprietários da empresa que não são membros nem proprietários de, pelo menos, uma organização na empresa
+- Gerentes de cobrança da empresa {%- endif %}
+- Gerentes de cobrança da organização{% ifversion ghec %} para organizações individuais do {% data variables.product.prodname_ghe_cloud %}{% endif %}
+- Qualquer pessoa com um convite pendente para se tornar um gerente de cobrança{% ifversion ghec %} da empresa ou{% endif %} da organização
+- Qualquer pessoa com um convite pendente para se tornar um colaborador externo em um repositório público pertencente à sua organização
 
 {% note %}
 

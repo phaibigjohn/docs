@@ -1,39 +1,44 @@
 ---
 title: Niveles de permiso para tableros de proyecto propiedad del usuario
-intro: 'Un tablero de proyecto que le pertenezca a una cuenta personal tiene dos niveles de permiso: el propietario del tablero del proyecto y los colaboradores.'
+intro: 'A project board owned by a personal account has two permission levels: the project board owner and collaborators.'
 redirect_from:
-  - /articles/permission-levels-for-user-owned-project-boards
-  - /github/setting-up-and-managing-your-github-user-account/permission-levels-for-user-owned-project-boards
-  - /github/setting-up-and-managing-your-github-user-account/managing-user-account-settings/permission-levels-for-user-owned-project-boards
+- /articles/permission-levels-for-user-owned-project-boards
+- /github/setting-up-and-managing-your-github-user-account/permission-levels-for-user-owned-project-boards
+- /github/setting-up-and-managing-your-github-user-account/managing-user-account-settings/permission-levels-for-user-owned-project-boards
 versions:
   fpt: '*'
   ghes: '*'
   ghae: '*'
   ghec: '*'
 topics:
-  - Accounts
-shortTitle: Permiso para utilizar tableros de proyecto
+- Accounts
+shortTitle: Permission user project boards
+ms.openlocfilehash: 535ef830e9ee0d8d5a3bb81ea208711cf4060943
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145091919"
 ---
+## <a name="permissions-overview"></a>Introducción sobre los permisos
 
-## Resumen de permisos
-
-Solo hay un propietario de un tablero de proyecto que le pertenezca a un usuario; este permiso no se puede compartir con otra cuenta personal. Además del propietario, otras personas pueden colaborar en tableros de proyecto.
+Solamente hay un único propietario de un panel de proyecto propiedad de un usuario; este permiso no puede compartirse con otra cuenta personal. Además del propietario, otras personas pueden colaborar en tableros de proyecto.
 
 Hay tres niveles de permisos para los colaboradores de un tablero de proyecto:
 
 {% data reusables.project-management.project-board-permissions %}
 
-## Permisos de propietario y de administrador para un tablero de proyecto propiedad del usuario
+## <a name="owner-and-admin-permissions-for-a-user-owned-project-board"></a>Permisos de propietario y de administrador para un tablero de proyecto propiedad del usuario
 
 El propietario del tablero de proyecto y los colaboradores con acceso de administrador tienen control completo del tablero de proyecto. Además de todos los permisos admitidos por los colaboradores del tablero de proyecto, un propietario y un colaborador de un tablero de proyecto con acceso de administrador pueden:
 
-- [Administrar, ver y agregar colaboradores](/articles/managing-access-to-your-user-account-s-project-boards)
-- [Configurar un tablero de proyecto como {% ifversion ghae %}interno{% else %}público{% endif %} o privado](/articles/changing-project-board-visibility)
-- [Eliminar un tablero de proyecto](/articles/deleting-a-project-board/)
-- [Cerrar un tablero de proyecto](/articles/closing-a-project-board/)
-- [Volver a abrir un tablero de proyecto cerrado](/articles/reopening-a-closed-project-board)
+- [Administración, visualización y adición de colaboradores](/articles/managing-access-to-your-user-account-s-project-boards)
+- [Configuración de un panel de proyecto como {% ifversion ghae %}interno{% else %}público{% endif %} o privado](/articles/changing-project-board-visibility)
+- [Eliminación de un panel de proyecto](/articles/deleting-a-project-board/)
+- [Cierre de un panel de proyecto](/articles/closing-a-project-board/)
+- [Reapertura de un panel de proyecto cerrado](/articles/reopening-a-closed-project-board)
 
-## Permisos de lectura y escritura para un tablero de proyecto propiedad del usuario
+## <a name="read-and-write-permissions-for-a-user-owned-project-board"></a>Permisos de lectura y escritura para un tablero de proyecto propiedad del usuario
 
 Los colaboradores con acceso de lectura a un tablero de proyecto propiedad del usuario pueden:
 
@@ -55,10 +60,10 @@ Los colaboradores con acceso de escritura a un tablero de proyecto propiedad del
 - Rastrear el avance de un tablero de proyecto
 - Archivar tarjetas en un tablero de proyecto
 
-## Visibilidad del tablero de proyecto
+## <a name="project-board-visibility"></a>Visibilidad del tablero de proyecto
 
-Puedes cambiar la visibilidad del tablero de proyecto de privada a {% ifversion ghae %}interna{% else %}pública{% endif %} y de vuelta. Por defecto, los tableros de proyecto propiedad del usuario son privados. Para obtener más información, consulta "[Cambiar la visibilidad de un tablero de proyecto](/articles/changing-project-board-visibility)".
+Puede cambiar la visibilidad del panel del proyecto de privado a {% ifversion ghae %}interno{% else %}público{% endif %} y viceversa. Por defecto, los tableros de proyecto propiedad del usuario son privados. Para más información, vea "[Cambio de la visibilidad del panel de proyecto](/articles/changing-project-board-visibility)".
 
-## Leer más
+## <a name="further-reading"></a>Información adicional
 
-  - "[Adminsitrar el acceso a los tableros de proyecto de tu cuenta personal](/articles/managing-access-to-your-user-account-s-project-boards)"
+  - "[Administración del acceso a los paneles de proyecto de la cuenta personal](/articles/managing-access-to-your-user-account-s-project-boards)"

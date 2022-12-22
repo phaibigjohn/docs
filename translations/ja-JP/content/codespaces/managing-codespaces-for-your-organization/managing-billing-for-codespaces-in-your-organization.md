@@ -1,50 +1,55 @@
 ---
-title: Managing billing for Codespaces in your organization
+title: 組織内の Codespaces の課金の管理
 shortTitle: Manage billing
-intro: 'You can check your {% data variables.product.prodname_codespaces %} usage and set usage limits.'
+intro: '{% data variables.product.prodname_codespaces %} の使用状況を確認し、使用制限を設定できます。'
 product: '{% data reusables.gated-features.codespaces %}'
-permissions: 'To manage billing for Codespaces for an organization, you must be an organization owner or a billing manager.'
+permissions: To manage billing for Codespaces for an organization, you must be an organization owner or a billing manager.
 versions:
   fpt: '*'
   ghec: '*'
 type: reference
 topics:
-  - Codespaces
-  - Billing
+- Codespaces
+- Billing
+ms.openlocfilehash: a5cc1d61c560c534dc2bdf5a543097e49b336478
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145149725"
 ---
+## <a name="overview"></a>概要
 
-## 概要
-
-To learn about pricing for {% data variables.product.prodname_codespaces %}, see "[{% data variables.product.prodname_codespaces %} pricing](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces#codespaces-pricing)."
+{% data variables.product.prodname_codespaces %} の価格については、「[{% data variables.product.prodname_codespaces %} の価格](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces#codespaces-pricing)」を参照してください。
 
 {% data reusables.codespaces.codespaces-billing %}
 
-- As an organization owner or a billing manager you can manage {% data variables.product.prodname_codespaces %} billing for your organization: ["About billing for Codespaces"](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces)
+- 組織の所有者または課金マネージャーは、組織の {% data variables.product.prodname_codespaces %} の課金を管理できます: 「[Codespaces の課金について](/billing/managing-billing-for-github-codespaces/about-billing-for-codespaces)」
 
-- For users, there is a guide that explains how billing works: ["Understanding billing for Codespaces"](/codespaces/codespaces-reference/understanding-billing-for-codespaces)
+- ユーザーの場合、課金のしくみを説明するガイドがあります: 「[Codespaces の課金について](/codespaces/codespaces-reference/understanding-billing-for-codespaces)」
 
-## 使用制限
+## <a name="usage-limits"></a>Usage limits (使用状況の制限)
 
-You can set a usage limit for the codespaces in your organization or repository. This limit is applied to the compute and storage usage for {% data variables.product.prodname_codespaces %}:
+組織またはリポジトリの codespaces の使用制限を設定できます。 この制限は、{% data variables.product.prodname_codespaces %} のコンピューティングとストレージの使用量に適用されます。
+ 
+- **コンピューティング時間 (分):** コンピューティング使用量は、すべての {% data variables.product.prodname_codespaces %} インスタンスがアクティブな間に使用した実際の分数によって計算されます。 これらの合計は、毎日課金サービスに報告され、毎月請求されます。 組織内の {% data variables.product.prodname_codespaces %} 使用量の使用制限を設定できます。 詳細については、「[Codespaces の使用制限の管理](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)」を参照してください。
 
-- **Compute minutes:** Compute usage is calculated by the actual number of minutes used by all {% data variables.product.prodname_codespaces %} instances while they are active. These totals are reported to the billing service daily, and is billed monthly. You can set a spending limit for {% data variables.product.prodname_codespaces %} usage in your organization. For more information, see "[Managing spending limits for Codespaces](/billing/managing-billing-for-github-codespaces/managing-spending-limits-for-codespaces)."
+- **ストレージ使用量:** {% data variables.product.prodname_codespaces %} の課金目的の場合、アカウント内のすべての codespaces で使用されるすべてのストレージが含まれます。 これには、クローンされたリポジトリ、構成ファイル、拡張機能など、codespaces で使用されるすべての情報が含まれます。 これらの合計は、毎日課金サービスに報告され、毎月請求されます。 月末に、{% data variables.product.prodname_dotcom %}はストレージ使用量を最も近いGBに丸めます。 {% data variables.product.prodname_codespaces %} で使用されているコンピューティング時間 (分) とストレージ GB の数を確認するには、「[Codespaces の使用状況の表示](/billing/managing-billing-for-github-codespaces/viewing-your-codespaces-usage)」を参照してください。
 
-- **Storage usage:**  For {% data variables.product.prodname_codespaces %} billing purposes, this includes all storage used by all codespaces in your account. This includes all used by the codespaces, such as cloned repositories, configuration files, and extensions, among others. These totals are reported to the billing service daily, and is billed monthly. 月末に、{% data variables.product.prodname_dotcom %}はストレージ使用量を最も近いGBに丸めます。 To check how many compute minutes and storage GB have been used by {% data variables.product.prodname_codespaces %}, see "[Viewing your Codespaces usage"](/billing/managing-billing-for-github-codespaces/viewing-your-codespaces-usage)."
+## <a name="disabling-or-limiting--data-variablesproductprodname_codespaces-"></a>{% data variables.product.prodname_codespaces %} の無効化または制限
 
-## Disabling or limiting {% data variables.product.prodname_codespaces %}
+組織またはリポジトリでの {% data variables.product.prodname_codespaces %} の使用を無効にすることができます。 詳細については、「[Managing repository access for your organization's codespaces (組織の codespace に関するリポジトリ アクセスを管理する)](/codespaces/managing-codespaces-for-your-organization/managing-access-and-security-for-your-organizations-codespaces)」を参照してください。
 
-You can disable the use of {% data variables.product.prodname_codespaces %} in your organization or repository. For more information, see "[Managing repository access for your organization's codespaces](/codespaces/managing-codespaces-for-your-organization/managing-access-and-security-for-your-organizations-codespaces)."
+また、{% data variables.product.prodname_codespaces %} を使用できる個々のユーザーを制限することもできます。 詳細については、[組織のユーザー アクセス許可の管理](/codespaces/managing-codespaces-for-your-organization/managing-user-permissions-for-your-organization)に関する記事を参照してください。
 
-You can also limit the individual users who can use {% data variables.product.prodname_codespaces %}. For more information, see "[Managing user permissions for your organization](/codespaces/managing-codespaces-for-your-organization/managing-user-permissions-for-your-organization)."
+組織が所有するリポジトリで使用できるコンピューターの種類の選択を制限できます。 これにより、ユーザーがリソースの多いコンピューターを codespaces に使用しないようにすることができます。 詳細については、「[コンピューターの種類へのアクセスの制限](/codespaces/managing-codespaces-for-your-organization/restricting-access-to-machine-types)」を参照してください。
 
-You can limit the choice of machine types that are available for repositories owned by your organization. This allows you to prevent people using overly resourced machines for their codespaces. 詳しい情報については「[マシンタイプへのアクセス制限](/codespaces/managing-codespaces-for-your-organization/restricting-access-to-machine-types)」を参照してください。
+## <a name="deleting-unused-codespaces"></a>未使用の codespaces の削除
 
-## Deleting unused codespaces
-
-Your users can delete their codespaces in https://github.com/codespaces and from within Visual Studio Code. To reduce the size of a codespace, users can manually delete files using the terminal or from within Visual Studio Code.
+ユーザーは、 https://github.com/codespaces または {% data variables.product.prodname_vscode %} 内から自分の codespace を削除できます。 Codespace のサイズを小さくするには、ユーザーはターミナルを使うか、{% data variables.product.prodname_vscode_shortname %} 内から、ファイルを手動で削除できます。 
 
 {% note %}
 
-**注釈:** codespace を作成したユーザだけが削除できます。 現在、Organization のオーナーが Organization 内で作成された Codespaces を削除する方法はありません。
+**注:** codespace を作成したユーザーのみが削除できます。 現在、Organization のオーナーが Organization 内で作成された Codespaces を削除する方法はありません。
 
 {% endnote %}

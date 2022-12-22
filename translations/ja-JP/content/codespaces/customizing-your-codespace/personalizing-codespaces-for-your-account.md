@@ -1,53 +1,57 @@
 ---
-title: Personalizing Codespaces for your account
-intro: 'You can personalize {% data variables.product.prodname_codespaces %} by using a `dotfiles` repository on {% data variables.product.product_name %} or by using Settings Sync.'
+title: アカウントの Codespaces をパーソナライズする
+shortTitle: Personalize your codespaces
+intro: '{% data variables.product.product_name %} の `dotfiles` リポジトリか Settings Sync を使用して、{% data variables.product.prodname_codespaces %} をパーソナライズできます。'
 redirect_from:
-  - /github/developing-online-with-github-codespaces/personalizing-github-codespaces-for-your-account
-  - /github/developing-online-with-codespaces/personalizing-codespaces-for-your-account
-  - /codespaces/setting-up-your-codespace/personalizing-codespaces-for-your-account
+- /github/developing-online-with-github-codespaces/personalizing-github-codespaces-for-your-account
+- /github/developing-online-with-codespaces/personalizing-codespaces-for-your-account
+- /codespaces/setting-up-your-codespace/personalizing-codespaces-for-your-account
 versions:
   fpt: '*'
   ghec: '*'
 type: how_to
 topics:
-  - Codespaces
-  - Set up
-  - Fundamentals
+- Codespaces
+- Set up
+- Fundamentals
 product: '{% data reusables.gated-features.codespaces %}'
-shortTitle: Personalize your codespaces
+ms.openlocfilehash: 2c136318f3eff0a8caed8900520b8eb8a7772add
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "146681350"
 ---
+## <a name="about-personalizing--data-variablesproductprodname_codespaces-"></a>{% data variables.product.prodname_codespaces %} のパーソナライズについて
 
+開発環境を使用する場合、設定とツールを好みやワークフローに合わせてカスタマイズすることが重要です。 {% data variables.product.prodname_codespaces %} では、Codespaces をパーソナライズするときに使用できる方法は主に 2 つあります。
 
-## About personalizing {% data variables.product.prodname_codespaces %}
+- [設定の同期](#settings-sync) - {% data variables.product.prodname_codespaces %} と {% data variables.product.prodname_vscode %} の他のインスタンス間で {% data variables.product.prodname_vscode %} 設定を使用および共有できます。
+- [ドットファイル](#dotfiles) - `dotfiles` リポジトリを使用して、スクリプト、シェル設定、およびその他の構成を指定できます。
 
-When using any development environment, customizing the settings and tools to your preferences and workflows is an important step. {% data variables.product.prodname_codespaces %} allows for two main ways of personalizing your codespaces.
+{% data variables.product.prodname_codespaces %} で行ったパーソナライズは、作成するすべての codespace に適用されます。
 
-- [Settings Sync](#settings-sync) - You can use and share {% data variables.product.prodname_vscode %} settings between {% data variables.product.prodname_codespaces %} and other instances of {% data variables.product.prodname_vscode %}.
-- [Dotfiles](#dotfiles) – You can use a `dotfiles` repository to specify scripts, shell preferences, and other configurations.
+プロジェクトのメンテナは、ユーザが作成したリポジトリのすべての codespace に適用されるデフォルト設定を定義することもできます。 詳細については、[プロジェクト用の {% data variables.product.prodname_codespaces %} の構成](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project)に関する記事をご覧ください。
 
-{% data variables.product.prodname_codespaces %} personalization applies to any codespace you create.
+## <a name="settings-sync"></a>Settings Sync
 
-Project maintainers can also define a default configuration that applies to every codespace for a repository, created by anyone. For more information, see "[Configuring {% data variables.product.prodname_codespaces %} for your project](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project)."
+Settings Sync を使用すると、設定、キーボードショートカット、スニペット、機能拡張、UI の状態などの設定をマシンと {% data variables.product.prodname_vscode %} のインスタンス間で共有できます。
 
-## Settings Sync
+設定の同期を有効にするには、アクティビティ バーの左下隅にある {% octicon "gear" aria-label="The gear icon" %} を選択し、 **[設定の同期をオンにする...]** をクリックします。 ダイアログ ボックスで同期する設定を選択します。
 
-Settings Sync allows you to share configurations such as settings, keyboard shortcuts, snippets, extensions, and UI state across machines and instances of {% data variables.product.prodname_vscode %}.
+![管理メニューの Setting Sync オプション](/assets/images/help/codespaces/codespaces-manage-settings-sync.png)
 
-To enable Settings Sync, in the bottom-left corner of the Activity Bar, select {% octicon "gear" aria-label="The gear icon" %} and click **Turn on Settings Sync…**. In the dialog box, select the settings you'd like to sync.
+詳細については、{% data variables.product.prodname_vscode %} ドキュメントの[同期の設定](https://code.visualstudio.com/docs/editor/settings-sync)に関するガイドを参照してください。
 
-![Setting Sync option in manage menu](/assets/images/help/codespaces/codespaces-manage-settings-sync.png)
+## <a name="dotfiles"></a>Dotfiles
 
-For more information, see the [Settings Sync guide](https://code.visualstudio.com/docs/editor/settings-sync) in the {% data variables.product.prodname_vscode %} documentation.
+ドットファイルは、`.` で始まる Unix ライクなシステム上のファイルとフォルダーであり、システム上のアプリケーションとシェルの設定を制御します。 ドットファイルは、{% data variables.product.prodname_dotcom %} のリポジトリに保存して管理できます。 ドットファイル リポジトリに含める内容に関するアドバイスとチュートリアルについては、[GitHub does dotfiles](https://dotfiles.github.io/) を参照してください。
 
-## Dotfiles
+ドットファイル リポジトリには、シェルのエイリアスと設定、インストールするツール、またはその他の codespace のパーソナル化を含めることができます。
 
-Dotfiles are files and folders on Unix-like systems starting with `.` that control the configuration of applications and shells on your system. You can store and manage your dotfiles in a repository on {% data variables.product.prodname_dotcom %}. For advice and tutorials about what to include in your dotfiles repository, see [GitHub does dotfiles](https://dotfiles.github.io/).
+[個人の {% data variables.product.prodname_codespaces %} 設定](https://github.com/settings/codespaces)でそのリポジトリを選択することで、所有している任意のリポジトリのドットファイルを使用するように {% data variables.product.prodname_codespaces %} を構成できます。
 
-Your dotfiles repository might include your shell aliases and preferences, any tools you want to install, or any other codespace personalization you want to make.
-
-You can configure {% data variables.product.prodname_codespaces %} to use dotfiles from any repository you own by selecting that repository in your [personal {% data variables.product.prodname_codespaces %} settings](https://github.com/settings/codespaces).
-
-When you create a new codespace, {% data variables.product.prodname_dotcom %} clones your selected repository to the codespace environment, and looks for one of the following files to set up the environment.
+新しい codespace を作成すると、{% data variables.product.prodname_dotcom %} は選択したリポジトリを codespace 環境に複製し、次のいずれかのファイルを探して環境をセットアップします。
 
 * _install.sh_
 * _install_
@@ -58,47 +62,46 @@ When you create a new codespace, {% data variables.product.prodname_dotcom %} cl
 * _setup_
 * _script/setup_
 
-If none of these files are found, then any files or folders in your selected dotfiles repository starting with `.` are symlinked to the codespace's `~` or `$HOME` directory.
+これらのファイルが見つからない場合は、`.` で始まる選択したドットファイル リポジトリ内のすべてのファイルまたはフォルダーが codespace の `~` または `$HOME` ディレクトリにシンボリック リンクされます。
 
-Any changes to your selected dotfiles repository will apply only to each new codespace, and do not affect any existing codespace.
+選択したドットファイル リポジトリへの変更は、新しい codespace にのみそれぞれ適用され、既存の codespace には影響しません。
 
 {% note %}
 
-**Note:** Currently, {% data variables.product.prodname_codespaces %} does not support personalizing the _User_ settings for the {% data variables.product.prodname_vscode %} editor with your `dotfiles` repository. You can set default _Workspace_ and _Remote [Codespaces]_ settings for a specific project in the project's repository. For more information, see "[Introduction to dev containers](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project#creating-a-custom-dev-container-configuration)."
+**注:** 現在、{% data variables.product.prodname_codespaces %} は、`dotfiles` リポジトリを使用した {% data variables.product.prodname_vscode %} エディターの _ユーザー_ 設定のパーソナライズをサポートしていません。 プロジェクトのリポジトリ内の特定のプロジェクトに対して、既定の "_ワークスペース_" と "_リモート [Codespaces]_ " 設定を設定できます。 詳細については、[開発コンテナーの概要](/github/developing-online-with-codespaces/configuring-codespaces-for-your-project#creating-a-custom-dev-container-configuration)に関するページをご覧ください。
 
 {% endnote %}
 
-### Enabling your dotfiles repository for {% data variables.product.prodname_codespaces %}
+### <a name="enabling-your-dotfiles-repository-for--data-variablesproductprodname_codespaces-"></a>{% data variables.product.prodname_codespaces %} のドットファイル リポジトリを有効にする
 
-You can use your selected dotfiles repository to personalize your {% data variables.product.prodname_codespaces %} environment. Once you choose your dotfiles repository, you can add your scripts, preferences, and configurations to it. You then need to enable your dotfiles from your personal {% data variables.product.prodname_codespaces %} settings page.
+選択したドットファイル リポジトリを使用して、{% data variables.product.prodname_codespaces %} 環境をパーソナライズできます。 ドットファイル リポジトリを選択したら、スクリプト、基本設定、構成を追加できます。 その後、個人の {% data variables.product.prodname_codespaces %} 設定ページからドットファイルを有効にする必要があります。
 
 {% warning %}
 
-**Warning:** Dotfiles have the ability to run arbitrary scripts, which may contain unexpected or malicious code. Before installing a dotfiles repo, we recommend checking scripts to ensure they don't perform any unexpected actions.
+**警告:** ドットファイルには、予期しないコードや悪意のあるコードが含まれている可能性がある任意のスクリプトを実行する機能があります。 ドットファイル リポジトリをインストールする前に、スクリプトをチェックして、予期しないアクションが実行されないようにすることをお勧めします。
 
 {% endwarning %}
 
-{% data reusables.user-settings.access_settings %}
-{% data reusables.user-settings.codespaces-tab %}
-1. Under "Dotfiles", select **Automatically install dotfiles** so that {% data variables.product.prodname_codespaces %} automatically installs your dotfiles into every new codespace you create.
-   ![Installing dotfiles](/assets/images/help/codespaces/install-custom-dotfiles.png)
-2. Choose the repository you want to install dotfiles from.
-   ![Selecting a dotfiles repo](/assets/images/help/codespaces/select-dotfiles-repo.png)
+{% data reusables.user-settings.access_settings %} {% data reusables.user-settings.codespaces-tab %}
+1. [ドットファイル] の下で **[ドットファイルを自動的にインストールする]** を選択すると、{% data variables.product.prodname_codespaces %} によって、作成したすべての新しい codespace にドットファイルが自動的にインストールされます。
+   ![ドットファイルをインストールする](/assets/images/help/codespaces/install-custom-dotfiles.png)
+2. インストールするドットファイルをリポジトリから選択します。
+   ![ドットファイル リポジトリを選択する](/assets/images/help/codespaces/select-dotfiles-repo.png)
 
-You can add further script, preferences, configuration files to your dotfiles repository or edit existing files whenever you want. Changes to settings will only be picked up by new codespaces.
+ドットファイル リポジトリにスクリプト、基本設定、構成ファイルをさらに追加したり、必要に応じて既存のファイルを編集したりできます。 設定の変更は、新しい codespace によってのみ取得されます。
 
-If your codespace fails to pick up configuration settings from dotfiles, see "[Troubleshooting dotfiles for {% data variables.product.prodname_codespaces %}](/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces)."
+codespace でドットファイルから構成設定を取得できない場合は、「[{% data variables.product.prodname_codespaces %} のドットファイルのトラブルシューティング](/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces)」を参照してください。
 
-## Other available settings
+## <a name="other-available-settings"></a>その他の使用可能な設定
 
-You can also personalize {% data variables.product.prodname_codespaces %} using additional [{% data variables.product.prodname_codespaces %} settings](https://github.com/settings/codespaces):
+追加の [{% data variables.product.prodname_codespaces %} 設定](https://github.com/settings/codespaces)を使用して、{% data variables.product.prodname_codespaces %} をパーソナライズすることもできます。
 
-- To set your default region, see "[Setting your default region for {% data variables.product.prodname_codespaces %}](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)."
-- To set your editor, see "[Setting your default editor for {% data variables.product.prodname_codespaces %}](/codespaces/managing-your-codespaces/setting-your-default-editor-for-codespaces)."
-- To add encrypted secrets, see "[Managing encrypted secrets for {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-encrypted-secrets-for-codespaces)."
-- To enable GPG verification, see "[Managing GPG verification for {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-gpg-verification-for-codespaces)."
-- To allow your codespaces to access other repositories, see "[Managing access and security for {% data variables.product.prodname_codespaces %}](/github/developing-online-with-codespaces/managing-access-and-security-for-codespaces)."
+- 既定のリージョンを設定するには、「[{% data variables.product.prodname_codespaces %} の既定のリージョンの設定](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)」を参照してください。
+- エディターを設定するには、「[{% data variables.product.prodname_codespaces %} の既定のエディターの設定](/codespaces/managing-your-codespaces/setting-your-default-editor-for-codespaces)」を参照してください。
+- 暗号化したシークレットを追加するには、「[{% data variables.product.prodname_codespaces %} の暗号化されたシークレットを管理する](/github/developing-online-with-codespaces/managing-encrypted-secrets-for-codespaces)」を参照してください。
+- GPG 検証を有効にするには、「[{% data variables.product.prodname_codespaces %} の GPG 検証を管理する](/github/developing-online-with-codespaces/managing-gpg-verification-for-codespaces)」を参照してください。
+- codespace が他のリポジトリにアクセスできるようにするには、「[{% data variables.product.prodname_codespaces %} のアクセスとセキュリティを管理する](/github/developing-online-with-codespaces/managing-access-and-security-for-codespaces)」を参照してください。
 
-## Further reading
+## <a name="further-reading"></a>参考資料
 
-* "[Creating a new repository](/github/creating-cloning-and-archiving-repositories/creating-a-new-repository)"
+* 「[新しいリポジトリを作成する](/github/creating-cloning-and-archiving-repositories/creating-a-new-repository)」

@@ -1,30 +1,34 @@
-With per-user pricing, each person consumes one license. {% data variables.product.company_short %} identifies individuals by primary email address.
+---
+ms.openlocfilehash: c8432b756590deab759f023a78453a482b8091fd
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145098294"
+---
+使用每用户定价时，每个人都使用一个许可证。 {% data variables.product.company_short %} 按主电子邮件地址标识个人。
 
-{% data variables.product.company_short %} bills for the following people.
-
-{%- ifversion ghec %}
-- Enterprise owners who are a member or owner of at least one organization in the enterprise
-{%- endif %}
-- Organization members, including owners
-- Outside collaborators on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-- Anyone with a pending invitation to become an organization owner or member
-- Anyone with a pending invitation to become an outside collaborator on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-{%- ifversion ghec %}
-- Each user on any {% data variables.product.prodname_ghe_server %} instance that you deploy
-{% endif %}
-
-{% data variables.product.company_short %} does not bill for any of the following people.
+{% data variables.product.company_short %} 针对以下人员计费。
 
 {%- ifversion ghec %}
-- Enterprise owners who are not a member or owner of at least one organization in the enterprise
-- Enterprise billing managers
-{%- endif %}
-- Organization billing managers{% ifversion ghec %} for individual organizations on {% data variables.product.prodname_ghe_cloud %}{% endif %}
-- Anyone with a pending invitation to become an{% ifversion ghec %} enterprise or{% endif %} organization billing manager
-- Anyone with a pending invitation to become an outside collaborator on a public repository owned by your organization
+- 是企业中至少一个组织的成员或所有者的企业所有者 {%- endif %}
+- 组织成员（包括所有者）
+- 组织拥有的专用{% ifversion ghec %}或内部{% endif %}存储库的外部协作者（不包括分支上的）
+- 拥有待定邀请可成为组织所有者或成员的任何人员
+- 拥有待定邀请可成为组织拥有的专用{% ifversion ghec %}或内部{% endif %}存储库的外部协作者（不包括分支上的 {%- ifversion ghec %}）的任何人员
+- 部署的 {% endif %} 任何 {% data variables.product.prodname_ghe_server %} 实例上的每个用户
+
+{% data variables.product.company_short %} 不会针对以下任何人员计费。
+
+{%- ifversion ghec %}
+- 不是企业中至少一个组织的成员或所有者的企业所有者
+- 企业账单管理员 {%- endif %}
+- {% data variables.product.prodname_ghe_cloud %}{% endif %} 上单个组织的组织账单管理员{% ifversion ghec %}
+- 拥有待定邀请可成为{% ifversion ghec %}企业或{% endif %}组织账单管理员的任何人员
+- 拥有待定邀请可成为组织拥有的公共存储库上的外部协作者的任何人员
 
 {% note %}
 
-**注**：{% data reusables.organizations.org-invite-scim %}
+注意：{% data reusables.organizations.org-invite-scim %}
 
 {% endnote %}

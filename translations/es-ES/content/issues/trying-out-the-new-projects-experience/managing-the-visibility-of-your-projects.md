@@ -7,13 +7,18 @@ versions:
   fpt: '*'
   ghec: '*'
 topics:
-  - Projects
-  - Organizations
+- Projects
+- Organizations
+ms.openlocfilehash: 85b586bbb86e8d6e286e86263eca3f44d174391f
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145135324"
 ---
-
 {% data reusables.projects.projects-beta %}
 
-## Acerca de la visibilidad de los proyectos
+## <a name="about-project-visibility"></a>Acerca de la visibilidad de los proyectos
 
 Los proyectos (beta) pueden ser públicos o privados. En el caso de los proyectos públicos, toda persona con acceso a internet puede verlos. Para el caso de los proyectos privados, solo podrán verlos los usuarios a los que se les otorgó por lo menos acceso de lectura.
 
@@ -25,9 +30,9 @@ Solo los administradores de proyecto pueden controlar la visibilidad del mismo.
 
 En los proyectos privados que pertenecen a las organizaciones, los avatares de los usuarios que actualmente hacen actualizaciones al mismo se muestran en su IU.
 
-Los administradores de proyecto también pueden administrar el acceso administrativo y de escritura al mismo, así como controlar el acceso para los usuarios individuales. Para obtener más información, consulta la sección "[Administrar el acceso a los proyectos](/issues/trying-out-the-new-projects-experience/managing-access-to-projects)".
+Los administradores de proyecto también pueden administrar el acceso administrativo y de escritura al mismo, así como controlar el acceso para los usuarios individuales. Para obtener más información, consulte "[Administración del acceso a proyectos](/issues/trying-out-the-new-projects-experience/managing-access-to-projects)".
 
-## Cambiar la visibilidad de proyecto
+## <a name="changing-project-visibility"></a>Cambiar la visibilidad de proyecto
 
 {% data reusables.projects.project-settings %}
-1. Debajo de **Visibilidad**, selecciona **Privada** o **Pública**.
+1. En **Visibility**, seleccione **Private** o **Public**.

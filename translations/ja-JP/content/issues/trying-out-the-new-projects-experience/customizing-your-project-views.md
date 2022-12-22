@@ -7,75 +7,80 @@ versions:
   ghec: '*'
 type: reference
 topics:
-  - Projects
+- Projects
+ms.openlocfilehash: 86b8d7e439b19327b1f752f8d893e349665168f4
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145130968"
 ---
-
 {% data reusables.projects.projects-beta %}
 
-## プロジェクトコマンドパレット
+## <a name="project-command-palette"></a>プロジェクトコマンドパレット
 
 プロジェクトコマンドパレットを使って、プロジェクトで素早く設定を変更し、コマンドを実行してください。
 
 1. {% data reusables.projects.open-command-palette %}
 2. コマンドの一部を入力し始めるか、コマンドパレットウィンドウをナビゲートしてコマンドを見つけてください。 さらなるコマンドの例については、次のセクションを参照してください。
 
-## プロジェクトレイアウトの変更
+## <a name="changing-the-project-layout"></a>プロジェクトレイアウトの変更
 
 プロジェクトを、テーブルまたはボードとして見ることができます。
 
 1. {% data reusables.projects.open-command-palette %}
 2. "Switch layout"と入力し始めてください。
-3. 必要なコマンドを選択してください。 たとえば**Switch layout: Table（レイアウトの変更: テーブル）**を選択してください。
+3. 必要なコマンドを選択してください。 たとえば、**Switch layout: Table** です。
 
-あるいは、ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Table（テーブル）**もしくは**Board（ボード）**をクリックしてください。
+あるいは、ビュー名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、 **[表]** または **[ボード]** をクリックします。
 
-## フィールドの表示と非表示
+## <a name="showing-and-hiding-fields"></a>フィールドの表示と非表示
 
 特定のフィールドを表示または非表示にできます。
 
-### テーブルレイアウトでのフィールドの表示と非表示
+### <a name="showing-and-hiding-fields-in-table-layout"></a>テーブルレイアウトでのフィールドの表示と非表示
 
 1. {% data reusables.projects.open-command-palette %}
 2. 行いたいアクション（"show"もしくは"hide"）もしくはフィールド名を入力し始めてください。
-3. 必要なコマンドを選択してください。 たとえば**Show: Milestone（表示: マイルストーン）**を選択してください。
+3. 必要なコマンドを選択してください。 たとえば、**Show: Milestone** です。
 
 あるいは、表の右の{% octicon "plus" aria-label="the plus icon" %}をクリックしてください。 表示されるドロップダウンメニューで、表示または非表示にするフィールドを指定してください。 {% octicon "check" aria-label="check icon" %}は、表示されるフィールドを示します。
 
-あるいは、フィールド名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Hide field（フィールドを非表示）**をクリックしてください。
+あるいは、フィールド名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、 **[フィールドを非表示にする]** をクリックします。
 
-### ボードレイアウトでのフィールドの表示と非表示
+### <a name="showing-and-hiding-fields-in-board-layout"></a>ボードレイアウトでのフィールドの表示と非表示
 
 1. ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックしてください。
-2. ** configuration（設定）**の下で、{% octicon "list-unordered" aria-label="the unordered list icon" %}をクリックしてください。
+2. **[構成]** の下で、{% octicon "list-unordered" aria-label="the unordered list icon" %}をクリックします。
 3. 表示されたメニューで、追加するフィールドを選択し、ビューから削除するフィールドの選択を解除してください。
 
-## フィールドの並び替え
+## <a name="reordering-fields"></a>フィールドの並び替え
 
 フィールドの順序を変えることができます。
 
 1. フィールドのヘッダをクリックしてください。
 2. クリックしながら、フィールドを必要な場所へドラッグしてください。
 
-## 行の並び替え
+## <a name="reordering-rows"></a>行の並び替え
 
 テーブルレイアウトでは、行の順序を変更できます。
 
 1. 行の先頭にある数字をクリックしてください。
 2. クリックしながら、行を必要な場所へドラッグしてください。
 
-## フィールドの値でソート
+## <a name="sorting-by-field-values"></a>フィールドの値でソート
 
 テーブルレイアウトでは、フィールドの値でアイテムをソートできます。
 
 1. {% data reusables.projects.open-command-palette %}
 2. "Sort by"あるいはソートの基準にしたいフィールド名を入力し始めてください。
-3. 必要なコマンドを選択してください。 たとえば**Sort by: Assignees, asc**を選択してください。
+3. 必要なコマンドを選択してください。 たとえば、**Sort by: Assignees, asc** です。
 
-あるいは、ソートの基準にしたいフィールド名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Sort ascending（昇順にソート）**あるいは**Sort descending（降順にソート）**をクリックしてください。
+あるいは、並べ替えの基準にするフィールド名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、次に **[昇順で並べ替え]** または **[降順で並べ替え]** をクリックします。
 
 {% note %}
 
-**ノート:** テーブルがソートされると、手動で行を並び替えることはできなくなります。
+**注:** テーブルを並べ替えると、手動で行を並べ替えることはできません。
 
 {% endnote %}
 
@@ -83,45 +88,45 @@ topics:
 
 1. {% data reusables.projects.open-command-palette %}
 2. "Remove sort-by"と入力し始めてください。
-3. **Remove sort-by（ソートを解除）**を選択してください。
+3. **[並べ替えの削除]** を選択します。
 
 あるいは、ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、現在のソートを表しているメニューアイテムをクリックしてください。
 
-## テーブルレイアウト内のフィールドの値でグループ化
+## <a name="grouping-by-field-values-in-table-layout"></a>テーブルレイアウト内のフィールドの値でグループ化
 
-テーブルレイアウトでは、カスタムフィールドの値でアイテムをグループ化できます。 アイテムがグループ化されると、アイテムを新しいグループにドラッグした場合、そのグループの値が適用されます。 たとえば"Status"でグループ化して、ステータスが`In progress`のアイテムを`Done`グループにドラッグすると、そのアイテムのステータスは`Done`に切り替わります。 同様に、新しいアイテムをグループに追加すると、新しいアイテムにはそのグループの値が展開されます。
+テーブルレイアウトでは、カスタムフィールドの値でアイテムをグループ化できます。 アイテムがグループ化されると、アイテムを新しいグループにドラッグした場合、そのグループの値が適用されます。 たとえば、"Status" でグループ化し、状態が `In progress` のアイテムを `Done` グループにドラッグすると、アイテムの状態は `Done` に切り替わります。 同様に、新しいアイテムをグループに追加すると、新しいアイテムにはそのグループの値が展開されます。
 
 {% note %}
 
-**ノート:** 現時点では、タイトル、ラベル、レビュー担当者、リンクされたPull Requestでのグループ化はできません。
+**注:** 現在、タイトル、ラベル、レビュー担当者、リンクされた pull request によるグループ化はできません。
 
 {% endnote %}
 
 1. {% data reusables.projects.open-command-palette %}
 2. "Group by" あるいはグループ化に使いたいフィールド名を入力し始めてください。
-3. 必要なコマンドを選択してください。 たとえば**Group by: Status（グループ化: ステータス）**を選択してください。
+3. 必要なコマンドを選択してください。 たとえば、**Group by: Status** です。
 
-あるいは、グループ化したいフィールド名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Group by values（値でグループ化）**をクリックしてください。
+あるいは、グループ化したいフィールド名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、 **[値でグループ化]** をクリックします。
 
 グループを削除するには、同じようなステップに従ってください。
 
 1. {% data reusables.projects.open-command-palette %}
 2. "Remove group-by"と入力し始めてください。
-3. **Remove group-by（グループ化を解除）**を選択してください。
+3. **[グループ化の削除]** を選択します。
 
 あるいは、ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、現在のグループ化を示すメニューアイテムをクリックしてください。
 
-## ボードレイアウトでの列フィールドの設定
+## <a name="setting-the-column-field-in-board-layout"></a>ボードレイアウトでの列フィールドの設定
 
-ボードレイアウトでは、列に対して任意の単一選択あるいは繰り返しフィールドを選択します。 アイテムを新しい列にドラッグすると、その列の値がドラッグされたアイテムに適用されます。 たとえば、ボードの列に"Status"フィールドを使い、ステータスが`In progress`のアイテムを`Done`列にドラッグすると、そのアイテムのステータスは`Done`に切り替わります。
+ボードレイアウトでは、列に対して任意の単一選択あるいは繰り返しフィールドを選択します。 アイテムを新しい列にドラッグすると、その列の値がドラッグされたアイテムに適用されます。 たとえば、ボードの列に "Status" フィールドを使い、状態が `In progress` のアイテムを `Done` 列にドラッグすると、そのアイテムの状態は `Done` に切り替わります。
 
 1. {% data reusables.projects.open-command-palette %}
 1. "Column field by"もしくは列で使いたいフィールドの名前をタイプし始めてください。
-1. 必要なコマンドを選択してください。 たとえば**Column field by: Status**を選択してください。
+1. 必要なコマンドを選択してください。 たとえば、**Column field by: Status** です。
 
-あるいは、変更したいボードビューの隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、{% octicon "columns" aria-label="the column icon" %} **Column field（列フィールド）**をクリックしてください。 続いて、ボードの列に使いたいフィールドを選択してください。
+あるいは、変更したいボード ビューの隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、{% octicon "columns" aria-label="the column icon" %} **[列フィールド]** をクリックします。 続いて、ボードの列に使いたいフィールドを選択してください。
 
-## アイテムのフィルタリング
+## <a name="filtering-items"></a>アイテムのフィルタリング
 
 テーブルの上部にある{% octicon "filter" aria-label="the filter icon" %}をクリックして、"Filter by keyword or by field（キーワードもしくはフィールドでフィルタ）"バーを表示させてください。 フィルタに使いたいフィールド名及び値を入力し始めてください。 入力していくと、利用できる値が表示されます。
 
@@ -130,17 +135,17 @@ topics:
 あるいは、コマンドパレットを使用してください。
 
 1. {% data reusables.projects.open-command-palette %}
-2. "Filter by"あるいはフィルタリングに使いたいフィールド名を入力し始めてください。
-3. 必要なコマンドを選択してください。 たとえば**Filter by Status**と入力してください。
+2. Filter by"あるいはフィルタリングに使いたいフィールド名を入力し始めてください。
+3. 必要なコマンドを選択してください。 たとえば、**Filter by Status** です。
 4. フィルタリングしたい値を入力してください。 たとえば"In progress"と入力してください。 特定の値がないことでフィルタリングしたり（たとえば"Exclude status"を選択してからステータスを選択）、すべての値がないことでフィルタリングしたり（たとえば"No status"）もできます。
 
 ボードレイアウトでは、アイテムデータをクリックして、その値を持つアイテムにフィルタリングできます。 たとえば、アサインされた人をクリックして、そのアサインされた人のアイテムだけを表示させられます。 このフィルタを削除するには、そのアイテムデータをもう一度クリックします。
 
-詳しい情報については「[プロジェクトのフィルタリング](/issues/trying-out-the-new-projects-experience/filtering-projects)」を参照してください。
+詳細については、[プロジェクトのフィルター処理](/issues/trying-out-the-new-projects-experience/filtering-projects)に関するページを参照してください。
 
-## プロジェクトビューの作成
+## <a name="creating-a-project-view"></a>プロジェクトビューの作成
 
-プロジェクトビューを使うと、プロジェクトの特定の側面を素早く見ることができます。 それぞれのビューは、プロジェクト内の個別のタブに表示されます。
+プロジェクトビューを使うと、プロジェクトの特定の側面を素早く見ることができます。 それぞれのビューは、プロジェクト内の個別のタブに表示されます。 
 
 たとえば、以下のようなビューを持つことができます:
 - まだ開始されていないすべてのアイテムを表示するビュー（"Status"でフィルタ）。
@@ -153,15 +158,15 @@ topics:
 2. "New view"（新しいビューを作成する場合）あるいは"Duplicate view"（現在のビューを複製する場合）と入力し始めます。
 3. 必要なコマンドを選択してください。
 
-あるいは、最も右側のビューの隣にある{% octicon "plus" aria-label="the plus icon" %} **New view（新しいビュー）**をクリックしてください。
+あるいは、右端のビューの隣にある {% octicon "plus" aria-label="the plus icon" %} **[新しいビュー]** をクリックします。
 
-あるいは、ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Duplicate view（ビューを複製）**をクリックします。
+あるいは、ビュー名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、 **[ビューを複製]** をクリックします。
 
 新しいビューは自動的に保存されます。
 
-## ビューへの変更の保存
+## <a name="saving-changes-to-a-view"></a>ビューへの変更の保存
 
-ビューのデータのソート、並び替え、フィルタリング、グループ化など、ビューに変更を加えた場合、ビュー名の隣にはドットが表示され、保存されていない変更があることを示します。
+ビューのデータのソート、並び替え、フィルタリング、グループ化など、ビューに変更を加えた場合、ビュー名の隣にはドットが表示され、保存されていない変更があることを示します。 
 
 ![未保存の変更インジケータ](/assets/images/help/projects/unsaved-changes.png)
 
@@ -172,15 +177,15 @@ topics:
 1. "Save view"あるいは"Save changes to new view"と入力し始めてください。
 1. 必要なコマンドを選択してください。
 
-あるいは、ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Save view（ビューの保存）**もしくは**Save changes to new view（ビューに変更を保存）**をクリックします。
+あるいは、ビュー名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、 **[ビューの保存]** または **[新しいビューへの変更を保存]** をクリックします。
 
-## 保存されたビューの並び替え
+## <a name="reordering-saved-views"></a>保存されたビューの並び替え
 
 保存されたビューを含むタブの順序を変更するには、タブをクリックして新しい場所へドラッグします。
 
 新しいタブの順序は自動的に保存されます。
 
-## 保存されたビューの名前の変更
+## <a name="renaming-a-saved-view"></a>保存されたビューの名前の変更
 
 ビューの名前を変更するには以下のようにします:
 1. プロジェクトタブの名前をダブルクリックします。
@@ -189,16 +194,16 @@ topics:
 
 名前の変更は自動的に保存されます。
 
-## 保存されたビューの削除
+## <a name="deleting-a-saved-view"></a>保存されたビューの削除
 
-ビューを削除するには以下のようにしてください。
+ビューを削除するには、次のようにします。
 1. {% data reusables.projects.open-command-palette %}
 2. "Delete view"と入力し始めてください。
 3. 必要なコマンドを選択してください。
 
-あるいは、ビュー名の隣の{% octicon "triangle-down" aria-label="the drop-down icon" %}をクリックし、**Delete view（ビューの削除）**をクリックします。
+あるいは、ビュー名の隣の {% octicon "triangle-down" aria-label="the drop-down icon" %} をクリックし、 **[ビューの削除]** をクリックします。
 
-## 参考リンク
+## <a name="further-reading"></a>参考資料
 
-- 「[プロジェクト（ベータ）について](/issues/trying-out-the-new-projects-experience/about-projects)」
-- 「[プロジェクト（ベータ）の作成](/issues/trying-out-the-new-projects-experience/creating-a-project)」
+- [プロジェクトについて](/issues/trying-out-the-new-projects-experience/about-projects)
+- [プロジェクトの作成](/issues/trying-out-the-new-projects-experience/creating-a-project)

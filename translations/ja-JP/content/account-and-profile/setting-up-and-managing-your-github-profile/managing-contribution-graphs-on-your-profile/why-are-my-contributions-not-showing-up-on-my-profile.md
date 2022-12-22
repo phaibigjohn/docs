@@ -2,99 +2,104 @@
 title: コントリビューションがプロフィールに表示されないのはなぜですか？
 intro: Learn common reasons that contributions may be missing from your contributions graph.
 redirect_from:
-  - /articles/why-are-my-contributions-not-showing-up-on-my-profile
-  - /github/setting-up-and-managing-your-github-profile/why-are-my-contributions-not-showing-up-on-my-profile
-  - /github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile
+- /articles/why-are-my-contributions-not-showing-up-on-my-profile
+- /github/setting-up-and-managing-your-github-profile/why-are-my-contributions-not-showing-up-on-my-profile
+- /github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile
 versions:
   fpt: '*'
   ghes: '*'
   ghae: '*'
   ghec: '*'
 topics:
-  - Profiles
+- Profiles
 shortTitle: Missing contributions
+ms.openlocfilehash: c3921897284e16c979542c5f7629690ded2b841e
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145119405"
 ---
+## <a name="about-your-contribution-graph"></a>コントリビューション グラフについて
 
-## About your contribution graph
+プロファイル コントリビューション グラフは、{% data variables.product.product_location %} {% ifversion ghae %}が所有する{% else %}の{% endif %}リポジトリへのコントリビューションの記録です。 ローカルタイムゾーンではなく、協定世界時 (UTC) に従って、コントリビューションにタイムスタンプが付けられます。 コントリビューションは、一定の基準を満たしている場合にのみカウントされます。 場合によっては、コントリビューションを表示するためにグラフを再構築する必要があります。
 
-Your profile contributions graph is a record of contributions you've made to repositories {% ifversion ghae %}owned by{% else %}on{% endif %} {% data variables.product.product_location %}. ローカルタイムゾーンではなく、協定世界時 (UTC) に従って、コントリビューションにタイムスタンプが付けられます。 コントリビューションは、一定の基準を満たしている場合にのみカウントされます。 場合によっては、コントリビューションを表示するためにグラフを再構築する必要があります。
+SAML シングル サインオン (SSO) を使用する組織に所属しており、アクティブな SSO セッションがない場合は、プロファイルで組織からのコントリビューション アクティビティを表示できません。 組織の外部からプロファイルを表示しているユーザーには、組織のコントリビューション アクティビティの匿名化されたコントリビューション アクティビティが表示されます。
 
-If you are part of an organization that uses SAML single sign-on (SSO), you won’t be able to see contribution activity from the organization on your profile if you do not have an active SSO session. People viewing your profile from outside your organization will see anonymized contribution activity of your contribution activity for your organization.
+## <a name="contributions-that-are-counted"></a>カウントされるコントリビューション
 
-## カウントされるコントリビューション
-
-### Issue、プルリクエスト、ディスカッション
+### <a name="issues-pull-requests-and-discussions"></a>Issue、プルリクエスト、ディスカッション
 
 Issue、プルリクエスト、およびディスカッションは、フォークではなくスタンドアロンリポジトリで開かれた場合、コントリビューショングラフに表示されます。
 
-### コミット
-次の条件の**すべて**を満たしている場合、コミットはコントリビューショングラフに表示されます。
-- The email address used for the commits is associated with your account on {% data variables.product.product_location %}.
+### <a name="commits"></a>コミット
+コミットは、次の **すべて** の条件を満たしている場合にコントリビューション グラフに表示されます。
+- コミットに使用されたメール アドレスが、{% data variables.product.product_location %} のアカウントに関連付けられている。
 - コミットが、フォークではなくスタンドアロンのリポジトリで行われた場合。
 - コミットが以下で行われた場合:
   - リポジトリのデフォルトブランチ内
-  - `gh-pages` ブランチ (プロジェクトサイトのリポジトリの場合) 内
+  - `gh-pages` ブランチ内 (プロジェクト サイトを持つリポジトリの場合)
 
-プロジェクトサイトに関する詳しい情報については「[{% data variables.product.prodname_pages %}について](/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites)」を参照してください。
+プロジェクト サイトの詳細については、「[{% data variables.product.prodname_pages %} について](/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites)」を参照してください。
 
-また、次のうち**少なくとも 1 つ**が該当する必要があります:
+さらに、次のうち **少なくとも 1 つ** に該当する必要があります。
 - リポジトリのコラボレーターであるか、またはリポジトリを所有する Organization のメンバーであること。
 - リポジトリをフォークしたこと。
 - リポジトリでプルリクエストまたは Issue を開いていること。
 - リポジトリに Star を付けたこと。
 
-## コントリビューションがカウントされない一般的な理由
+## <a name="common-reasons-that-contributions-are-not-counted"></a>コントリビューションがカウントされない一般的な理由
 
 {% data reusables.pull_requests.pull_request_merges_and_contributions %}
 
-### コミットしてからまだ 24 時間経過していない
+### <a name="commit-was-made-less-than-24-hours-ago"></a>コミットしてからまだ 24 時間経過していない
 
 コントリビューションとしてカウントするための要件を満たすコミットを行った後、コントリビューションがコントリビューショングラフに表示されるまで、最大 24 時間待つ必要があります。
 
-### ローカルの Git コミットメールがアカウントに接続されていない
+### <a name="your-local-git-commit-email-isnt-connected-to-your-account"></a>ローカルの Git コミットメールがアカウントに接続されていない
 
-Commits must be made with an email address that is connected to your account on {% data variables.product.product_location %}{% ifversion fpt or ghec %}, or the {% data variables.product.prodname_dotcom %}-provided `noreply` email address provided to you in your email settings,{% endif %} in order to appear on your contributions graph.{% ifversion fpt or ghec %} For more information about `noreply` email addresses, see "[Setting your commit email address](/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address#about-commit-email-addresses)."{% endif %}
+コミットをコントリビューション グラフに表示するには、{% data variables.product.product_location %}{% ifversion fpt or ghec %} のアカウントに接続されているメール アドレス、またはメール設定で示されている {% data variables.product.prodname_dotcom %} 指定の `noreply` メール アドレス{% endif %}を使用して行う必要があります。{% ifversion fpt or ghec %} `noreply` メールアドレスの詳細については、「[コミット メール アドレスを設定する](/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address#about-commit-email-addresses)」を参照してください。{% endif %}
 
-You can check the email address used for a commit by adding `.patch` to the end of a commit URL, e.g. <a href="https://github.com/octocat/octocat.github.io/commit/67c0afc1da354d8571f51b6f0af8f2794117fd10.patch" data-proofer-ignore>https://github.com/octocat/octocat.github.io/commit/67c0afc1da354d8571f51b6f0af8f2794117fd10.patch</a>:
+コミット URL の末尾に `.patch` を追加することで、コミットに使用されるメール アドレスを確認できます (例: <a href="https://github.com/octocat/octocat.github.io/commit/67c0afc1da354d8571f51b6f0af8f2794117fd10.patch" data-proofer-ignore>https://github.com/octocat/octocat.github.io/commit/67c0afc1da354d8571f51b6f0af8f2794117fd10.patch</a>)。
 
 ```
 From 67c0afc1da354d8571f51b6f0af8f2794117fd10 Mon Sep 17 00:00:00 2001
 From: The Octocat <octocat@nowhere.com>
 Date: Sun, 27 Apr 2014 15:36:39 +0530
-Subject: [PATCH] より良いウェルカムメッセージのためのインデックスを更新
+Subject: [PATCH] updated index for better welcome message
 ```
 
-[`From:`] フィールドのメールアドレスは、[ローカル Git 設定](/articles/set-up-git)で設定されたアドレスです。 この例では、コミットに使用されたメールアドレスは、`octocat@nowhere.com` です。
+`From:` フィールドのメール アドレスは、[ローカル Git 構成設定](/articles/set-up-git)で設定されたアドレスです。 この例では、コミットに使用されるメール アドレスは `octocat@nowhere.com` です。
 
-If the email address used for the commit is not connected to your account on {% data variables.product.product_location %}, {% ifversion ghae %}change the email address used to author commits in Git. For more information, see "[Setting your commit email address](/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address#setting-your-commit-email-address-in-git)."{% else %}you must [add the email address](/articles/adding-an-email-address-to-your-github-account) to your account on {% data variables.product.product_location %}. 新しいアドレスを追加すると、 コントリビューショングラフが自動的に再構築されます。{% endif %}
-
-{% warning %}
-
-**Warning**: Generic email addresses, such as `jane@computer.local`, cannot be added to {% data variables.product.prodname_dotcom %} accounts. If you use such an email for your commits, the commits will not be linked to your {% data variables.product.prodname_dotcom %} profile and will not show up in your contribution graph.
-
-{% endwarning %}
-
-### デフォルトまたは `gh-pages` ブランチでコミットされていません
-
-コミットがデフォルトのブランチまたは `gh-pages` ブランチ (プロジェクトサイトを持つリポジトリの場合) で行われた場合にのみカウントされます。 For more information, see "[About {% data variables.product.prodname_pages %}](/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites)."
-
-コミットがデフォルト以外または `gh-pages` 以外のブランチにあり、コントリビューションにカウントする場合は、以下のうち 1 つを行う必要があります:
-- 変更をデフォルトのブランチまたは `gh-pages` ブランチにマージするには、[プルリクエストを開きます](/articles/creating-a-pull-request)。
-- リポジトリの[デフォルトブランチを変更します](/github/administering-a-repository/changing-the-default-branch)。
+コミットに使用されるメール アドレスが {% data variables.product.product_location %} のアカウントに接続されていない場合は、{% ifversion ghae %}Git でコミットを作成するために使用されるメール アドレスを変更します。 詳細については、「[コミット メール アドレスを設定する](/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address#setting-your-commit-email-address-in-git)」を参照してください。{% else %}{% data variables.product.product_location %} のアカウントに[メール アドレスを追加する](/articles/adding-an-email-address-to-your-github-account)必要があります。 新しいアドレスを追加すると、 コントリビューショングラフが自動的に再構築されます。{% endif %}
 
 {% warning %}
 
-**Warning**: Changing the default branch of the repository will change it for all repository collaborators. これを行うのは、新しいブランチを将来のすべてのプルリクエストとコミットが行われるベースにしたい場合だけにしてください。
+**警告**: {% data variables.product.prodname_dotcom %} アカウントには、汎用メール アドレス (`jane@computer.local` など) を追加することはできません。 コミットにこのようなメール アドレスを使用した場合、そのコミットは {% data variables.product.prodname_dotcom %} プロファイルにリンクされず、コントリビューション グラフに表示されません。
 
 {% endwarning %}
 
-### コミットがフォークで行われました
+### <a name="commit-was-not-made-in-the-default-or-gh-pages-branch"></a>既定または `gh-pages` ブランチでコミットが行われなかった
+
+コミットは、既定のブランチまたは `gh-pages` ブランチ (プロジェクト サイトを持つリポジトリの場合) で行われた場合にのみカウントされます。 詳細については、「[{% data variables.product.prodname_pages %} について](/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites)」を参照してください。
+
+コミットが既定以外または `gh-pages` 以外のブランチにあり、コントリビューションにカウントする場合は、以下のうち 1 つを行う必要があります。
+- [pull request を開き](/articles/creating-a-pull-request)、変更を既定のブランチまたは `gh-pages` ブランチにマージします。
+- リポジトリの[既定のブランチを変更](/github/administering-a-repository/changing-the-default-branch)します。
+
+{% warning %}
+
+**警告**: リポジトリの既定のブランチを変更すると、すべてのリポジトリ コラボレーターに対しても変更されます。 これを行うのは、新しいブランチを将来のすべてのプルリクエストとコミットが行われるベースにしたい場合だけにしてください。
+
+{% endwarning %}
+
+### <a name="commit-was-made-in-a-fork"></a>コミットがフォークで行われました
 
 フォークで行われたコミットは、 コントリビューションにはカウントされません。 カウントには、次のいずれかを実行する必要があります:
-- 変更内容を親リポジトリにマージするために、[プルリクエストを開きます](/articles/creating-a-pull-request)。
-- フォークをデタッチして、{% data variables.product.product_location %} 上のスタンドアロンリポジトリに変換するために、{% data variables.contact.contact_support %} に連絡してください。 フォークに独自のフォークがある場合は、フォークがリポジトリと一緒に新しいネットワークに移動するのか、現在のネットワークに残るのかを {% data variables.contact.contact_support %}に連絡してください。 詳細は「[フォークについて](/articles/about-forks/)」を参照してください。
+- [pull request を開き](/articles/creating-a-pull-request)、変更を親リポジトリにマージします。
+- フォークをデタッチして、{% data variables.product.product_location %} 上のスタンドアロン リポジトリに変換するために、{% data variables.contact.contact_support %} に連絡してください。 フォークに独自のフォークがある場合は、フォークがリポジトリと一緒に新しいネットワークに移動するのか、現在のネットワークに残るのかを {% data variables.contact.contact_support %} に連絡してください。 詳細については、「[フォークについて](/articles/about-forks/)」を参照してください。
 
-## 参考リンク
+## <a name="further-reading"></a>参考資料
 
-- [プロフィールでプライベートコントリビューションを公開または非表示にする](/articles/publicizing-or-hiding-your-private-contributions-on-your-profile)
-- [プロフィールページ上にコントリビューションを表示する](/articles/viewing-contributions-on-your-profile-page)
+- "[プライベート コントリビューションをプロフィールで公開または非公開にする](/articles/publicizing-or-hiding-your-private-contributions-on-your-profile)"
+- "[プロフィール ページでコントリビューションを表示する](/articles/viewing-contributions-on-your-profile-page)"

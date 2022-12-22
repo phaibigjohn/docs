@@ -1,423 +1,408 @@
 ---
-title: Deploying GitHub Advanced Security in your enterprise
-intro: 'Learn how to plan, prepare, and implement a phased approach for rolling out {% data variables.product.prodname_GH_advanced_security %} (GHAS) in your enterprise.'
+title: 在企业中部署 GitHub Advanced Security
+intro: 了解如何在企业中计划、准备和实施分阶段推出 {% data variables.product.prodname_GH_advanced_security %} (GHAS)。
 product: '{% data reusables.gated-features.advanced-security %}'
 redirect_from:
-  - /admin/advanced-security/deploying-github-advanced-security-in-your-enterprise
+- /admin/advanced-security/deploying-github-advanced-security-in-your-enterprise
 miniTocMaxHeadingLevel: 3
 versions:
   ghes: '*'
   ghec: '*'
 type: how_to
 topics:
-  - Advanced Security
-  - Code scanning
-  - Enterprise
-  - Security
+- Advanced Security
+- Code scanning
+- Enterprise
+- Security
+ms.openlocfilehash: 7990891fd4b90127ae5f32aa262d6c096d23acab
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "147060752"
 ---
-
-## Overview of the deployment process
+## <a name="overview-of-the-deployment-process"></a>部署过程概述
 
 {% data reusables.security.overview-of-phased-approach-for-ghas-rollout %}
 
-For a high-level summary of these different phases, see "[Overview of {% data variables.product.prodname_GH_advanced_security %} Deployment](/admin/advanced-security/overview-of-github-advanced-security-deployment)."
+有关这些不同阶段的大致摘要，请参阅“[{% data variables.product.prodname_GH_advanced_security %} 部署概述](/admin/advanced-security/overview-of-github-advanced-security-deployment)”。
 
-Before starting your deployment, we recommend you review the prerequisites for installing GHAS and best practices for GHAS deployment in "[Overview of {% data variables.product.prodname_GH_advanced_security %} Deployment](/admin/advanced-security/overview-of-github-advanced-security-deployment)."
+在开始部署之前，建议在“[{% data variables.product.prodname_GH_advanced_security %} 部署概述](/admin/advanced-security/overview-of-github-advanced-security-deployment)”中查看安装 GHAS 的先决条件和 GHAS 部署的最佳做法。
 
-## {% octicon "milestone" aria-label="The milestone icon" %} Phase 0: Planning & kickoff
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon--phase-0-planning--kickoff"></a>{% octicon "milestone" aria-label="The milestone icon" %} 第 0 阶段：规划和启动
 
 {% note %}
 
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 0 may last roughly between 1-4 weeks. This range can vary depending on your release needs and any necessary approvals your company may need on the deployment plan.
+{% octicon "clock" aria-label="Clock" %} **预计时间：** 预计第 0 阶段可能会持续约 1 - 4 周。 此范围可能会因发布需求和公司在部署计划中可能需要的任何必要批准而异。
 
 {% endnote %}
 
-The goal of the planning and kickoff phase is to ensure that you have all of your people, processes, and technologies set up and ready for implementing GHAS.
+规划和启动阶段的目标是确保已设置好所有人员、过程和技术，并准备好实现 GHAS。
 
-To help you reach buy-in from the executive sponsor, we recommend preparing and aligning on a rollout plan and goals before releasing GHAS in your enterprise.
+为了帮助你获得执行发起人的支持，建议在企业中发布 GHAS 之前准备并调整推出计划及目标。
 
-As a part of a phased rollout strategy, we recommend that you identify high-impact and critical teams or applications that should be targeted to join GHAS before the rest of your enterprise.
+作为分阶段推出策略的一部分，建议在企业其他团队之前确定应该有针对性地加入 GHAS 的高影响力和关键团队或应用程序。
 
-If a phased rollout doesn't work for your enterprise, you can skip to the [pilot project phase](#--phase-1-pilot-projects).
+如果分阶段推出不适合你的企业，可以跳到[试点项目阶段](#--phase-1-pilot-projects)。
 
-If you’re working with {% data variables.product.prodname_professional_services %}, during this phase you will also establish a plan for how your teams will work together throughout the rollout and implementation process. The {% data variables.product.prodname_professional_services_team %} team can support you with the creation of the phased rollout plan and goals as needed.
+如果使用的是 {% data variables.product.prodname_professional_services %}，在此阶段中，你还将为团队在整个推出和实现过程中如何协作制定计划。 {% data variables.product.prodname_professional_services_team %} 团队可以按需为创建分阶段的推出计划和目标提供支持。
 
-### Step 1: Kickoff meeting with {% data variables.product.prodname_professional_services %} (optional)
+### <a name="step-1-kickoff-meeting-with--data-variablesproductprodname_professional_services--optional"></a>步骤 1：与 {% data variables.product.prodname_professional_services %} 开会（可选）
 
-If you signed up for {% data variables.product.prodname_professional_services %}, you’ll begin the rollout and implementation process by meeting with your Services representative.
+如果注册了 {% data variables.product.prodname_professional_services %}，你将通过与该服务代表会面来开始推出和实现过程。
 
-If you haven't signed up for {% data variables.product.prodname_professional_services %}, you can skip to the next step.
+如果尚未注册 {% data variables.product.prodname_professional_services %}，则可以跳到下一步。
 
-The goal of this meeting is to align the two teams on the necessary information to begin crafting a rollout and implementation plan that will work best for your company. In preparation for this meeting, we have created a survey that will help us better prepare for the discussion. Your Services representative will send you this survey.
+该会议的目标是使两个团队在必要的信息方面保持一致，以便开始制定一个最适合你公司的推出和实现计划。 为了准备该会议，我们创建了一项调查，该调查将帮助我们更好地为讨论做准备。 你的服务代表会将此调查结果发送给你。
 
-To help you prepare for this initial meeting, review these topics.
+为了帮助你准备该初次会议，请查看以下主题。
 
--  Aligning on how your company and {% data variables.product.prodname_professional_services %} will work best together
-  - Setting expectations on how to best utilize service hours/days purchased
-  - Communications plans/frequency of meetings
-  - Roles and responsibilities
-- Review of how GHAS works within the Software Development Life cycle (SDLC). Your {% data variables.product.prodname_professional_services %} representative will explain how GHAS works.
-- Review of best practices for deploying GHAS. This is offered as a refresher if your team finds it valuable or if your enterprise did not participate in the Proof of Concept (POC) exercise. This review includes a discussion of your existing Application Security program and its level of maturity, against something like the DevSecOps maturity model.
--  Alignment on next steps for your GHAS deployment. Your {% data variables.product.prodname_professional_services %} representative will outline your next steps and the support you can expect from your partnership.
+-  协调你的公司与 {% data variables.product.prodname_professional_services %} 进行协作的最佳方式
+  - 设定对利用所购买的服务小时/天数的最佳方式的期望
+  - 沟通计划/会议频率
+  - 角色和职责
+- 查看 GHAS 在软件开发生命周期 (SDLC) 中的工作原理。 你的 {% data variables.product.prodname_professional_services %} 代表将解释 GHAS 的工作原理。
+- 查看有关部署 GHAS 的最佳做法。 如果团队认为它很有价值，或者企业没有参与概念证明 (POC) 练习，这可以作为复习。 该复习包括对现有应用程序安全计划以及及针对 DevSecOps 成熟度模型等的成熟度级别的讨论。
+-  与 GHAS 部署的后续步骤保持一致。 {% data variables.product.prodname_professional_services %} 代表将概述后续步骤和可从合作伙伴关系中获得的支持。
 
-To help you plan your rollout strategy, you can also expect to discuss these questions:
-  - How many teams will be enabled?
-  - What is the anatomy of the teams’ repositories? (Tech stack, current tooling, etc.)
-    - Some of this might have already been covered during the Proof of Concept exercise if your company participated. If not, this is a crucial time to discuss this.
-   - What level of adoption do we expect to be organic, assisted, or inorganic?
-   - What does assisted adoption look like from a resourcing and documentation perspective?
-   - How will you manage inorganic adoption down the line? (For example, using policy enforcement or centrally managed workflows.)
+若要帮助规划推出策略，还可以讨论以下问题：
+  - 将启用多少个团队？
+  - 团队存储库的解剖结构是什么？ （技术堆栈、当前工具等）
+    - 如果你的公司参与，在概念证明练习中，其中一些内容可能已经涵盖。 如果没有涵盖，这将是讨论该问题的关键时刻。
+   - 我们所需的采用级别是有机的、辅助的还是无机的？
+   - 从资源和文档的角度来看，辅助采用是什么样的？
+   - 你将如何完全管理无机采用？ （例如，使用策略强制实施或集中管理的工作流。）
 
-### Step 2: Internal kickoff at your company
+### <a name="step-2-internal-kickoff-at-your-company"></a>步骤 2：在公司内部启动
 
-Whether or not your company chooses to work with {% data variables.product.prodname_professional_services %}, we always recommend you hold your own kickoff meeting to align your own team(s).
+无论你的公司是否选择与 {% data variables.product.prodname_professional_services %} 合作，我们始终建议你举行自己的启动会议以符合你自己的团队。
 
-During this kickoff meeting, it's important to ensure there is a clear understanding of goals, expectations, and that a plan is in place for how to move forward with your rollout and implementation.
+在该启动会议期间，重要的是要确保对目标、期望有一个清晰的了解，并确保制定了如何推进推出和实现的计划。
 
-In addition, this is a good time to begin thinking about training and preparations for your team to ensure they have the right tools and expertise to support the rollout and implementation of GHAS.
+此外，现在是开始考虑为团队进行培训和准备的好时机，以确保他们拥有正确的工具和专业知识来支持 GHAS 的推出和实现。
 
-#### Topics for your internal kickoff meeting
+#### <a name="topics-for-your-internal-kickoff-meeting"></a>内部启动会议的主题
 
-We recommend you cover these topics in your internal kickoff meeting at your company if you haven't already covered these with the same group in your kickoff meeting with {% data variables.product.prodname_professional_services %}.
+如果尚未在与 {% data variables.product.prodname_professional_services %} 的启动会议中与同一组包含这些主题，建议在公司的内部启动会议中涵盖这些主题。
 
-- What are your business success metrics, how do you plan to measure and report on those measures?
-  - If these have not been defined, please define them. If they have been defined, communicate them and talk about how you plan to provide data-driven progress updates.
-- Review of how GHAS works within the SDLC (Software Development Life cycle) and how this is
-expected to work for your company.
-- Review of best practices if your company did not participate in the Proof of Concept exercise (or a refresher if your team finds value in this review)
-  - How does this compare/contrast with your existing Application Security Program?
-- Discuss and agree how your internal team will work best together throughout rollout and
-implementation.
-  - Align on your communications plans and frequency of meetings for your internal team
-  - Review tasks for rollout and implementation completion, defining roles and responsibilities. We have outlined the majority of the tasks in this article, but there may be additional tasks your company requires we have not included.
-  - Consider establishing a “Champions Program” for scaled enablement
-  - Begin discussing timing for the completion of tasks
-- Begin working on ideal rollout approaches that will work best for your company. This will include understanding a few important items:
-  - How many teams will be enabled? Some of this might have already been covered during the POC (Proof of Concept) exercise if your company participated. If not, this is a crucial time to discuss this.
-  - Of the critical applications identified for the initial rollout, how many are built on a technology supported by GHAS?
-  - How much organizational preparation is needed? To learn more, see "[Phase 2](#--phase-2-organizational-buy-in--rollout-preparation)."
+- 业务成功指标是什么？你打算如何衡量和报告这些指标？
+  - 如果这些内容尚未定义，请定义它们。 如果这些内容已定义，请与他们沟通并讨论你打算如何提供数据驱动的进度更新。
+- 了解 GHAS 在 SDLC（软件开发生命周期）中的工作原理以及它应如何为你的公司工作。
+- 如果你的公司没有参与概念证明练习，则查看最佳做法（如果团队在此查看中发现价值，则进行复习）
+  - 这与现有的应用程序安全计划相比如何？
+- 讨论并确定内部团队将如何在整个推出和实现过程中实现最佳协作。
+  - 与内部团队的沟通计划和会议频率保持一致
+  - 查看用于完成推出和实现的任务，并定义角色和职责。 我们已经在本文中概述了大部分任务，但可能还有你的公司需要的未包括在内的其他任务。
+  - 请考虑建立一个用于实现规模化启用的“冠军计划”
+  - 开始讨论完成任务所需的时间
+- 开始研究最适合你的公司的理想推出方法。 这将包括理解一些重要的项：
+  - 将启用多少个团队？ 如果你的公司参与，在概念证明 (POC) 练习中，其中一些内容可能已经涵盖。 如果没有涵盖，这将是讨论该问题的关键时刻。
+  - 在为最初推出而确定的关键应用程序中，有多少是基于由 GHAS 支持的技术而构建的？
+  - 组织需要哪些准备工作？ 若要了解详细信息，请参阅“[第 2 阶段](#--phase-2-organizational-buy-in--rollout-preparation)”。
 
-### Step 3: Prepare your rollout & implementation plan and goals
+### <a name="step-3-prepare-your-rollout--implementation-plan-and-goals"></a>步骤 3：准备推出和实现计划及目标
 
-Before you can move forward with pilot project(s) for the first phase of the rollout, it’s crucial to ensure a rollout plan and business goals have been established for how your company plans to proceed.
+在针对推出的第 1 阶段推进试点项目之前，确保为公司计划如何继续制定推出计划和业务目标至关重要。
 
-If you’re working with {% data variables.product.prodname_professional_services %}, they can play a significant role in the creation of this plan.
+如果使用的是 {% data variables.product.prodname_professional_services %}，它们可以在创建此计划中发挥重要作用。
 
-If you’re working independently, this section outlines some things to ensure are included in your plan as you prepare to move forward.
+如果你是独立工作的，本部分概述了一些内容，用于确保在准备推进时将其包含在计划中。
 
-Plans for process changes (if needed) and training for team members as needed:
-  - Documented team assignments for roles and responsibilities. For more information on the permissions required for each feature, see "[Repository roles for an organization](/organizations/managing-access-to-your-organizations-repositories/repository-roles-for-an-organization#access-requirements-for-security-features)."
-  - Documented plan of tasks and timelines/timeframes where possible. This should include infrastructure changes, process changes/training, and all subsequent phases of enablement of GHAS, allowing for timeframes for remediations and configuration adjustments as needed. For more information, see "[Phase 1: Pilot projects(s)](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise#--phase-1-pilot-projects)" below.
-  - Prioritized plan for which projects/teams will have GHAS enabled first, and subsequent
-plans for which projects/teams will come in following phases
-  - Success metrics based on business goals. This will be a crucial reference point following the Pilot Project(s) to gain buy-in for the full rollout.
+按需为团队成员制定过程更改计划（如果需要）和培训：
+  - 记录了有关角色和职责的团队分配。 有关每个功能所需权限的详细信息，请参阅“[组织的存储库角色](/organizations/managing-access-to-your-organizations-repositories/repository-roles-for-an-organization#access-requirements-for-security-features)”。
+  - 尽可能地记录任务计划和时间线/时间范围。 这应包括基础结构更改、过程更改/培训以及启用 GHAS 的所有后续阶段，并根据需要为修正和配置调整提供时间范围。 有关详细信息，请参阅下面的“[第 1 阶段：试点项目](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise#--phase-1-pilot-projects)”。
+  - 哪些项目/团队将首先启用 GHAS 的优先计划，以及哪些项目/团队将在后续阶段启用的后续计划
+  - 基于业务目标的成功指标。 这将是继试点项目之后的一个关键参考点，用于获得全面推出支持。
 
 {% note %}
 
-**Note:** To ensure awareness, buy-in, and adoption comes from all groups in your company, it's important to set realistic expectations around the rollout timing and impact on your company's infrastructure, processes, and general day-to-day development workflows. For a smoother and more successful rollout, ensure your security and development teams understand the impact of GHAS.
+注意：若要确保认知、支持和采用均来自你公司中的所有组，需围绕推出时间和对公司的基础结构、过程和一般日常开发工作流的影响设定实际期望，这一点很重要。 为了更顺利和更成功地推出，请确保安全和开发团队了解 GHAS 的影响。
 
 {% endnote %}
 
 {% ifversion ghes %}
 
-For {% data variables.product.prodname_ghe_server %} customers, to help ensure your instance can support the rollout and implementation of GHAS, review the following:
+对于 {% data variables.product.prodname_ghe_server %} 客户，为帮助确保实例能够支持 GHAS 的推出和实现，请查看以下内容：
 
-- While upgrading to GHES 3.0 is not required, you must upgrade to GHES 3.0 or higher to take advantage of feature combinations such as code scanning and {% data variables.product.prodname_actions %}. For more information, see "[Upgrading {% data variables.product.prodname_ghe_server %}](/admin/enterprise-management/updating-the-virtual-machine-and-physical-resources/upgrading-github-enterprise-server)."
+- 虽然无需升级到 GHES 3.0，但必须升级到 GHES 3.0 或更高版本才能利用代码扫描和 {% data variables.product.prodname_actions %} 等功能组合。 有关详细信息，请参阅“[升级 {% data variables.product.prodname_ghe_server %}](/admin/enterprise-management/updating-the-virtual-machine-and-physical-resources/upgrading-github-enterprise-server)”。
 
-- In a high availability configuration, a fully redundant secondary {% data variables.product.prodname_ghe_server %} appliance is kept in sync with the primary appliance through replication of all major datastores. For more information on setting up high availability, see "[Configuring High Availability](/admin/enterprise-management/configuring-high-availability)."
+- 在高性能配置中，完全冗余的次级 {% data variables.product.prodname_ghe_server %} 设备通过复制所有主要数据存储与主设备保持同步。 有关设置高可用性的详细信息，请参阅“[配置高可用性](/admin/enterprise-management/configuring-high-availability)”。
 
-- To help support any discussions regarding potential changes to your company's set up, you can review the {% data variables.product.prodname_ghe_server %} system overview. For more information, see "[System overview](/admin/overview/system-overview)."
+- 若要帮助支持任何关于公司设置的潜在更改的讨论，可以查看 {% data variables.product.prodname_ghe_server %} 系统概述。 有关详细信息，请参阅“[系统概述](/admin/overview/system-overview)”。
 
 {% endif %}
 
-### Step 4: Establish a baseline of organizational insights
+### <a name="step-4-establish-a-baseline-of-organizational-insights"></a>步骤 4：建立组织见解的基线
 
-As your company prepares to begin your pilot project(s), it’s crucial to ensure that you have set a baseline for where your enterprise is today and have defined clear success metrics to measure your pilot project(s) progress against.
+当你的公司准备开始试点项目时，确保已经为企业目前所处的位置设定了一个基线，并定义了明确的成功指标来度量试点项目的进展情况，这一点至关重要。
 
-There are likely key business goals your company has that will need to be measured
-against, but there are other metrics we can identify to help gauge your pilot’s success.
+你的公司可能有一些关键业务目标需要进行度量，但我们可以确定其他指标来帮助度量试点成功与否。
 
-As a starting point, some of these metrics might include:
-  - The mean time to remediation for GHAS vulnerabilities versus the previous tooling and
-practices the pilot project(s) / team(s) utilized.
-  - The code scanning integration's findings for the top X most critical applications.
-  - The number of applications that have SAST (Static application security testing) integrated versus before the engagement.
+作为起点，其中一些指标可能包括：
+  - 修正 GHAS 漏洞的平均时间与试点项目/团队之前使用的工具和做法。
+  - 代码扫描集成对前 X 个最关键应用程序的发现结果。
+  - 集成了 SAST（静态应用程序安全测试）的应用程序数量与参与前的应用程序数量。
 
-If you participated in the POC exercise prior to purchasing GHAS, these objectives might look familiar. This success criteria includes several objectives for the following high-level roles:
-  - Implementation & Administration teams
-  - Security / CISO (Chief Information Security Officer)
-  - Application Development Teams
+如果你在购买 GHAS 之前参与了 POC 练习，那么这些目标可能看起来很熟悉。 此成功标准包括以下高级角色的几个目标：
+  - 实现和管理团队
+  - 安全/CISO（首席信息安全官）
+  - 应用程序开发团队
 
-If you’d like to take things a step further, you can look at utilizing OWASP’s DevSecOps
-Maturity Model (DSOMM) to work towards reaching a Level 1 maturity. There are four main
-evaluation criteria in DSOMM:
+如果你想进一步了解，可以考虑利用 OWASP 的 DevSecOps 成熟度模型 (DSOMM) 努力达到 1 级成熟度。 DSOMM 中有四个主要的评估标准：
 
-- **Static depth:** How comprehensive is the static code scan that you’re performing within
-the AppSec CI pipeline
-- **Dynamic depth:** How comprehensive is the dynamic scan that is being run within the
-AppSec CI pipeline
-- **Intensity:** Your schedule frequency for the security scans running in AppSec CI pipeline
-- **Consolidation:** Your remediation workflow for handling findings and process
-completeness
+- **静态深度：** 在 AppSec CI 管道中执行的静态代码扫描的覆盖面
+- **动态深度：** 在 AppSec CI 管道中运行的动态扫描的覆盖面
+- **强度：** 在 AppSec CI 管道中运行的安全扫描的计划频率
+- **合并：** 用于处理调查结果和过程完整性的修正工作流
 
-To learn more about this approach and how to implement it in GHAS,
-you can download our white paper "[Achieving DevSecOps Maturity with GitHub](https://resources.github.com/whitepapers/achieving-devsecops-maturity-github/)."
+若要详细了解此方法以及如何在 GHAS 中实现该方法，可以下载白皮书“[使用 GitHub 实现 DevSecOps 成熟度](https://resources.github.com/whitepapers/achieving-devsecops-maturity-github/)”。
 
-Based on your wider company’s goals and current levels of DevSecOps maturity, we can help you determine how to best measure your pilot’s progress and success.
+基于更广泛的公司目标和当前的 DevSecOps 成熟度级别，我们可以帮助你确定用于度量试点进度和成功与否的最佳方法。
 
-## {% octicon "milestone" aria-label="The milestone icon" %}  Phase 1: Pilot project(s)
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-1-pilot-projects"></a>{% octicon "milestone" aria-label="The milestone icon" %} 第 1 阶段：试点项目
 
 {% note %}
 
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 1 may last roughly between 2 weeks to 3+ months. This range can vary largely depending on your company’s infrastructure or systems complexity, internal processes to manage/approve these changes, as well as if larger organizational process changes are needed to move forward with GHAS.
+{% octicon "clock" aria-label="Clock" %} **预计时间：** 预计第 1 阶段可能会持续约 2 周 - 3 个月以上。 此范围可能主要取决于公司的基础结构或系统的复杂性、用于管理/审批这些更改的内部流程，以及是否需要更大的组织流程更改来推进 GHAS。
 
 {% endnote %}
 
-To begin enabling GHAS across your company, we recommend beginning with a few
-high-impact projects or teams to pilot an initial rollout. This will allow an initial
-group within your company to get familiar with GHAS and build a solid foundation on GHAS before rolling out to the remainder of your company.
+若要开始在公司中启用 GHAS，建议从一些具有较大影响力的项目或团队开始，以便进行试点初始推出。 这将使公司内的初始组能够熟悉 GHAS，并基于 GHAS 打好坚实的基础，然后再推出到公司的其他团队。
 
-Before you start your pilot project(s), we recommend that you schedule some checkpoint meetings for your team(s), such as an initial meeting, midpoint review, and a wrap-up session when the pilot is complete. These checkpoint meetings will help you all make adjustments as needed and ensure your team(s) are prepared and supported to complete the pilot successfully.
+在开始试点项目之前，建议为团队安排一些检查点会议，例如初始会议、中期审查和试点完成后的总结会议。 这些检查点会议将帮助你根据需要进行调整，并确保团队做好准备并获得支持，以成功完成试点。
 
-These steps will help you enable GHAS on your enterprise, begin using its features, and review your results.
+这些步骤将帮助你在你的企业中启用 GHAS、开始使用其功能并查看结果。
 
-If you’re working with {% data variables.product.prodname_professional_services %}, they can provide additional assistance through this process through onboarding sessions, GHAS workshops, and troubleshooting as needed.
+如果你使用的是 {% data variables.product.prodname_professional_services %}，他们可以根据需要通过入职会议、GHAS 研讨会和故障排除在此过程中提供额外帮助。
 
-### Step 1: GHAS set-up & installation
+### <a name="step-1-ghas-set-up--installation"></a>步骤 1：GHAS 设置和安装
 
 {% ifversion ghes %}
 
-If you haven't already enabled GHAS for your {% data variables.product.prodname_ghe_server %} instance, see "[Enabling GitHub Advanced Security for your enterprise](/admin/advanced-security/enabling-github-advanced-security-for-your-enterprise)."
+如果尚未为 {% data variables.product.prodname_ghe_server %} 实例启用 GHAS，请参阅“[为企业启用 GitHub 高级安全功能](/admin/advanced-security/enabling-github-advanced-security-for-your-enterprise)”。
 
 {% endif %}
 
-You need to enable GHAS for each pilot project, either by enabling the GHAS feature for each repository or for all repositories in any organizations taking part in the project. For more information, see "[Managing security and analysis settings for your repository](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)" or "[Managing security and analysis settings for your organization](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)"
+你需要通过为每个存储库或参与该项目的任何组织中的所有存储库启用 GHAS 功能，来为每个试点项目启用 GHAS。 有关详细信息，请参阅“[管理存储库的安全和分析设置](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)”或“[管理组织的安全和分析设置](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)”
 
-The vast majority of GHAS set-up and installation is centered around enabling and configuring code scanning on your enterprise and in your repositories.
+绝大多数 GHAS 设置和安装都关于在企业和存储库中启用和配置代码扫描。
 
-Code scanning allows you to analyze code in a {% data variables.product.prodname_dotcom %} repository to find security vulnerabilities and coding errors. Code scanning can be used to find, triage, and prioritize fixes for existing problems in your code, as well as help prevent developers from introducing new problems that may otherwise reach production. For more information, see "[About code scanning](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning)."
+代码扫描可让你分析 {% data variables.product.prodname_dotcom %} 存储库中的代码，以查找安全漏洞和编码错误。 代码扫描可用于查找、会审代码中的现有问题并确定修补程序的优先级，以及帮助防止开发人员引入可能会影响生产的新问题。 有关详细信息，请参阅“[关于代码扫描](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning)”。
 
-### Step 2: Set up {% data variables.product.prodname_code_scanning_capc %}
+### <a name="step-2-set-up--data-variablesproductprodname_code_scanning_capc-"></a>步骤 2：设置 {% data variables.product.prodname_code_scanning_capc %}
 
 {% ifversion ghes %}
 
-To enable {% data variables.product.prodname_code_scanning %} on your {% data variables.product.prodname_ghe_server %} instance, see "[Configuring code scanning for your appliance](/admin/advanced-security/configuring-code-scanning-for-your-appliance)."
+若要在 {% data variables.product.prodname_ghe_server %} 实例上启用 {% data variables.product.prodname_code_scanning %}，请参阅“[为设备配置代码扫描](/admin/advanced-security/configuring-code-scanning-for-your-appliance)”。
 
 {% endif %}
 
-To set up code scanning, you must decide whether you'll run code scanning with [{% data variables.product.prodname_actions %}](#using-github-actions-for-code-scanning) or your own [third-party CI system](#using-a-third-party-ci-system-with-the-codeql-cli-for-code-scanning).
+若要设置代码扫描，你必须决定是使用 [{% data variables.product.prodname_actions %}](#using-github-actions-for-code-scanning) 还是自己的[第三方 CI 系统](#using-a-third-party-ci-system-with-the-codeql-cli-for-code-scanning)运行代码扫描。
 
-#### Using {% data variables.product.prodname_actions %} for {% data variables.product.prodname_code_scanning %}
+#### <a name="using--data-variablesproductprodname_actions--for--data-variablesproductprodname_code_scanning-"></a>使用 {% data variables.product.prodname_actions %} 进行 {% data variables.product.prodname_code_scanning %}
 
 {% ifversion ghes %}
 
-To set up code scanning with {% data variables.product.prodname_actions %} for {% data variables.product.prodname_ghe_server %}, you'll need to provision one or more self-hosted {% data variables.product.prodname_actions %} runners in your
-environment. For more information, see "[Setting up a self-hosted runner](/admin/advanced-security/configuring-code-scanning-for-your-appliance#running-code-scanning-using-github-actions)."
+若要使用适用于 {% data variables.product.prodname_ghe_server %} 的 {% data variables.product.prodname_actions %} 设置代码扫描，需在环境中提供一个或多个自托管的 {% data variables.product.prodname_actions %} 运行器。 有关详细信息，请参阅“[设置自托管运行器](/admin/advanced-security/configuring-code-scanning-for-your-appliance#running-code-scanning-using-github-actions)”。
 
 {% endif %}
 
-For {% data variables.product.prodname_ghe_cloud %}, you can start to create a {% data variables.product.prodname_actions %} workflow using the [CodeQL action](https://github.com/github/codeql-action/) to run code scanning on a repository. {% data variables.product.prodname_code_scanning_capc %} uses [GitHub-hosted runners](/actions/using-github-hosted-runners/about-github-hosted-runners) by default, but this can be customized if you plan to host your own runner with your own hardware specifications. For more information, see "[About self-hosted runners](/actions/hosting-your-own-runners)."
+对于 {% data variables.product.prodname_ghe_cloud %}，可以使用 [CodeQL 操作](https://github.com/github/codeql-action/)开始创建 {% data variables.product.prodname_actions %} 工作流，以在存储库上运行代码扫描。 {% data variables.product.prodname_code_scanning_capc %} 默认使用 [GitHub 托管的运行器](/actions/using-github-hosted-runners/about-github-hosted-runners)，但如果你打算使用自己的硬件规格托管自己的运行器，则可以自定义此设置。 有关详细信息，请参阅[关于自承载运行器](/actions/hosting-your-own-runners)。
 
-For more information about {% data variables.product.prodname_actions %}, see:
-  - "[Learn GitHub Actions](/actions/learn-github-actions)"
-  - "[Understanding GitHub Actions](/actions/learn-github-actions/understanding-github-actions)"
-  - "[Events that trigger workflows](/actions/learn-github-actions/events-that-trigger-workflows)"
-  - "[Filter Pattern Cheat Sheet](/actions/learn-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet)"
+有关 {% data variables.product.prodname_actions %} 的详细信息，请参阅：
+  - [了解 GitHub Actions](/actions/learn-github-actions)
+  - [了解 GitHub Actions](/actions/learn-github-actions/understanding-github-actions)
+  - [触发工作流的事件](/actions/learn-github-actions/events-that-trigger-workflows)
+  - [筛选器模式速查表](/actions/learn-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet)
 
-#### Using a third-party CI system with the CodeQL CLI for {% data variables.product.prodname_code_scanning %}
+#### <a name="using-a-third-party-ci-system-with-the-codeql-cli-for--data-variablesproductprodname_code_scanning-"></a>结合使用第三方 CI 系统与 CodeQL CLI 以进行 {% data variables.product.prodname_code_scanning %}
 
-If you’re not using {% data variables.product.prodname_actions %} and have your own continuous integration system, you can use the CodeQL CLI to perform CodeQL code scanning in a third-party CI system.
+如果不使用 {% data variables.product.prodname_actions %} 并且拥有自己的持续集成系统，则可以使用 CodeQL CLI 在第三方 CI 系统中执行 CodeQL 代码扫描。
 
-For more information, see:
-  - "[About CodeQL code scanning in your CI system](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system/about-codeql-code-scanning-in-your-ci-system)"
+有关详细信息，请参阅：
+  - [关于 CI 系统中的 CodeQL 代码扫描](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system/about-codeql-code-scanning-in-your-ci-system)
 
-### Step 3: Enable {% data variables.product.prodname_code_scanning_capc %} in repositories
+### <a name="step-3-enable--data-variablesproductprodname_code_scanning_capc--in-repositories"></a>步骤 3：在存储库中启用 {% data variables.product.prodname_code_scanning_capc %}
 
-If you’re using a phased approach to roll out GHAS, we recommend enabling {% data variables.product.prodname_code_scanning %} on a repository-by-repository basis as part of your rollout plan. For more information, see "[Setting up code scanning for a repository](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/setting-up-code-scanning-for-a-repository)."
+如果使用分阶段方法来推出 GHAS，建议在推出计划中逐个存储库启用 {% data variables.product.prodname_code_scanning %}。 有关详细信息，请参阅“[为存储库设置代码扫描](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/setting-up-code-scanning-for-a-repository)”。
 
-If you’re not planning on a phased rollout approach and want to enable code scanning for many repositories, you may want to script the process.
+如果不打算采用分阶段推出方法并希望对许多存储库启用代码扫描，可能需要为该过程编写脚本。
 
-For an example of a script that opens pull requests to add a {% data variables.product.prodname_actions %} workflow to multiple repositories, see the [`jhutchings1/Create-ActionsPRs`](https://github.com/jhutchings1/Create-ActionsPRs) repository for an example using PowerShell, or [`nickliffen/ghas-enablement`](https://github.com/NickLiffen/ghas-enablement) for teams who do not have PowerShell and instead would like to use NodeJS.
+有关打开拉取请求以将 {% data variables.product.prodname_actions %} 工作流添加到多个存储库的脚本示例，请参阅 [`jhutchings1/Create-ActionsPRs`](https://github.com/jhutchings1/Create-ActionsPRs) 存储库。有关使用 PowerShell 的示例，或者对于没有 PowerShell 但希望改用 NodeJS 的团队，请参阅 [`nickliffen/ghas-enablement`](https://github.com/NickLiffen/ghas-enablement)。
 
-### Step 4: Run code scans and review your results
+### <a name="step-4-run-code-scans-and-review-your-results"></a>步骤 4：运行代码扫描并查看结果
 
-With code scanning enabled in the necessary repositories, you're ready to help your
-development team(s) understand how to run code scans and reports, view reports, and process results.
+在必要的存储库中启用代码扫描后，你就就可以帮助开发团队了解如何运行代码扫描和报告、查看报告以及处理结果。
 
-#### {% data variables.product.prodname_code_scanning_capc %}
+#### <a name="-data-variablesproductprodname_code_scanning_capc-"></a>{% data variables.product.prodname_code_scanning_capc %}
 
-With code scanning, you can find vulnerabilities and errors in your project's code on GitHub,
-as well as view, triage, understand, and resolve the related {% data variables.product.prodname_code_scanning %} alerts.
+通过代码扫描，可以在 GitHub 上找到项目代码中的漏洞和错误，以及查看、会审、了解和解决相关的 {% data variables.product.prodname_code_scanning %} 警报。
 
-When code scanning identifies a problem in a pull request, you can review the highlighted
-code and resolve the alert. For more information, see "[Triaging {% data variables.product.prodname_code_scanning %} alerts in pull requests](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/triaging-code-scanning-alerts-in-pull-requests)."
+如果代码扫描在拉取请求中发现问题，你可以查看突出显示的代码并解决警报。 有关详细信息，请参阅“[会审拉取请求中的 {% data variables.product.prodname_code_scanning %} 警报](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/triaging-code-scanning-alerts-in-pull-requests)”。
 
-If you have write permission to a repository you can manage code scanning alerts for that
-repository. With write permission to a repository, {% if delete-code-scanning-alerts %}you can view, fix, dismiss, or delete alerts {% else %}you can view, fix, or dismiss alerts{% endif %} for potential vulnerabilities or errors in your repository's code. For more information, see "[Managing code scanning alerts for your repository](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository)."
+如果你对存储库具有写入权限，则可以管理该存储库的代码扫描警报。 在对存储库具有写入权限的情况下，{% ifversion delete-code-scanning-alerts %}你可以查看、修复、解除或删除警报{% else %}你可以查看、修复或解除警报{% endif %}以便从容处理存储库代码中的潜在漏洞或错误。 有关详细信息，请参阅“[管理存储库的代码扫描警报](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository)”。
 
-#### Generate reports of {% data variables.product.prodname_code_scanning %} alerts
+#### <a name="generate-reports-of--data-variablesproductprodname_code_scanning--alerts"></a>生成 {% data variables.product.prodname_code_scanning %} 警报的报告
 
-If you’d like to create a report of your code scanning alerts, you can use the {% data variables.product.prodname_code_scanning_capc %} API. For more information, see the "[{% data variables.product.prodname_code_scanning_capc %} API](/rest/reference/code-scanning)."
+如果想要创建代码扫描警报报告，可以使用 {% data variables.product.prodname_code_scanning_capc %} API。 有关详细信息，请参阅“[{% data variables.product.prodname_code_scanning_capc %} API](/rest/reference/code-scanning)”。
 
-For an example of how to use the {% data variables.product.prodname_code_scanning_capc %} API, see the [`get-code-scanning-alerts-in-org-sample`](https://github.com/jhutchings1/get-code-scanning-alerts-in-org-sample) repository.
+有关如何使用 {% data variables.product.prodname_code_scanning_capc %} API 的示例，请参阅 [`get-code-scanning-alerts-in-org-sample`](https://github.com/jhutchings1/get-code-scanning-alerts-in-org-sample) 存储库。
 
-### Step 5: Configure {% data variables.product.prodname_code_scanning_capc %} to fine tune your results
+### <a name="step-5-configure--data-variablesproductprodname_code_scanning_capc--to-fine-tune-your-results"></a>步骤 5：配置 {% data variables.product.prodname_code_scanning_capc %} 以微调结果
 
-When running initial code scans, you may find that no results are found or that an unusual number of results are returned. You may want to adjust what is flagged in future scans.
+运行初始代码扫描时，你可能会发现未找到任何结果或返回的结果数量异常。 建议调整在将来扫描中标记的内容。
 
-For more information, see "[Configuring code scanning](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning)."
+有关详细信息，请参阅“[配置代码扫描](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning)”。
 
-If your company wants to use other third-party code analysis tools with GitHub code scanning, you can use actions to run those tools within GitHub. Alternatively, you can upload results, generated by third-party tools as SARIF files, to code scanning. For more information, see "[Integrating with code scanning](/code-security/code-scanning/integrating-with-code-scanning)."
+如果你的公司想要将其他第三方代码分析工具用于 GitHub 代码扫描，可使用操作在 GitHub 中运行这些工具。 你也可以将由第三方工具生成的结果作为 SARIF 文件上传到代码扫描。 有关详细信息，请参阅“[与代码扫描集成](/code-security/code-scanning/integrating-with-code-scanning)”。
 
-### Step 6: Set up secret scanning
+### <a name="step-6-set-up-secret-scanning"></a>步骤 6：设置机密扫描
 
-GitHub scans repositories for known types of secrets, to prevent fraudulent use of secrets that were committed accidentally.
+GitHub 扫描存储库以查找已知类型的机密，以防止欺诈性地使用意外提交的机密。
 
 {% ifversion ghes %}
 
-To enable secret scanning for your {% data variables.product.prodname_ghe_server %} instance, see "[Configuring secret scanning for your appliance](/admin/advanced-security/configuring-secret-scanning-for-your-appliance)."
+若要为 {% data variables.product.prodname_ghe_server %} 实例启用机密扫描，请参阅“[为设备配置机密扫描](/admin/advanced-security/configuring-secret-scanning-for-your-appliance)”。
 
 {% endif %}
 
-You need to enable secret scanning for each pilot project, either by enabling the feature for each repository or for all repositories in any organizations taking part in the project. For more information, see "[Managing security and analysis settings for your repository](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)" or "[Managing security and analysis settings for your organization](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)"
+你需要通过为每个存储库或参与该项目的任何组织中的所有存储库启用机密扫描，来为每个试点项目启用该功能。 有关详细信息，请参阅“[管理存储库的安全和分析设置](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)”或“[管理组织的安全和分析设置](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)”
 
-To learn how to view and close alerts for secrets checked into your repository, see "[Managing alerts from secret scanning](/code-security/secret-scanning/managing-alerts-from-secret-scanning)."
+若要了解如何查看和关闭已签入存储库的机密警报，请参阅“[管理来自机密扫描的警报](/code-security/secret-scanning/managing-alerts-from-secret-scanning)”。
 
-### Step 7: Set up dependency management
+### <a name="step-7-set-up-dependency-management"></a>步骤 7：设置依赖项管理
 
-GitHub helps you avoid using third-party software that contains known vulnerabilities. We provide the following tools for removing and avoiding vulnerable dependencies.
+GitHub 可帮助你避免使用包含已知漏洞的第三方软件。 我们提供了以下工具来更新易受攻击的依赖项{% ifversion GH-advisory-db-supports-malware %}并删除恶意软件{% endif %}。
 
-| Dependency Management Tool | Description |
+| 依赖项管理工具 | 说明 |
 |----|----|
-| Dependabot Alerts | You can track your repository's dependencies and receive Dependabot alerts when your enterprise detects vulnerable dependencies. For more information, see "[About {% data variables.product.prodname_dependabot_alerts %}](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-alerts-for-vulnerable-dependencies)." |
-| Dependency Graph | The dependency graph is a summary of the manifest and lock files stored in a repository. It shows you the ecosystems and packages your codebase depends on (its dependencies) and the repositories and packages that depend on your project (its dependents). For more information, see "[About the dependency graph](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph)." |{% ifversion ghes > 3.1 or ghec %}
-| Dependency Review | If a pull request contains changes to dependencies, you can view a summary of what has changed and whether there are known vulnerabilities in any of the dependencies. For more information, see "[About dependency review](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review)" or  "[Reviewing Dependency Changes in a Pull Request](/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request)." | {% endif %} {% ifversion ghec or ghes > 3.2 %}
-| Dependabot Security Updates | Dependabot can fix vulnerable dependencies for you by raising pull requests with security updates. For more information, see "[About Dependabot security updates](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-dependabot-security-updates)." |
-| Dependabot Version Updates | Dependabot can be used to keep the packages you use updated to the latest versions. For more information, see "[About Dependabot version updates](/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/about-dependabot-version-updates)." | {% endif %}
+| Dependabot 警报 | 当企业检测到不安全的依赖项时，你可以跟踪存储库的依赖项并接收 Dependabot 警报。 有关详细信息，请参阅“[关于 {% data variables.product.prodname_dependabot_alerts %}](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-alerts-for-vulnerable-dependencies)”。 |
+| 依赖项关系图 | 依赖项图是存储在仓库中的清单和锁定文件的摘要。 它显示您的代码库所依赖的生态系统和软件包（其依赖项）以及依赖于您的项目的仓库和包（其从属项）。 有关详细信息，请参阅“[关于依赖项关系图](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph)”。 |{% ifversion ghes or ghec %}
+| 依赖项审查 | 如果拉取请求包含对依赖项的更改，您可以查看已更改内容摘要以及任何依赖项中是否存在已知漏洞。 有关详细信息，请参阅“[关于依赖项审查](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review)”或“[拉取请求中的依赖项更改](/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request)”。 | {% endif %} {% ifversion ghec or ghes > 3.2 %}
+| Dependabot 安全更新 | Dependabot 可以通过使用安全更新提出拉取请求来修复易受攻击的依赖项。 有关详细信息，请参阅“[关于 Dependabot 安全更新](/code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-dependabot-security-updates)”。 |
+| Dependabot 版本更新 | 可使用 Dependabot 将所用的包更新到最新版本。 有关详细信息，请参阅“[关于 Dependabot 版本更新](/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/about-dependabot-version-updates)”。 | {% endif %}
 
 {% data reusables.dependabot.beta-security-and-version-updates-onboarding %}
 
-### Step 8: Establish a remediation process
+### <a name="step-8-establish-a-remediation-process"></a>步骤 8：建立修正过程
 
-Once your team(s) have been able to run scans, identify vulnerabilities and dependencies, and can consume the results of each security feature, the next step is to ensure that they can remediate the vulnerabilities identified within their normal development processes without involving your security team.
+一旦团队能够运行扫描、识别漏洞和依赖项并可使用每个安全功能的结果，下一步就是确保他们可以在不涉及安全团队的情况下修复在正常开发过程中发现的漏洞。
 
-This means that the development teams understand how to utilize the GHAS features throughout the development process, can run scans, read reports, consume the results, and remediate vulnerabilities within their normal development workflows, without having to have a separate security phase at the end of development, or have a need to involve your security team to understand reports/results.
+这意味着开发团队了解如何在整个开发过程中利用 GHAS 功能，且可在其正常开发工作流中运行扫描、读取报告、使用结果以及修复漏洞，而无需在开发结束时设置单独的安全阶段或让安全团队参与以了解报告/结果。
 
-### Step 9: Set up custom analysis if needed
+### <a name="step-9-set-up-custom-analysis-if-needed"></a>步骤 9：根据需要设置自定义分析
 
-Custom analysis is an optional deeper use of code scanning when custom CodeQL queries are needed beyond the available default (and community) set of queries. The need for custom queries is rare.
+当所需的自定义 CodeQL 查询超出可用的默认（和社区）查询集时，自定义分析是对代码扫描的一种可选的、更深入的使用。 很少需要自定义查询。
 
-Custom queries are used to identify custom security alerts or help developers follow coding standards by detecting certain code patterns.
+自定义查询用于识别自定义安全警报，或通过检测某些代码模式来帮助开发人员遵循编码标准。
 
-If your company is interested in writing custom CodeQL queries, there are certain requirements your company should meet.
+如果你的公司对编写自定义 CodeQL 查询感兴趣，则你的公司应满足某些要求。
 
-If your team can provide some examples of existing vulnerabilities you'd like to find via CodeQL, please let the GitHub team know and we can schedule an introductory session to review the basics of the language and discuss how to tackle one of your problems. If you want to cover CodeQL in more depth, then we offer additional engagement options to cover more topics to enable your team to build their own queries.
+如果你的团队可以提供一些你想要通过 CodeQL 找到的现有漏洞的示例，请告知 GitHub 团队，我们可以安排一个介绍性会议以回顾该语言的基础知识并讨论如何解决你的问题。 如果你想更深入地了解 CodeQL，那么我们会提供额外的参与选项来涵盖更多主题，从而使你的团队能够生成自己的查询。
 
-You can learn more about [CodeQL queries](https://codeql.github.com/docs/writing-codeql-queries/codeql-queries/) in our [CodeQL documentation](https://codeql.github.com/docs/codeql-overview/), or reach out to your {% data variables.product.prodname_professional_services %} team or sales representative.
+你可以在 [CodeQL 文档](https://codeql.github.com/docs/codeql-overview/)中详细了解 [CodeQL 查询](https://codeql.github.com/docs/writing-codeql-queries/codeql-queries/)，也可以联系 {% data variables.product.prodname_professional_services %} 团队或销售代表。
 
-### Step 10: Create & maintain documentation
+### <a name="step-10-create--maintain-documentation"></a>步骤 10：创建并维护文档
 
-All throughout the pilot phase, it’s essential to create and maintain high-quality internal documentation of the infrastructure and process changes made within your company, as well as learnings from the pilot process and configuration changes made as your team(s) progress throughout the rollout and implementation process.
+在整个试点阶段，必须要创建和维护在公司内部进行的基础结构和过程更改的高质量内部文档，以及团队在整个推出和实现过程进展中从试点过程和配置更改中吸取的经验教训。
 
-Having thorough and complete documentation helps make the remaining phases of your rollout more of a repeatable process.
-Good documentation also ensures that new teams can be onboarded consistently throughout the rollout process and as new team members join your team(s).
+如果你拥有全面且完整的文档，这有助于使推出的其余阶段更像是一个可重复的过程。
+出色的文档还可以确保新团队可以在整个推出过程中始终如一地加入进来，并且随着新的团队成员加入你的团队。
 
-Good documentation doesn’t end when rollout and implementation are complete. The most helpful documentation is actively updated and evolves as your teams expand their experience using GHAS and as their needs grow.
+当推出和实现完成时，出色的文档并不会结束。 最有用的文档会随着团队增长他们使用 GHAS 的经验及其需求增长而积极地更新和发展。
 
-In addition to your documentation, we recommend your company provides clear channels to your team(s) for support and guidance all throughout rollout, implementation, and beyond. Depending on the level of change your company needs to take on in order to support the rollout and implementation of GHAS, having well-supported teams will help ensure a successful adoption into your development teams’ daily workflow.
+除了文档之外，建议公司为团队提供明确的通道，以便在整个推出、实现和其他过程中获得支持和指导。 根据公司为支持 GHAS 的推出和实现而需要进行的更改级别，拥有得到良好支持的团队将有助于确保成功地采用开发团队的日常工作流。
 
-## {% octicon "milestone" aria-label="The milestone icon" %}  Phase 2: Organizational buy-in & rollout preparation
-
-{% note %}
-
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 2 may last roughly between 1 week to over a month. This range can vary largely depending on your company’s internal approval processes.
-
-{% endnote %}
-
-One of the main goals of this phase is to ensure you have the organizational buy-in to make the full deployment of GHAS successful.
-
-During this phase, your company reviews the results of the pilot project(s) to determine if the pilot was successful, what adjustments may need to be made, and if the company is ready to continue forward with the rollout.
-
-Depending on your company’s approval process, organizational buy-in from your executive sponsor may be necessary to continue forward. In most cases, organizational buy-in from your team(s) is necessary to begin utilizing the value of GHAS for your company.
-
-Before moving forward to the next phase of rolling out GHAS more widely across your company, modifications are often made to the original rollout plan based on learnings from the pilot.
-
-Any changes that may impact the documentation should also be made to ensure it is current for continued rollout.
-
-We also recommend that you consider your plan to train any teams or team members that will be introduced to GHAS in the next phases of your rollout if you haven't already.
-
-### Step 1: Organize results
-
-At the completion of Phase 1, your team(s) should have {% ifversion ghes %} GHAS enabled on your {% data variables.product.prodname_ghe_server %} instance and have{% endif %} been able to utilize all of the key features of GHAS successfully, potentially with some configuration changes to optimize results. If your company clearly defined success metrics in Phase 0, you should be able to measure against these metrics to determine the success of your pilot.
-
-It’s important to revisit your baseline metrics when preparing your results to ensure that incremental progress can be demonstrated based on metrics collected from the pilot against your original business goals. If you need assistance with this information, GitHub can help by ensuring that your company has the right metrics to measure your progress against. For more information on help available, see "[GitHub services and support](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)."
-
-### Step 2: Secure organizational buy-in
-
-Organizational buy-in will vary depending on a variety of factors, including your company’s size, approval process, or even the level of change required to rollout GHAS to name a few.
-
-For some companies, securing buy-in is a one-time meeting, but for others, this process can take quite some time (potentially weeks or months). Buy-in may require approval from your executive sponsor or may require the adoption of GHAS into your teams’ daily workflows.
-
-This duration of this stage is entirely up to your company and how quickly you would like to proceed. We recommend seeking support or services from GitHub where possible to help answer questions and provide any recommendations that may be needed to help support this process. For more information on help available, see "[GitHub services and support](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)."
-
-### Step 3: Revise and update documentation
-
-Review the results and findings from your pilot project(s) and the needs of the remaining teams at your company. Based on your findings and needs analysis, update/revise your documentation.
-
-We've found that it’s essential to ensure that your documentation is up-to-date before continuing with the rollout to the remainder of your company's enterprise.
-
-### Step 4: Prepare a full rollout plan for your company
-
-Based on what you learned from your pilot project(s), update the rollout plan you designed in stage 0. To prepare for rolling out to your company, consider any training your teams will need, such as training on using GHAS, process changes, or migration training if your enterprise is migrating to GitHub.
-
-## {% octicon "milestone" aria-label="The milestone icon" %}  Phase 3: Full organizational rollout & change management
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-2-organizational-buy-in--rollout-preparation"></a>{% octicon "milestone" aria-label="The milestone icon" %} 第 2 阶段：组织支持和推出准备
 
 {% note %}
 
-{% octicon "clock" aria-label="Clock" %} **Estimated timing:** We estimate that phase 3 may
-last anywhere from 2 weeks to multiple months. This range can vary largely depending on
-your company’s size, number of repositories/teams, level of change the GHAS rollout will be for your company, etc.
+{% octicon "clock" aria-label="Clock" %} **预计时间：** 预计第 2 阶段可能会持续约 1 周 - 1 个月以上。 此范围可能主要取决于公司的内部审批流程。
 
 {% endnote %}
 
-Once your company has aligned on the results and findings from your pilot project(s) and all rollout preparation steps have been completed from Phase 2, you can move forward with the full rollout to your company based on your plan.
+此阶段的主要目标之一是确保具有组织的支持，以使 GHAS 的全面部署获得成功。
 
-### Step 1: Evaluate your rollout as you go
+在此阶段，你的公司会审查试点项目的结果，以确定试点是否成功、可能需要做出哪些调整以及公司是否已准备好继续推出。
 
-If you're using a phased approach to rolling out GHAS, we recommend taking a brief pause and completing a short evaluation after rolling out GHAS to a different segment of your company to ensure the rollout is moving forward smoothly. Your evaluation can ensure that teams are enabled and trained properly, that any unique GHAS configuration needs are met, and that plans and documentation can be adjusted as needed.
+根据你公司的审批过程，可能需要来自执行发起人的组织支持才能继续推进。 在大多数情况下，必须要有来自团队的组织支持才能开始为公司利用 GHAS 的价值。
 
-### Step 2: Set up any needed training
+在进入在公司中更广泛地推出 GHAS 这一下一阶段之前，通常会根据从试点得到的经验对最初的推出计划进行修改。
 
-When rolling GHAS out to any teams beyond your pilot project team(s), it’s important to ensure teams are either trained or there are training resources available to provide additional support where needed.
+还应进行任何可能影响文档的更改，以确保它是最新的，以便继续推出。
 
-These are the main areas where we see companies needing further support:
-  - training on GHAS
-  - training for customers new to GitHub
-  - training on how to migrate to GitHub
+另外建议考虑培训将在推出的下一阶段引入 GHAS 的任何团队或团队成员的计划（如果尚未推出）。
 
-Our {% data variables.product.prodname_professional_services_team %} team provides a variety of training services, bootcamps, and just general advice to help support your team(s) throughout the rollout and implementation process. For more information, see "[GitHub services and support](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)."
+### <a name="step-1-organize-results"></a>步骤 1：组织结果
 
-To help support your teams, here's a recap of relevant GitHub documentation.
+在第 1 阶段完成时，团队应已在 {% data variables.product.prodname_ghe_server %} 实例上启用了 {% ifversion ghes %} GHAS 并且 {% endif %} 能够成功利用 GHAS 的所有关键功能，这可能会通过一些配置更改来优化结果。 如果你的公司在第 0 阶段明确定义了成功指标，你应能够根据这些指标进行度量，以确定试点是否成功。
 
-For documentation on how to enable GHAS, see:
-  - "[Enabling Advanced Security features](/get-started/learning-about-github/about-github-advanced-security)"
-  - "[Managing security and analysis settings for your organization](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)"
-  - "[Managing security and analysis settings for your repository](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)"
+在准备结果时，必须要重新审视基准指标，以确保可以根据从试点收集到的指标与原始业务目标演示增量式进度。 如需有关此信息的帮助，GitHub 可有助于确保你的公司拥有用于度量进度的正确指标。 有关可用帮助的详细信息，请参阅“[GitHub 服务和支持](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)”。
 
-For documentation on how to migrate to GitHub, see:
-  - "[Importing source code to GitHub](/github/importing-your-projects-to-github/importing-source-code-to-github)"
+### <a name="step-2-secure-organizational-buy-in"></a>步骤 2：保护组织支持
 
-For documentation on getting started with GitHub, see:
-  - "[Get started](/get-started)"
+组织支持会因各种因素而异，包括公司的规模、审批过程，甚至是推出 GHAS 所需的更改级别等等。
 
-### Step 3: Help your company manage change
+对于一些公司来说，获得支持是一个一次性的会议，但对于其他公司来说，该过程可能需要相当长的一段时间（可能是几周或几个月）。 支持可能需要来自执行发起人的批准，或者可能需要在团队的日常工作流中采用 GHAS。
 
-In step 4 of phase 2, we recommended that you update the initial rollout plan based on your learnings from the pilot project(s). Ensure that you continue to update your plan as you implement any necessary organizational changes to successfully roll out GHAS to your company.
+此阶段的持续时间完全取决于公司和所需的进展速度。 建议尽可能从 GitHub 获取支持或服务，以帮助回答问题并提供任何可能需要的建议来帮助支持此过程。 有关可用帮助的详细信息，请参阅“[GitHub 服务和支持](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)”。
 
-Successful GHAS rollouts and the adoption of best practices into daily workflows depend on ensuring that your teams understand why it’s necessary to include security in their work.
+### <a name="step-3-revise-and-update-documentation"></a>步骤 3：修订和更新文档
 
-### Step 4: Continued customization
+查看试点项目的结果和发现以及公司其他团队的需求。 根据发现和需求分析，更新/修订文档。
 
-Configuration and customization of GHAS are not complete once it’s rolled out across your company's enterprise. Further custom configuration changes should continue to be made over time to ensure GHAS continues to support your company's changing needs.
+我们发现，在继续向公司的其他团队推出之前，必须确保文档是最新文档。
 
-As your team becomes more experienced and skilled with GHAS over time, this will create additional opportunities for further customization.
+### <a name="step-4-prepare-a-full-rollout-plan-for-your-company"></a>步骤 4：为你的公司准备全面推出计划
+
+根据从试点项目中学到的经验教训，更新在第 0 阶段设计的推出计划。 若要准备向公司推出，请考虑团队需要的任何培训，例如使用 GHAS 提供培训、过程更改或迁移培训（如果企业正在迁移到 GitHub）。
+
+## <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-3-full-organizational-rollout--change-management"></a>{% octicon "milestone" aria-label="The milestone icon" %} 第 3 阶段：完整的组织推出和变更管理
+
+{% note %}
+
+{% octicon "clock" aria-label="Clock" %} **预计时间：** 预计第 3 阶段可能会持续约 2 周到数月不等。 此范围可能主要取决于公司的规模、存储库/团队的数量、GHAS 推出对公司的更改级别等。
+
+{% endnote %}
+
+一旦公司与试点项目的结果和发现保持一致，并且第 2 阶段的所有推出准备步骤均已完成，就可以根据计划向公司进行全面推出了。
+
+### <a name="step-1-evaluate-your-rollout-as-you-go"></a>步骤 1：在推出时评估推出
+
+如果使用的是分阶段方法来推出 GHAS，建议在将 GHAS 推出到公司的其他团队后稍作停顿并完成简短的评估，以确保推出顺利进行。 评估可以确保团队得到适当的启用和培训，满足任何独特的 GHAS 配置需求，并且可以根据需要调整计划和文档。
+
+### <a name="step-2-set-up-any-needed-training"></a>步骤 2：设置任何所需的训练
+
+当将 GHAS 推出到试点项目团队以外的任何团队时，务必要确保团队接受过培训或拥有可用的培训资源，以便在需要时提供额外的支持。
+
+以下是我们认为公司需要进一步支持的主要领域：
+  - 针对 GHAS 提供培训
+  - 针对不熟悉 GitHub 的客户提供培训
+  - 关于如何迁移到 GitHub 的培训
+
+{% data variables.product.prodname_professional_services_team %} 团队提供了各种培训服务、集训营和一般性建议，以帮助在整个推出和实现过程中为你的团队提供支持。 有关详细信息，请参阅“[GitHub 服务和支持](/admin/advanced-security/overview-of-github-advanced-security-deployment#github-services-and-support)”。
+
+为了帮助为你的团队提供支持，以下是相关 GitHub 文档的概述。
+
+有关如何启用 GHAS 的文档，请参阅：
+  - [启用高级安全功能](/get-started/learning-about-github/about-github-advanced-security)
+  - [管理组织的安全和分析设置](/organizations/keeping-your-organization-secure/managing-security-and-analysis-settings-for-your-organization)
+  - [管理存储库的安全和分析设置](/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)
+
+有关如何迁移到 GitHub 的文档，请参阅：
+  - [将源代码导入 GitHub](/github/importing-your-projects-to-github/importing-source-code-to-github)
+
+有关 GitHub 入门的文档，请参阅：
+  - [入门](/get-started)
+
+### <a name="step-3-help-your-company-manage-change"></a>步骤 3：帮助公司管理更改
+
+在第 2 阶段的步骤 4 中，建议根据从试点项目中获得的经验教训来更新初始推出计划。 确保在实现任何必要的组织更改时继续更新计划，以便成功地将 GHAS 推出到公司。
+
+成功的 GHAS 推出和在日常工作流中采用最佳做法取决于确保团队了解必须在其工作中包含安全性的原因。
+
+### <a name="step-4-continued-customization"></a>步骤 4：继续自定义
+
+GHAS 的配置和自定义在公司的企业中推出后并不完整。 随着时间的推移，应继续进行进一步的自定义配置更改，以确保 GHAS 继续支持公司不断变化的需求。
+
+随着时间的推移，团队在 GHAS 方面变得更有经验和熟练，这将为进一步自定义创造更多机会。

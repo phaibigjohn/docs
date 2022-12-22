@@ -1,267 +1,272 @@
 ---
-title: Overview of GitHub Advanced Security deployment
-intro: 'Help your company successfully prepare to adopt {% data variables.product.prodname_GH_advanced_security %} (GHAS) by reviewing and understanding these best practices, rollout examples, and our enterprise-tested phased approach.'
+title: GitHub Advanced Security の展開の概要
+intro: これらのベスト プラクティス、ロールアウトの例、エンタープライズでテスト済みの段階的なアプローチを確認して理解することで、会社が {% data variables.product.prodname_GH_advanced_security %} (GHAS) の導入に向けて適切な準備をすることができます。
 product: '{% data variables.product.prodname_GH_advanced_security %} is a set of security features designed to make enterprise code more secure. It is available for {% data variables.product.prodname_ghe_server %} 3.0 or higher, {% data variables.product.prodname_ghe_cloud %}, and open source repositories. To learn more about the features, included in {% data variables.product.prodname_GH_advanced_security %}, see "[About GitHub Advanced Security](/get-started/learning-about-github/about-github-advanced-security)."'
 redirect_from:
-  - /admin/advanced-security/overview-of-github-advanced-security-deployment
+- /admin/advanced-security/overview-of-github-advanced-security-deployment
 miniTocMaxHeadingLevel: 3
 versions:
   ghes: '*'
   ghec: '*'
 type: how_to
 topics:
-  - Advanced Security
-  - Code scanning
-  - Enterprise
-  - Security
+- Advanced Security
+- Code scanning
+- Enterprise
+- Security
+ms.openlocfilehash: 9c58cc8cca76a19ccc1aa36770e4cafcf4c9fcc7
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145120854"
 ---
+{% data variables.product.prodname_GH_advanced_security %} (GHAS) は、世界で最も高度なセマンティック コード分析エンジンである CodeQL などの統合ツールを使用しており、チームがより安全なコードをより速く構築するのに役立ちます。 GHAS は、Enterprise 全体の開発者の積極的な参加を必要とするツールのスイートです。 投資収益率を最大限に高めるためには、GHAS を使用、適用、維持してコードを真に保護する方法を学ぶ必要があります。
 
-{% data variables.product.prodname_GH_advanced_security %} (GHAS) helps teams build more secure code faster using integrated tooling such as CodeQL, the world’s most advanced semantic code analysis engine. GHAS is a suite of tools that requires active participation from developers across your enterprise. To realize the best return on your investment, you must learn how to use, apply, and maintain GHAS to truly protect your code.
+会社の新しいソフトウェアに取り組む上で最も大きな課題の 1 つは、ロールアウトと実装のプロセスに加え、ロールアウトを成功させるために必要な組織の支持を推進するための文化的な変化をもたらすことです。
 
-One of the biggest challenges in tackling new software for an company can be the rollout and implementation process, as well as bringing about the cultural change to drive the organizational buy-in needed to make the rollout successful.
+GHAS を用いたこのプロセスに関する会社の理解と準備が進むよう、この概要では次のことを目的とします。
+  - 会社にとって GHAS のロールアウトとはどのようなものかを説明します。
+  - 会社によるロールアウトの準備を支援します。
+  - 会社のロールアウトが成功する可能性が高くなるよう、重要なベスト プラクティスを共有します。
 
-To help your company better understand and prepare for this process with GHAS, this overview is aimed at:
-  - Giving you an overview of what a GHAS rollout might look like for your company.
-  - Helping you prepare your company for a rollout.
-  - Sharing key best practices to help increase your company’s rollout success.
+{% data variables.product.prodname_GH_advanced_security %} で使用できるセキュリティ機能については、「[{% data variables.product.prodname_dotcom %} のセキュリティ機能](/code-security/getting-started/github-security-features)」をご覧ください。
 
-To understand the security features available through {% data variables.product.prodname_GH_advanced_security %}, see "[{% data variables.product.prodname_dotcom %} security features](/code-security/getting-started/github-security-features)."
+## <a name="recommended-phased-approach-for-ghas-rollouts"></a>GHAS のロールアウトに推奨される段階的アプローチ
 
-## Recommended phased approach for GHAS rollouts
+業界と GitHub のベスト プラクティスから開発された GHAS のロールアウトの段階的アプローチを作成しました。 このアプローチは、{% data variables.product.prodname_professional_services %} と連携して、または独立してロールアウトに利用できます。
 
-We’ve created a phased approach to GHAS rollouts developed from industry and GitHub best practices. You can utilize this approach for your rollout, either in partnership with {% data variables.product.prodname_professional_services %} or independently.
+段階的アプローチをお勧めしますが、会社のニーズに基づいて調整できます。 また、ロールアウトと実装のタイムラインを作成し、従うことをお勧めします。 計画を立て始めるにあたり、会社に最適な理想的なアプローチとタイムラインを協力して明らかにできます。
 
-While the phased approach is recommended, adjustments can be made based on the needs of your company. We also suggest creating and adhering to a timeline for your rollout and implementation. As you begin your planning, we can work together to identify the ideal approach and timeline that works best for your company.
-
-![Diagram showing the three phases of GitHub Advanced Security rollout and deployment, including Phase 0: Planning & Kickoff, Phase 1: Pilot projects, Phase 2: Org Buy-in and Rollout for early adopters, and Phase 3: Full org rollout & change management](/assets/images/enterprise/security/advanced-security-phased-approach-diagram.png)
+![GitHub Advanced Security ロールアウトと展開の 3 つのフェーズを示す図。フェーズ 0: 計画とキックオフ、フェーズ 1: パイロット プロジェクト、フェーズ 2: 早期導入者向けの組織の同意とロールアウト、フェーズ 3: 組織の完全なロールアウトと変更管理など](/assets/images/enterprise/security/advanced-security-phased-approach-diagram.png)
 
 
-Based on our experience helping customers with a successful deployment of {% data variables.product.prodname_GH_advanced_security %}, we expect most customers will want to follow these phases. Depending on the needs of your company, you may need to modify this approach and alter or remove some phases or steps.
+お客様が {% data variables.product.prodname_GH_advanced_security %} の展開を成功できるよう支援した経験に基づき、ほとんどのお客様はこれらのフェーズに従うものと思われます。 会社のニーズに応じて、このアプローチを変更し、いくつかのフェーズやステップを変更または削除する必要がある場合があります。
 
-For a detailed guide on implementing each of these phases, see "[Deploying {% data variables.product.prodname_GH_advanced_security %} in your enterprise](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise)." The next section gives you a high-level summary of each of these phases.
+これらの各フェーズの実装に関する詳細なガイドについては、「[Enterprise に {% data variables.product.prodname_GH_advanced_security %} を展開する](/admin/advanced-security/deploying-github-advanced-security-in-your-enterprise)」をご覧ください。 次のセクションでは、これらの各フェーズの概要について説明します。
 
-### {% octicon "milestone" aria-label="The milestone icon" %} Phase 0: Planning & kickoff
+###  <a name="-octicon-milestone-aria-labelthe-milestone-icon--phase-0-planning--kickoff"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 0: 計画とキックオフ
 
-During this phase, the overall goal is to plan and prepare for your rollout, ensuring that you have your people, processes, and technologies in place and ready for your rollout. You should also consider what success criteria will be used to measure GHAS adoption and usage across your teams.
+このフェーズでの全体的な目標は、ロールアウトを計画して準備し、ユーザー、プロセス、テクノロジを配置してロールアウトできる状態にすることです。 また、チーム全体での GHAS の導入と使用状況を測定するために使われる成功基準も検討する必要があります。
 
-### {% octicon "milestone" aria-label="The milestone icon" %}  Phase 1: Pilot project(s)
+### <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-1-pilot-projects"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 1: パイロット プロジェクト
 
-To begin implementing GHAS, we recommend beginning with a few high-impact projects/teams with which to pilot an initial rollout. This will allow an initial group within your company to get familiar with GHAS, learn how to enable and configure GHAS, and build a solid foundation on GHAS before rolling out to the remainder of your company.
+GHAS の実装を始めるには、最初にいくつかの影響の大きいプロジェクトやチームで初期ロールアウトをパイロットすることをお勧めします。 これにより、社内の最初のグループが GHAS に慣れ、GHAS を有効にして構成する方法を学習し、GHAS に関する強固な基盤を構築してから、会社の残りの部分にロールアウトすることができます。
 
-### {% octicon "milestone" aria-label="The milestone icon" %}  Phase 2: Organizational buy-in & rollout preparation
+### <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-2-organizational-buy-in--rollout-preparation"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 2: 組織としての了承とロールアウトの準備
 
-Phase 2 is a recap of previous phases and preparing for a larger rollout across the remainder of the company. In this phase, organizational buy-in can refer to your company’s decision to move forward after the pilot project(s) or the company’s use and adoption of GHAS over time (this is most common). If your company decides to adopt GHAS over time, then phase 2 can continue into phase 3 and beyond.
+フェーズ 2 では、前のフェーズを総括し、会社の残りの部分に対するさらに大規模なロールアウトを準備します。 このフェーズでの組織の同意とは、パイロット プロジェクトの後で作業を進めるという会社の決定、または会社が時間をかけて GHAS を使用および導入すること (これが最も一般的です) です。 会社が時間をかけて GHAS を採用することを決定した場合、フェーズ 2 からフェーズ 3 さらにその先へと進むことができます。
 
-### {% octicon "milestone" aria-label="The milestone icon" %}  Phase 3: Full organizational rollout & change management
+### <a name="-octicon-milestone-aria-labelthe-milestone-icon---phase-3-full-organizational-rollout--change-management"></a>{% octicon "milestone" aria-label="The milestone icon" %} フェーズ 3: 組織への全体なロールアウトと変更管理
 
-Once your company is in alignment, you can begin rolling GHAS out to the remainder of the company based on your rollout plan. During this phase, it’s crucial to ensure that a plan has been made for any organizational changes that may need to be made during your rollout of GHAS and ensuring teams understand the need, value, and impact of the change on current workflows.
+会社の意思が統一されたら、ロールアウト計画に基づいて、会社の残りの部分への GHAS のロールアウトを開始できます。 このフェーズでは、GHAS のロールアウトの間に行う必要がある組織の変更に計画が対応していることを確認し、現在のワークフローに対する変更の必要性、価値、影響をチームが理解することが重要です。
 
-## Best practices for a successful GHAS rollout
+## <a name="best-practices-for-a-successful-ghas-rollout"></a>GHAS のロールアウトを成功させるベスト プラクティス
 
-We’ve found that companies that have completed successful GHAS rollouts have several similar characteristics that help drive their success. To help your company increase the success of your GHAS rollout, review these best practices.
+GHAS のロールアウトを成功させた企業には似た特性がいくつかあり、それによって成功がもたらされたことがわかりました。 お客様の会社で GHAS のロールアウトが成功する可能性が高くなるよう、これらのベスト プラクティスを確認します。
 
-### {% octicon "checklist" aria-label="The checklist icon" %} Set clear goals for your company’s rollout
+### <a name="-octicon-checklist-aria-labelthe-checklist-icon--set-clear-goals-for-your-companys-rollout"></a>{% octicon "checklist" aria-label="The checklist icon" %} 会社のロールアウトの明確な目標を設定する
 
-Setting goals may seem obvious, but we do see some companies that begin GHAS rollouts with no clear goals in mind. It’s more difficult for these companies to gain the true organizational buy-in that’s needed to complete the rollout process and realize the value of GHAS within their company.
+目標を設けることは当たり前のように思えますが、明確な目標を決めずに GHAS のロールアウトを始めた企業をいくつか目にしています。 そのような企業では、ロールアウト プロセスを完了し、会社で GHAS の価値を実現するために必要な、組織の真の同意を得ることがいっそう困難になります。
 
-As you begin planning for your rollout and implementation, begin outlining goals for GHAS within your company and ensure these are communicated to your team. Your goals can be highly detailed or something simple, as long as there is a starting point and alignment. This will help build a foundation for the direction of your company’s rollout and can help you build a plan to get there. If you need assistance with your goals, {% data variables.product.prodname_professional_services %} can help with recommendations based on our experience with your company and prior engagements with other customers.
+ロールアウトと実装の計画を始めたら、会社での GHAS の目標のアウトラインを作成し、それらがチームに伝わるようにします。 出発点と統一がある限り、目標は非常に詳細なものでも単純なものでもかまいません。 これにより、会社のロールアウトの方向性の基礎が構築され、そこに到達するための計画を立てるのに役立ちます。 目標に関するサポートが必要な場合は、{% data variables.product.prodname_professional_services %} から提供される、お客様との経験や、他の顧客との以前の協力に基づく推奨事項が役に立ちます。
 
-Here are some high-level examples of what your goals for rolling out GHAS might look like:
-  - **Reducing the number of vulnerabilities:** This may be in general, or because your  company was recently impacted by a significant vulnerability that you believe could  have been prevented by a tool like GHAS.
-  - **Identifying high-risk repositories:** Some companies may simply want to target repositories that contain the most risk, ready to begin remediating vulnerabilities and reducing risk.
-  -  **Increasing remediation rates:** This can be accomplished by driving developer adoption of findings and ensuring these vulnerabilities are remediated in a timely manner, preventing  the accumulation of security debt.
-  - **Meeting compliance requirements:** This can be as simple as creating new compliance  requirements or something more specific. We find many healthcare companies use GHAS to prevent the exposure of PHI (Personal Health Information).
-  - **Preventing secrets leakage:** This is often a goal of companies that have had (or want to  prevent) critical information leaked such as software keys, customer or financial data, etc.
-  - **Dependency management:** This is often a goal for companies that may have fallen  victim due to hacks from unpatched dependencies, or those seeking to prevent these  types of attacks by updating vulnerable dependencies.
+GHAS のロールアウトの目標の例を次に示します。
+  - **脆弱性の数を減らす:** これは、一般的なものである場合もあれば、GHAS などのツールによって防止された可能性があると考えられる重大な脆弱性の影響を最近会社が受けたためである場合もあります。
+  - **高リスクのリポジトリを識別する:** 一部の企業は、最もリスクの高いリポジトリをターゲットにし、脆弱性の修復とリスクの軽減を始められるようにすることだけを望んでいる場合があります。
+  -  **修復率を上げる:** これは、開発者による結果の導入を促進して、これらの脆弱性がタイムリーに修復されるようにし、セキュリティ負債の蓄積を防ぐことによって実現できます。  
+  - **コンプライアンス要件を満たす:** これは、新しいコンプライアンス要件やより具体的なものを作成するだけの簡単なことで済む場合があります。 多くの医療会社が GHAS を使用して、PHI (個人的な健康情報) の流出を防いでいます。
+  - **シークレットの漏えいを防ぐ:** これは多くの場合、ソフトウェア キー、顧客データ、財務データなどの重要な情報が漏洩した (またはそれを防止したい) 企業の目標です。
+  - **依存関係の管理:** 多くの場合、これは、パッチが適用されていない依存関係からのハッキングによって被害を受けた可能性がある企業や、脆弱な依存関係を更新してこれらの種類の攻撃を防ごうとする企業の目標です。  
 
-### {% octicon "checklist" aria-label="The checklist icon" %} Establish clear communication and alignment between your teams
+### <a name="-octicon-checklist-aria-labelthe-checklist-icon--establish-clear-communication-and-alignment-between-your-teams"></a>{% octicon "checklist" aria-label="The checklist icon" %} チーム間の明確なコミュニケーションと連携を確立する
 
-Clear communication and alignment are critical to the success of any project, and the rollout of GHAS is no different. We’ve found that companies that have clear communication and alignment between their security and development groups, as well as their executive sponsor (either CISO or VP) from the purchase of GHAS through rollout, often have more success with their rollouts.
+明確なコミュニケーションと連携は、プロジェクトの成功に不可欠であり、GHAS のロールアウトも同じです。 GHAS の購入からロールアウトを通して、セキュリティ グループと開発グループおよびエグゼクティブ スポンサー (CISO または VP) の間に明確なコミュニケーションと連携がある企業は、ロールアウトに成功する可能性が高いことがわかっていますｊ。
 
-In addition to ensuring these groups are aligned throughout your GHAS rollout, there are a few specific areas we recommend focusing on.
+GHAS のロールアウトを通してこれらのグループが連携することを確認するだけでなく、いくつかの特定の領域に注目することをお勧めします。
 
-#### Rollout planning
+#### <a name="rollout-planning"></a>ロールアウトの計画
 
-How will you roll out GHAS to your company? There will likely be many ideas and opinions. Here are some questions you should consider answering and aligning on before moving  forward:
-  - What teams will be included in the pilot?
-  - What projects are focused on in the pilot?
-  - How should projects be prioritized for rollout?
-  - How do you plan to measure success in the pilot and beyond?
-  - What is the level of daily change your teams will be taking on? How will that be  communicated?
-  - How will your rollout plans be communicated across the company?
-  - How do you plan to train your teams?
-  - How do you plan to manage scan results initially? (For more information, see the next section on "Processing results")
+GHAS をどのように会社に展開しますか。 多くのアイデアや意見が存在する可能性があります。 次に、先に進む前に、回答して調整することを検討する必要があるいくつかの質問を示します。
+  - パイロットにはどのチームを含めますか?
+  - パイロットでは何のプロジェクトに重点を置きますか?
+  - ロールアウトではプロジェクトの優先順位をどのように決めますか?
+  - パイロット以降では成功をどのように測定する予定ですか?
+  - チームはどのようなレベルの変更に毎日取り組みますか? それをどのように伝えますか?
+  - ロールアウトの計画を会社全体にどのように伝えますか?
+  - チームをどのようにトレーニングする予定ですか?
+  - 最初にスキャン結果をどのように管理しますか? (詳しくは、次の「結果の処理」セクションを参照してください)
 
-#### Processing results
+#### <a name="processing-results"></a>結果の処理
 
-Before GHAS is rolled out to your teams, there should be clear alignment on how results  should be managed over time. We recommend initially looking at results as more informative  and non-blocking. It’s likely your company has a full CI/CD pipeline, so we recommend this  approach to avoid blocking your company’s process. As you get used to processing these  results, then you can incrementally increase the level of restriction to a point that feels more  accurate for your company.
+GHAS をチームに展開する前に、継続的な結果の管理方法を明確に調整しておく必要があります。 最初は、結果を参考として扱うようにし、それでブロックしないことをお勧めします。 会社には完全な CI/CD パイプラインがある可能性があるため、会社のプロセスをブロックしないように、このアプローチをお勧めします。 これらの結果の処理に慣れたら、制限のレベルを徐々に上げ、会社にとってより正確なレベルにすることができます。
 
-### {% octicon "checklist" aria-label="The checklist icon" %}  Lead your rollout with both your security and development groups
+### <a name="-octicon-checklist-aria-labelthe-checklist-icon---lead-your-rollout-with-both-your-security-and-development-groups"></a>{% octicon "checklist" aria-label="The checklist icon" %} セキュリティ グループと開発グループの両方でロールアウトをリードする
 
-Many companies lead their GHAS rollout efforts with their security group. Often, development teams aren’t included in the rollout process until the pilot has concluded. However, we’ve found that companies that lead their rollouts with both their security and development teams tend to have more success with their GHAS rollout.
+多くの企業では、セキュリティ グループが GHAS のロールアウトの作業をリードしています。 多くの場合、パイロットが終了するまで、開発チームはロールアウト プロセスに含まれません。 ただし、セキュリティ チームと開発チームの両方でロールアウトをリードする企業の方が、GHAS のロールアウトに成功する可能性が高い傾向があることがわかっています。
 
-なぜ？ GHAS takes a developer-centered approach to software security by integrating seamlessly into the developer workflow. Not having key representation from your development group early in the process increases the risk of your rollout and creates an uphill path towards organizational buy-in.
+なぜですか? GHAS では、開発者のワークフローにシームレスに統合することで、開発者を中心とするソフトウェア セキュリティへのアプローチが採用されています。 プロセスの早い段階から開発グループが主要メンバーとして参加しないと、ロールアウトのリスクが高くなり、組織の同意を得ることが困難になります。
 
-When development groups are involved earlier (ideally from purchase), security and development groups can achieve alignment early in the process. This helps to remove silos  between the two groups, builds and strengthens their working relationships, and helps shift the  groups away from a common mentality of “throwing things over the wall.” All of these things help support the overall goal to help companies shift and begin  utilizing GHAS to address security concerns earlier in the development process.
+開発グループが早くから関与していると (理想的には購入から)、セキュリティ グループと開発グループはプロセスの早い段階で連携を実現できます。 これは、2 つのグループ間のサイロを取り除き、作業関係を構築および強化し、よくある "壁に向かって物を投げている" ような心理状態にグループがならないようにするのに役立ちます。 これらのすべては、全体的な目標をサポートして、企業が移行を行い、開発プロセスの早い段階からセキュリティ上の懸念に対処するために GHAS を利用し始めるのを助けます。
 
-#### {% octicon "people" aria-label="The people icon" %} Recommended key roles for your rollout team
+#### <a name="-octicon-people-aria-labelthe-people-icon--recommended-key-roles-for-your-rollout-team"></a>{% octicon "people" aria-label="The people icon" %} ロールアウト チームに推奨される主要な役割
 
-We recommend a few key roles to have on your team to ensure that your groups are well represented throughout the planning and execution of your rollout and implementation.
+ロールアウトと実装の計画と実行全体を通してグループの適切な代表となることができるよう、チームがいくつかの重要な役割を持つことをお勧めします。
 
-We highly recommend your rollout team include these roles:
-- **Executive Sponsor:** This is often the CISO, CIO, VP of Security, or VP of Engineering.
-- **Technical Security Lead:** The technical security lead provides technical support on behalf of the security team throughout the implementation process.
-- **Technical Development Lead:** The technical development lead provides technical support and will likely lead the implementation effort with the development team.
+ロールアウト チームには、次の役割が含まれることを強くお勧めします。
+- **エグゼクティブ スポンサー:** これは多くの場合、CISO、CIO、セキュリティ担当副社長、またはエンジニアリング担当副社長です。
+- **技術セキュリティ リーダー:** 技術セキュリティ リーダーは、実装プロセス全体を通して、セキュリティ チームに代わって技術サポートを提供します。
+- **技術開発リーダー:** 技術開発リーダーは技術サポートを提供し、開発チームと共に実装作業をリードする可能性があります。  
 
-We also recommend your rollout team include these roles:
-- **Project Manager:** We’ve found that the earlier a project manager can be introduced into the rollout process the higher the likelihood of success.
-- **Quality Assurance Engineer:** Including a member of your company’s Quality Assurance team helps ensure process changes are taken into account for the QA team.
+ロールアウト チームには、次の役割も含まれることをお勧めします。
+- **プロジェクト マネージャー:** プロジェクト マネージャーがロールアウト プロセスに参加するのが早いほど、成功の可能性が高くなることがわかっています。  
+- **品質保証エンジニア:** 会社の品質保証チームのメンバーを含めると、プロセスの変更が QA チームで確実に考慮されます。
 
-### {% octicon "checklist" aria-label="The checklist icon" %} Understand key GHAS facts to prevent common misconceptions
+### <a name="-octicon-checklist-aria-labelthe-checklist-icon--understand-key-ghas-facts-to-prevent-common-misconceptions"></a>{% octicon "checklist" aria-label="The checklist icon" %} 一般的な誤解を防ぐために、GHAS の重要な事実を理解する
 
-Going into a GHAS implementation, it’s important to understand some key basic facts about what GHAS is and can do, to prevent many common misconceptions companies have going into their GHAS rollouts.
+GHAS の実装を始めるときは、GHAS のロールアウトに関して企業が持つ多くの一般的な誤解を防ぐために、GHAS とはどのようなもので何ができるかということについて、重要な基本的事実を理解しておくことが重要です。
 
 {% note %}
 
-**Note:** If you’re interested in furthering your GHAS education, {% data variables.product.prodname_professional_services %} provides a variety of options for additional education and training, including topics that your company needs to prepare for GHAS. These offerings may take the form of workshops, demonstrations, and bootcamps. Topics can range from deploying GHAS and basic usage of GHAS to more advanced topics to continue to build your team’s skills. For more information on working with the {% data variables.product.prodname_professional_services_team %} team, see "[{% data variables.product.prodname_professional_services %}](#github-professional-services)."
+**注:** GHAS の教育の拡大に関心がある場合、{% data variables.product.prodname_professional_services %} には、会社が GHAS の準備をするために必要なトピックなど、追加の教育とトレーニングのためのさまざまなオプションが用意されています。 これらのオファリングは、ワークショップ、デモンストレーション、ブートキャンプの形式で実施できます。 トピックの範囲は、GHAS の展開や GHAS の基本的な使用方法から、チームのスキルを引き続き高めるためのより高度なトピックまで及びます。 {% data variables.product.prodname_professional_services_team %} チームの利用について詳しくは、「[{% data variables.product.prodname_professional_services %}](#github-professional-services)」をご覧ください。
 
 {% endnote %}
 
 
-#### Fact 1: GHAS is a suite of security tools that require action to protect your code.
+#### <a name="fact-1-ghas-is-a-suite-of-security-tools-that-require-action-to-protect-your-code"></a>事実 1: GHAS は、コードを保護するためのアクションを必要とする一連のセキュリティ ツールです。
 
-It’s not security software that is installed and forgotten—just having GHAS on its own does not protect your code. GHAS is a suite of tools that increases with value when configured, maintained, used in daily  workflows, and in combination with other tools.
+インストールされて忘れられるセキュリティ ソフトウェアではありません。GHAS それ自体だけでは、コードは保護されません。 GHAS は、毎日のワークフローで構成、保守、使用され、他のツールと組み合わされることで価値が高まるツールのスイートです。
 
-#### Fact 2: GHAS will require adjustment out of the box.
+#### <a name="fact-2-ghas-will-require-adjustment-out-of-the-box"></a>事実 2: GHAS は、使用する前に調整する必要があります。
 
-Once GHAS is set up on your repositories, there are additional steps that need to be taken to ensure it works for your company’s needs. Code scanning in particular requires further configuration to fine-tune your results, for example, customizing what is flagged by the scans to adjust what is picked up in future scans. Many customers find that initial scans either pick up no results or results that are not relevant based on the application's threat model and need to be adjusted to their company’s needs.
+GHAS をリポジトリでセットアップしたら、会社のニーズに合わせて動作させるため、追加の手順を実行する必要があります。 特に code scanning については、さらに構成を行って結果を微調整する必要があります。たとえば、将来のスキャンで取得される内容を調整するため、スキャンによるフラグの設定をカスタマイズします。 多くのお客様は、初期スキャンでは、結果が得られなかったり、アプリケーションの脅威モデルに基づいて関連のない結果が得られるため、会社のニーズに合わせて調整する必要があることがわかります。
 
-#### Fact 3: GHAS tools are most effective when used together, but the most effective AppSec programs involve the use of additional tools/activities.
+#### <a name="fact-3-ghas-tools-are-most-effective-when-used-together-but-the-most-effective-appsec-programs-involve-the-use-of-additional-toolsactivities"></a>事実 3: GHAS のツールは一緒に使った場合に最も効果的ですが、最も効果的な AppSec プログラムには追加のツールやアクティビティの使用が含まれます。
 
-GHAS is most effective when all of the tools are used together. When companies integrate GHAS with other tools and activities, such as penetration testing and dynamic scans, it further improves the effectiveness of the AppSec program. We recommend always utilizing multiple layers of protection.
+GHAS は、すべてのツールを一緒に使うと最も効果的です。 企業が侵入テストや動的スキャンなどの他のツールやアクティビティと GHAS を統合すると、AppSec プログラムの有効性がさらに向上します。 複数の保護レイヤーを常に利用することをお勧めします。
 
-#### Fact 4: Not all companies will use/need custom {% data variables.product.prodname_codeql %} queries, but they can  help you customize/target scan results.
+#### <a name="fact-4-not-all-companies-will-useneed-custom--data-variablesproductprodname_codeql--queries-but-they-can--help-you-customizetarget-scan-results"></a>事実 4: カスタム {% data variables.product.prodname_codeql %} クエリを使用しない、または必要としない企業もありますが、それはスキャン結果のカスタマイズやターゲット設定に役立ちます。
 
-Code scanning is powered by {% data variables.product.prodname_codeql %}—the world’s most powerful code analysis engine. While  many companies are excited at the prospect of being able to write custom queries, for a  large portion of our customers the base query set and additional queries available in the  community are typically more than sufficient. However, many companies may find the need  for custom {% data variables.product.prodname_codeql %} queries to help reduce false positives rates in results or crafting new  queries to target results your company may need.
+code scanning では、世界で最も強力なコード分析エンジンである {% data variables.product.prodname_codeql %} が利用されています。 多くの企業はカスタム クエリを記述できることに注目していますが、GitHub のお客様の多くは、基本クエリのセットとコミュニティで利用できる追加のクエリで十分です。 ただし、多くの企業では、結果の擬陽性率を下げたり、会社で必要な結果を対象とする新しいクエリを作成するために、カスタム {% data variables.product.prodname_codeql %} クエリが必要になる場合があります。
 
-However, if your company is interested in writing custom {% data variables.product.prodname_codeql %} queries, we recommend  you complete your rollout and implementation of GHAS before exploring custom queries.
+ただし、カスタム {% data variables.product.prodname_codeql %} クエリを作成する場合は、カスタム クエリについて調べる前に、GHAS のロールアウトと実装を完了することをお勧めします。
 
 {% note %}
 
-**Note:** It’s crucial for your company to have a solid foundation on GHAS before diving deeper into deeper security  practices.
+**注:** セキュリティ プラクティスにさらに深く取り組む前に、GHAS に関する強固な基盤を持つことが会社にとって重要です。
 
 {% endnote %}
 
-When your company is ready, our Customer Success team can help you navigate the requirements that need to be met and can help ensure your company has good use  cases for custom queries.
+準備ができたら、GitHub のカスタマー サクセス チームは、お客様が満たす必要のある要件をかじ取りし、カスタム クエリの適切なユース ケースを用意するのを、手助けすることができます。  
 
-#### Fact 5: {% data variables.product.prodname_codeql %} scans the whole code base, not just the changes made in a pull request.
+#### <a name="fact-5--data-variablesproductprodname_codeql--scans-the-whole-code-base-not-just-the-changes-made-in-a-pull-request"></a>事実 5: {% data variables.product.prodname_codeql %} は、pull request で行われた変更だけでなく、コード ベース全体をスキャンします。
 
-When code scanning is run from a pull request, the scan will include the full codebase and not just the changes made in the pull request. While this may seem unnecessary at times, this is an important step to ensure the change has been reviewed all against all interactions in the codebase.
+pull request から code scanning を実行すると、pull request で行われた変更だけでなく、完全なコードベースがスキャンに含まれます。 その時点でこれを行う必要はないように見えますが、コードベース内のすべての相互作用に対して変更がすべてレビューされるようにするための重要なステップです。
 
-## Examples of successful {% data variables.product.prodname_GH_advanced_security %} rollouts
+## <a name="examples-of-successful--data-variablesproductprodname_gh_advanced_security--rollouts"></a>{% data variables.product.prodname_GH_advanced_security %} のロールアウトの成功例
 
-Now that you have a better understanding of some of the keys to a successful GHAS rollout  and implementation, here are some examples of how our customers made their rollouts successful. Even if your company is in a different place, {% data variables.product.prodname_dotcom %} can help you with building a customized path that suits the needs of your rollout.
+GHAS のロールアウトと実装を成功させるためのいくつかの鍵について理解が深まったので、ここではロールアウトを成功させた顧客の例をいくつか紹介します。 お客様の会社がそれに当てはまらない場合でも、{% data variables.product.prodname_dotcom %} は、ロールアウトのニーズに合うカスタマイズされたパスを構築するのに役立ちます。
 
-### Example rollout for a mid-sized healthcare technology company
+### <a name="example-rollout-for-a-mid-sized-healthcare-technology-company"></a>中規模の医療技術企業のロールアウトの例  
 
-A mid-sized healthcare technology company based out of San Francisco completed a successful GHAS rollout process. While they may not have  had a large number of repositories that needed to be enabled, this company’s keys to success included having a well-organized and aligned team for the rollout, with a clearly established key contact to work with {% data variables.product.prodname_dotcom %} to troubleshoot any issues during the process. This allowed them to complete their rollout within two months.
+サンフランシスコを拠点とする中規模の医療技術会社が、GHAS のロールアウト プロセスに成功しました。 有効にする必要があるリポジトリは多くなかったかもしれませんが、この会社の成功の鍵は、ロールアウトのためによく組織化されて統一されたチームを用意し、プロセスの間の問題のトラブルシューティングで {% data variables.product.prodname_dotcom %} と連携するための中心となる連絡先をはっきりと設けたことでした。 これにより、2 か月かからずにロールアウトを完了できました。
 
-In addition, having an engaged development team allowed the company to have teams using code scanning at the pull request level following the completion of their rollout.
+さらに、開発チームを関与させることで、ロールアウトが完了した後、チームは pull request レベルで code scanning を使用できました。
 
-### Example rollout for a mid-sized data platform company
+### <a name="example-rollout-for-a-mid-sized-data-platform-company"></a>中規模のデータ プラットフォーム企業のロールアウトの例
 
-A global data platform company has had great success with GHAS to  date. They’ve completed their initial implementation and are currently progressing through the rollout process. This company is mature in their security posture and tooling, and are well-aligned as an company. This allows them to operate very self-sufficiently and has enabled them to move quickly and smoothly through their rollout.
+あるグローバル データ プラットフォーム企業は、GHAS でこれまでに大きな成功を収めています。 最初の実装が完了し、現在はロールアウト プロセスを進めています。 この会社は、セキュリティ態勢とツールについて成熟しており、会社としてよく統一されています。 これにより、その会社は自力で十分に運用でき、ロールアウトを迅速かつ円滑に進めることができます。
 
-This company's strong alignment, efficient operations, and security tooling maturity allowed them to implement GHAS quickly and build a good foundation for {% data variables.product.prodname_codeql %}. Since their implementation, they can now automatically enable {% data variables.product.prodname_codeql %} across different repositories.
+この会社の強力な連携、効率的な運用、セキュリティ ツールの成熟度により、GHAS を短時間で実装し、{% data variables.product.prodname_codeql %} のための優れた基盤を構築することができました。 その実装によって、異なるリポジトリ間で {% data variables.product.prodname_codeql %} を自動的に有効にできるようになりました。
 
-In addition to their security and technical maturity, another critical key to this company’s success is having a project owner and single point of contact from their team to drive the project forward. Not only is having this key contact crucial, but they are incredibly resourceful and skilled, and directly contribute to the success of the rollout.
+セキュリティと技術的な成熟に加えて、この会社の成功のもう 1 つの重要な鍵は、チームがプロジェクトを推進するための、プロジェクト所有者と一本化された連絡先がいることです。 重要なのは、この主連絡先がいることだけではなく、非常に有能で高いスキルを持ち、ロールアウトの成功に直接貢献していることです。
 
-## Prerequisites for your company before rolling out GHAS
+## <a name="prerequisites-for-your-company-before-rolling-out-ghas"></a>会社が GHAS をロールアウトする前提条件
 
-{% data variables.product.prodname_professional_services %} can help to provide additional support to help your company break down and understand these prerequisites and help you get prepared for the GHAS implementation process.
+{% data variables.product.prodname_professional_services %} は、会社がこれらの前提条件を分析して理解し、GHAS の実装プロセスを準備するのに役立つ、追加のサポートを提供します。
 
- ### CI/CD systems and process
+ ### <a name="cicd-systems-and-process"></a>CI/CD システムとプロセス
 
-If your company has not yet invested in or implemented continuous integration or continuous delivery (CI/CD) systems and processes, we recommend taking this step in conjunction with moving forward with GHAS. This may be a significant shift for your company—we can work with you to provide recommendations and guidance for implementing a CI/CD system, as well as supporting any training that might be needed.
+会社が継続的インテグレーションまたは継続的デリバリー (CI/CD) のシステムとプロセスに関する投資または実装をまだ行っていない場合は、GHAS の導入と共にこの手順を実行することをお勧めします。 これは、お客様の会社にとって大きな変化である可能性があります。GitHub は、お客様と協力して、CI/CD システムの実装に関する推奨事項とガイダンスを提供したり、必要なトレーニングをサポートしたりできます。
 
-### Requirements to install {% data variables.product.prodname_GH_advanced_security %}
+### <a name="requirements-to-install--data-variablesproductprodname_gh_advanced_security-"></a>{% data variables.product.prodname_GH_advanced_security %} をインストールするための要件
 
-There are a few different paths that can be taken for your GHAS installation based on what combinations of technologies your company uses. This section outlines a quick breakdown of the different paths your company may need to take.
+GHAS のインストールには、会社で使われているテクノロジの組み合わせに基づいて、いくつかの異なるパスを使用できます。 このセクションでは、会社で必要になるかもしれないさまざまなパスの内容を簡単に説明します。
 
 {% ifversion ghes %}
 
-#### {% data variables.product.prodname_ghe_server %}
+#### <a name="-data-variablesproductprodname_ghe_server-"></a>{% data variables.product.prodname_ghe_server %}
 
-It’s important that you’re utilizing a version of {% data variables.product.prodname_ghe_server %} (GHES) that will support your company’s needs.
+会社のニーズがサポートされているバージョンの {% data variables.product.prodname_ghe_server %} (GHES) を利用することが重要です。
 
-If you’re using an earlier version of GHES (prior to 3.0) and would like to upgrade, there are some requirements that you’ll need to meet before moving forward with the upgrade. 詳しい情報については、以下を参照してください。
-  - "[Upgrading {% data variables.product.prodname_ghe_server %}](/enterprise-server@2.22/admin/enterprise-management/updating-the-virtual-machine-and-physical-resources/upgrading-github-enterprise-server)"
-  - "[Upgrade requirements](/enterprise-server@2.20/admin/enterprise-management/upgrade-requirements)"
+以前のバージョンの GHES (3.0 より前) を使用していて、アップグレードしたい場合は、アップグレードを進める前に満たす必要があるいくつかの要件があります。 詳細については、次を参照してください。
+  - [{% data variables.product.prodname_ghe_server %} をアップグレードする](/enterprise-server@2.22/admin/enterprise-management/updating-the-virtual-machine-and-physical-resources/upgrading-github-enterprise-server)
+  - [アップグレードの要求事項](/enterprise-server@2.20/admin/enterprise-management/upgrade-requirements)
 
-If you’re using a third-party CI/CD system and want to use {% data variables.product.prodname_code_scanning %}, make sure you have downloaded the {% data variables.product.prodname_codeql_cli %}. For more information, see "[About CodeQL code scanning in your CI system](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system/about-codeql-code-scanning-in-your-ci-system)."
+サード パーティの CI/CD システムを使っていて、{% data variables.product.prodname_code_scanning %} を使いたい場合は、{% data variables.product.prodname_codeql_cli %} をダウンロードしてあることを確認します。 詳しくは、「[CI システムでの CodeQL の code scanning について](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system/about-codeql-code-scanning-in-your-ci-system)」をご覧ください。
 
-If you're working with {% data variables.product.prodname_professional_services %} for your GHAS rollout, please be prepared to discuss these items at length in your kickoff meeting.
+GHAS のロールアウトに {% data variables.product.prodname_professional_services %} を利用している場合は、キックオフ会議でこれらの項目について詳しく合う準備をしてください。
 
 {% endif %}
 
 {% ifversion ghec %}
 
-#### {% data variables.product.prodname_ghe_cloud %}
+#### <a name="-data-variablesproductprodname_ghe_cloud-"></a>{% data variables.product.prodname_ghe_cloud %}
 
-If you’re a {% data variables.product.prodname_ghe_cloud %} (GHEC) customer there are prerequisites that you’ll need to meet depending on what CI/CD you plan to utilize.
+{% data variables.product.prodname_ghe_cloud %} (GHEC) のお客様の場合は、利用する予定の CI/CD に応じて満たす必要がある前提条件があります。
 
-Using {% data variables.product.prodname_actions %} for your CI/CD:
-- To ensure {% data variables.product.prodname_code_scanning %} can be integrated and utilized properly, you should have a basic understanding of {% data variables.product.prodname_actions %} before proceeding with your installation.
+CI/CD に {% data variables.product.prodname_actions %} を使う場合:
+- {% data variables.product.prodname_code_scanning %} を適切に統合して利用できるようにするには、インストールを始める前に、{% data variables.product.prodname_actions %} の基本的な理解が必要です。
 
-Using a third-party tool for CI/CD:
-- To integrate the {% data variables.product.prodname_codeql_cli %}, you should have a basic understanding of the CI/CD system, as well as *nix and Windows—in particular how commands are executed and how success/failure is signaled. For more information about how to integrate a third-party tool, see "[Using CodeQL code scanning with your existing CI system ](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system)."
+CI/CD にサード パーティのツールを使う場合:
+- {% data variables.product.prodname_codeql_cli %} を統合するには、CI/CD システムおよび *nix と Windows (特に、コマンドの実行方法と、成功と失敗の通知方法) についての基本を理解しておく必要があります。 サード パーティ製ツールを統合する方法について詳しくは、「[既存の CI システムで CodeQL code scanningを使用する](/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system)」をご覧ください。
 
 {% endif %}
 
-## Partnering with GitHub for your rollout
+## <a name="partnering-with-github-for-your-rollout"></a>ロールアウトでの GitHub との協力
 
-As you prepare for your GHAS implementation, it’s important to  consider what will be required from your company to make this  project successful. Our most successful implementations of GHAS  rely on shared responsibilities between both GitHub and our customers throughout the process with a clearly identified stakeholder from the customer owning the project.
+GHAS の実装を準備するときは、このプロジェクトを成功させるために会社から何が必要かを検討することが重要です。 GHAS の実装を最大限に成功させるには、プロセス全体を通して GitHub とお客様の両方が責任を共有し、プロジェクトを所有するお客様の利害関係者を明きらかにする必要があります。
 
-#### Success model for customer and GitHub responsibilities
+#### <a name="success-model-for-customer-and-github-responsibilities"></a>お客様と GitHub の責任の成功モデル
 
-**Customer responsibilities**
-- Completing infrastructure and process prerequisites
-- Managing rollout and implementation, including planning and execution
-- Internal training
-- (Optional) Contributing {% data variables.product.prodname_codeql %} queries to the GitHub Community
+**お客様の責任**
+- インフラストラクチャとプロセスの前提条件の用意
+- 計画と実行を含むロールアウトと実装の管理
+- 内部トレーニング
+- (省略可能) GitHub Community への {% data variables.product.prodname_codeql %} クエリの提供
 
-**GitHub responsibilities**
+**GitHub の責任**
 
-- Maintenance and enhancements for features, such as {% ifversion ghes %}{% data variables.product.prodname_ghe_server %}{% endif %}, {% data variables.product.prodname_actions %}, {% data variables.product.prodname_GH_advanced_security %}
-- Providing, maintaining, and delivering the following services: {% data variables.product.prodname_dotcom %} Docs, {% data variables.product.prodname_dotcom %} Community, {% data variables.product.prodname_dotcom %} Support
+- {% ifversion ghes %}{% data variables.product.prodname_ghe_server %}、{% endif %}{% data variables.product.prodname_actions %}、{% data variables.product.prodname_GH_advanced_security %} などの機能のメンテナンスと強化
+- 次のサービスの提供、保守、配信: {% data variables.product.prodname_dotcom %} ドキュメント、{% data variables.product.prodname_dotcom %} Community、{% data variables.product.prodname_dotcom %} サポート
 
 {% note %}
 
-**Note:**  {% data variables.product.prodname_professional_services %} can help support many of the customer responsibilities. To learn more, see "[GitHub services and support](#github-services-and-support)."
+**注:** {% data variables.product.prodname_professional_services %} は、お客様の責任の多くをサポートするのに役立ちます。 詳しくは、「[GitHub のサービスとサポート](#github-services-and-support)」をご覧ください。
 
 {% endnote %}
 
-## {% data variables.product.prodname_dotcom %} services and support
+## <a name="-data-variablesproductprodname_dotcom--services-and-support"></a>{% data variables.product.prodname_dotcom %} のサービスとサポート
 
-### {% data variables.product.prodname_dotcom %} Support
+### <a name="-data-variablesproductprodname_dotcom--support"></a>{% data variables.product.prodname_dotcom %} のサポート
 
-If you run into any issues during your implementation, you can search our deep documentation for solutions or engage with {% data variables.product.prodname_dotcom %} Support, a team of highly technical engineers that can support you as issues arise. For more information, see "[GitHub Enterprise Support](https://enterprise.github.com/support).
+実装の間に問題が発生した場合は、ソリューションに関する詳細なドキュメントを検索するか、{% data variables.product.prodname_dotcom %} のサポートを利用できます。これは、問題が発生した場合にサポートできる高度な技術エンジニアのチームです。 詳しくは、「[GitHub Enterprise サポート](https://enterprise.github.com/support)」をご覧ください。
 
-In addition, you can also try our [ {% data variables.product.prodname_gcf %}](https://github.community/).
+さらに、[{% data variables.product.prodname_gcf %}](https://github.community/) を試すこともできます。
 
-If you purchased a Premium Support plan, you can submit your ticket in the [Premium Support Portal](https://enterprise.github.com/support). If you’re unsure of which Support plan you purchased, you can reach out to your sales representative or review the plan options.
+Premium サポート プランを購入した場合は、[Premium サポート ポータル](https://enterprise.github.com/support)でチケットを送信できます。 購入したサポート プランがわからない場合は、営業担当者に問い合わせるか、プラン のオプションを確認してください。
 
-For more information the Premium support plan options, see:
-  - "[Premium Support](https://github.com/premium-support)" {% ifversion ghec %}
-  - "[About GitHub Premium Support for {% data variables.product.prodname_ghe_cloud %}](/github/working-with-github-support/about-github-premium-support-for-github-enterprise-cloud)"{% endif %}{% ifversion ghes %}
-  - "[About GitHub Premium Support for {% data variables.product.prodname_ghe_server %}](/admin/enterprise-support/overview/about-github-premium-support-for-github-enterprise-server)"{% endif %}
+Premium サポート プランのオプションについて詳しくは、以下をご覧ください。
+  - [Premium サポート](https://github.com/premium-support) {% ifversion ghec %}
+  - [{% data variables.product.prodname_ghe_cloud %} の GitHub Premium サポートについて](/github/working-with-github-support/about-github-premium-support-for-github-enterprise-cloud){% endif %}{% ifversion ghes %}
+  - [{% data variables.product.prodname_ghe_server %} の GitHub Premium サポートについて](/admin/enterprise-support/overview/about-github-premium-support-for-github-enterprise-server){% endif %}
 
-### {% data variables.product.prodname_professional_services %}
+### <a name="-data-variablesproductprodname_professional_services-"></a>{% data variables.product.prodname_professional_services %}
 
-Our {% data variables.product.prodname_professional_services_team %} team can partner with you for a successful rollout and implementation of {% data variables.product.prodname_GH_advanced_security %}. We offer a variety of options for the type of guidance and support you expect to need for your implementation. We also have training and bootcamps available to help your company to optimize the value of GHAS.
+{% data variables.product.prodname_professional_services_team %} チームは、お客様と協力して、{% data variables.product.prodname_GH_advanced_security %} のロールアウトと実装を成功させことができます。 実装に必要と思われるガイダンスとサポートの種類のための、さまざまなオプションが用意されています。 また、お客様が GHAS から最大限の価値を得られるようにするためのトレーニングとブートキャンプも用意されています。
 
-If you’d like to work with our {% data variables.product.prodname_professional_services_team %} team for your implementation, we recommend you begin thinking about your system design and infrastructure, as well as the number of repositories that you want to set up with GHAS, to begin these conversations. In addition, begin thinking about goals for what you would like to achieve with this rollout.
+実装のために {% data variables.product.prodname_professional_services_team %} チームの協力を得たい場合は、最初にシステムの設計とインフラストラクチャ、および GHAS で設定するリポジトリの数について検討し、これらについて話し合えるようにすることをお勧めします。 さらに、このロールアウトで達成したい目標についての検討を始めます。
 
-Implementation is just one step in a successful security-driven journey where you’ll learn how to use GHAS. Once you’ve completed your implementation, there will be more to learn with the rollout throughout your infrastructure and codebases. Speak with your sales representative for more information about all the {% data variables.product.prodname_professional_services_team %} options available.
+実装は、GHAS の使用方法を習得するセキュリティ主導の取り組みの成功における 1 つのステップにすぎません。 実装が完了したら、インフラストラクチャとコードベース全体のロールアウトについてさらに学習する必要があります。 {% data variables.product.prodname_professional_services_team %} で使用可能なすべてのオプションについて詳しくは、営業担当者にお問い合わせください。
 
-If you initially opted out of additional services, but find that additional support is  needed as you begin your implementation, please reach out to your sales representative to discuss what services options may be needed to support your implementation.
+最初に追加のサービスをオプトアウトしたものの、実装を始めるに当たって追加のサポートが必要であることがわかった場合は、営業担当者に連絡して、実装をサポートするために必要なサービス オプションについて話し合ってください。

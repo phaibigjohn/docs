@@ -1,25 +1,30 @@
 ---
 title: Adicionar endereço de e-mail à sua conta do GitHub
-intro: 'O {% data variables.product.product_name %} permite adicionar quantos endereços de e-mail você desejar à sua conta. Se você definir um endereço de e-mail na configuração do seu Git local, será necessário adicioná-lo às definições da sua conta de modo a conectar os commits à conta. Para obter mais informações sobre seu endereço de e-mail e commits, consulte "[Configurar seu endereço de e-mail de commit](/articles/setting-your-commit-email-address/)".'
+intro: '{% data variables.product.product_name %} allows you to add as many email addresses to your account as you like. If you set an email address in your local Git configuration, you will need to add it to your account settings in order to connect your commits to your account. For more information about your email address and commits, see "[Setting your commit email address](/articles/setting-your-commit-email-address/)."'
 redirect_from:
-  - /articles/adding-an-email-address-to-your-github-account
-  - /github/setting-up-and-managing-your-github-user-account/adding-an-email-address-to-your-github-account
-  - /github/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
+- /articles/adding-an-email-address-to-your-github-account
+- /github/setting-up-and-managing-your-github-user-account/adding-an-email-address-to-your-github-account
+- /github/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
 topics:
-  - Accounts
-  - Notifications
-shortTitle: Adicionar endereços de e-mail
+- Accounts
+- Notifications
+shortTitle: Add an email address
+ms.openlocfilehash: 3d7efd2e72ed1ab23ccf2e686f4a1c1c7653cc1f
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145085302"
 ---
-
 {% ifversion fpt or ghec %}
 
 {% note %}
 
-**Atenção**:
+**Observações**: 
   - {% data reusables.user-settings.no-verification-disposable-emails %}
   -  Se você for integrante de um {% data variables.product.prodname_emu_enterprise %}, você não poderá fazer alterações no seu endereço de e-mail em {% data variables.product.prodname_dotcom_the_website %}. {% data reusables.enterprise-accounts.emu-more-info-account %}
 
@@ -27,11 +32,8 @@ shortTitle: Adicionar endereços de e-mail
 
 {% endif %}
 
-{% data reusables.user-settings.access_settings %}
-{% data reusables.user-settings.emails %}
-{% data reusables.user-settings.add_and_verify_email %}
-{% data reusables.user-settings.select_primary_email %}
+{% data reusables.user-settings.access_settings %} {% data reusables.user-settings.emails %} {% data reusables.user-settings.add_and_verify_email %} {% data reusables.user-settings.select_primary_email %}
 
-## Leia mais
+## <a name="further-reading"></a>Leitura adicional
 
-- "[Gerenciar preferências de e-mail](/articles/managing-email-preferences/)"
+- "[Como gerenciar as preferências de email](/articles/managing-email-preferences/)"

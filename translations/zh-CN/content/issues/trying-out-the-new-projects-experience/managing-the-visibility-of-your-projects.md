@@ -7,13 +7,18 @@ versions:
   fpt: '*'
   ghec: '*'
 topics:
-  - Projects
-  - Organizations
+- Projects
+- Organizations
+ms.openlocfilehash: 85b586bbb86e8d6e286e86263eca3f44d174391f
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145128655"
 ---
-
 {% data reusables.projects.projects-beta %}
 
-## 关于项目可见性
+## <a name="about-project-visibility"></a>关于项目可见性
 
 项目（测试版）可以是公共的，也可以是私有的。 对于公共项目，互联网上的每个人都可以查看。 对于私有项目，只有被授予至少读取访问权限的用户才能查看。
 
@@ -25,9 +30,9 @@ topics:
 
 在组织拥有的私有项目中，当前对项目进行更新的用户的头像将显示在项目 UI 中。
 
-项目管理员还可以管理对其项目的写入和管理员访问权限，并控制单个用户的读取访问权限。 更多信息请参阅“[管理对项目的访问](/issues/trying-out-the-new-projects-experience/managing-access-to-projects)”。
+项目管理员还可以管理对其项目的写入和管理员访问权限，并控制单个用户的读取访问权限。 有关详细信息，请参阅“[管理对项目的访问](/issues/trying-out-the-new-projects-experience/managing-access-to-projects)”。
 
-## 更改项目可见性
+## <a name="changing-project-visibility"></a>更改项目可见性
 
 {% data reusables.projects.project-settings %}
-1. 在 **Visibility（可见性）**下，选择 **Private（私有）**或 **Public（公共）**。
+1. 在“可见性”下，选择“专用”或“公共”  。

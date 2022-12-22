@@ -1,23 +1,28 @@
 ---
-title: Using GitHub Copilot in Codespaces
-intro: You can use Copilot in Codespaces by adding the extension.
+title: codespace での GitHub Copilot の使用
+intro: Codespaces で Copilot を使うには、拡張機能を追加します。
 versions:
   fpt: '*'
   ghec: '*'
 type: reference
 topics:
-  - Codespaces
-  - Copilot
-  - Visual Studio Code
+- Codespaces
+- Copilot
+- Visual Studio Code
 product: '{% data reusables.gated-features.codespaces %}'
 shortTitle: Copilot in Codespaces
 redirect_from:
-  - /codespaces/codespaces-reference/using-copilot-in-codespaces
+- /codespaces/codespaces-reference/using-copilot-in-codespaces
+ms.openlocfilehash: 05e8779688b2136c7fd53a1cebd99fd75b531f2c
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145149341"
 ---
+## <a name="using--data-variablesproductprodname_copilot-"></a>{% data variables.product.prodname_copilot %} の使用
 
-## {% data variables.product.prodname_copilot %}を使用する
+[{% data variables.product.prodname_copilot %}](https://copilot.github.com/) (AI ペア プログラマー) は、任意の codespace で使用できます。 {% data variables.product.prodname_codespaces %} で {% data variables.product.prodname_copilot_short %} の使用を開始するには、[{% data variables.product.prodname_vscode_marketplace %} から {% data variables.product.prodname_copilot_short %} 拡張機能を](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)インストールします。
 
-[{% data variables.product.prodname_copilot %}](https://copilot.github.com/), an AI pair programmer, can be used in any codespace. To start using {% data variables.product.prodname_copilot_short %} in {% data variables.product.prodname_codespaces %}, install the [{% data variables.product.prodname_copilot_short %} extension from the {% data variables.product.prodname_vscode %} marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
-
-To include {% data variables.product.prodname_copilot_short %}, or other extensions, in all of your codespaces, enable Settings Sync. 詳しい情報については、「[アカウントの {% data variables.product.prodname_codespaces %} をパーソナライズする](/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account#settings-sync)」を参照してください。 Additionally, to include {% data variables.product.prodname_copilot_short %} in a given project for all users, you can specify `GitHub.copilot` as an extension in your `devcontainer.json` file. For information about configuring a `devcontainer.json` file, see "[Introduction to dev containers](/codespaces/customizing-your-codespace/configuring-codespaces-for-your-project#creating-a-custom-dev-container-configuration)."
+{% data variables.product.prodname_copilot_short %} またはその他の拡張機能をすべての codespace に含めるには、Settings Sync を有効にします。詳細については、「[アカウントの {% data variables.product.prodname_codespaces %} をパーソナライズする](/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account#settings-sync)」を参照してください。 また、すべてのユーザーの特定のプロジェクトに {% data variables.product.prodname_copilot_short %} を含めるには、`devcontainer.json` ファイルで `GitHub.copilot` を拡張機能として指定できます。 `devcontainer.json` ファイルの構成については、「[開発コンテナーの概要](/codespaces/customizing-your-codespace/configuring-codespaces-for-your-project#creating-a-custom-dev-container-configuration)」を参照してください。
 

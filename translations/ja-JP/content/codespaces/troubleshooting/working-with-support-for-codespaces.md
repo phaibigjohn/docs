@@ -1,34 +1,41 @@
 ---
-title: Working with support for Codespaces
-intro: 'Tips on getting the best help from support for {% data variables.product.prodname_codespaces %}.'
+title: codespace に関するサポートの使用
+intro: '{% data variables.product.prodname_codespaces %} のサポートから最適なヘルプを得るためのヒント。'
 product: '{% data reusables.gated-features.codespaces %}'
 versions:
   fpt: '*'
   ghec: '*'
 type: reference
 topics:
-  - Codespaces
+- Codespaces
 shortTitle: Working with support
+ms.openlocfilehash: f072b48eebd5bdc613da725a0ac7a1b5bb0fbb8d
+ms.sourcegitcommit: 22d665055b1bee7a5df630385e734e3a149fc720
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "145090358"
 ---
+codespace に関する問題が発生したときにサポートが支援できるように、codespace の名前とその codespace ID (識別子) を把握しておく必要があります。 さらに、サポートによって、一部のログを共有するように求められる場合があります。 詳細については、「[Codespace のログ](/codespaces/troubleshooting/codespaces-logs)」および「[GitHub サポートについて](/github/working-with-github-support/about-github-support)」を参照してください。
 
-Before support can help you with problems with codespaces, you need to know the name of the codespace and its codespaces ID (identifier). In addition, support may ask you to share some logs with them. For more information, see "[Codespaces logs](/codespaces/troubleshooting/codespaces-logs)" and "[About GitHub Support](/github/working-with-github-support/about-github-support)."
+### <a name="codespace-names"></a>codespace 名
 
-### Codespace names
+各 codespace には、{% data variables.product.company_short %} ハンドル、リポジトリ名、およびいくつかのランダムな文字の組み合わせである一意の名前があります。 追加の文字を使用すると、同じリポジトリ内の異なるブランチの codespace を持つことができます。 (例: `octocat-myrepo-gmc7`)。
 
-Each codespace has a unique name that is a combination of your {% data variables.product.company_short %} handle, the repository name, and some random characters. The additional characters allow you to have codespaces for different branches in the same repository. For example: `octocat-myrepo-gmc7`.
+codespace の名前を見つけるには:
 
-To find the name of a codespace:
+- ブラウザーで codespace を開きます。 URL のサブドメインは codespace の名前です。 たとえば、`https://octocat-myrepo-gmc7.github.dev` は `octocat-myrepo-gmc7` codespace の URL です。
+- codespace を開くことができない場合は、{% data variables.product.product_name %} (https://github.com/codespaces ) で名前にアクセスできます。 https://github.com/codespaces の **[ブラウザーで開く]** オプションにカーソルを合わせると、名前がポップアップに表示されます。 
+  ![カーソルを合わせると表示される codespace 名](/assets/images/help/codespaces/find-codespace-name-github.png)
 
-- Open the codespace in the browser. The subdomain of the URL is the name of the codespace. For example: `https://octocat-myrepo-gmc7.github.dev` is the URL for the `octocat-myrepo-gmc7` codespace.
-- If you cannot open a codespace, you can access the name in {% data variables.product.product_name %} on https://github.com/codespaces. The name is shown in a pop-up when you hover over the **Open in browser** option on https://github.com/codespaces. ![Codespace name shown on hover over](/assets/images/help/codespaces/find-codespace-name-github.png)
+codespace の名前は多くのログ ファイルにも含まれています。 たとえば、codespace ログでは `friendlyName` 値として、{% data variables.product.prodname_github_codespaces %} 拡張機能ログでは `making GET request for` の後に、ブラウザー コンソール ログでは `clientUrl` の後にあります。 詳細については、「[Codespace のログ](/codespaces/troubleshooting/codespaces-logs)」を参照してください。
 
-The name the codespace is also included in many of the log files. For example, in the codespace logs as the value of `friendlyName`, in the {% data variables.product.prodname_github_codespaces %} extension log after `making GET request for`, and in the browser console log after `clientUrl`. For more information, see "[Codespaces logs](/codespaces/troubleshooting/codespaces-logs)."
+### <a name="codespaces-ids"></a>codespace ID
 
-### Codespaces IDs
+すべての codespace には ID (識別子) もあります。 {% data variables.product.prodname_vscode %} ではこれは既定で表示されないため、ID にアクセスする前に {% data variables.product.prodname_github_codespaces %} 拡張機能の設定を更新する必要がある場合があります。
 
-Every codespace also has an ID (identifier). This is not shown by default in {% data variables.product.prodname_vscode %} so you may need to update the settings for the {% data variables.product.prodname_github_codespaces %} extension before you can access the ID.
-
-1. In {% data variables.product.prodname_vscode %}, browser or desktop, in the Activity Bar on the left, click **Remote Explorer** to show details for the codespace.
-2. If the sidebar includes a "Codespace Performance" section, hover over the "Codespace ID" and click the clipboard icon to copy the ID.
-3. If the information is not shown, click {% octicon "gear" aria-label="The gear icon" %}, in the bottom-left corner of the Activity Bar, to display the "Settings" tab.
-4. Expand **Extensions** and click **{% data variables.product.prodname_github_codespaces %}** to display the settings for the extension. Then enable **Show Performance Explorer** to display the "Codespace Performance" section in the sidebar. ![Codespace ID and settings required to display performance information](/assets/images/help/codespaces/find-codespace-id.png)
+1. {% data variables.product.prodname_vscode %} (ブラウザーまたはデスクトップ) の左側のアクティビティ バーで、 **[リモート エクスプローラー]** をクリックして codespace の詳細を表示します。
+2. サイドバーに [codespace パフォーマンス] セクションが含まれている場合は、[codespace ID] にカーソルを合わせ、クリップボード アイコンをクリックしてその ID をコピーします。
+3. 情報が表示されない場合は、アクティビティ バーの左下隅にある {% octicon "gear" aria-label="The gear icon" %} をクリックして、[設定] タブを表示します。
+4. **[拡張機能]** を展開し、 **[{% data variables.product.prodname_github_codespaces %}]** をクリックして拡張機能の設定を表示します。 その後、 **[パフォーマンス エクスプローラーの表示]** を有効にして、サイドバーに [codespace パフォーマンス] セクションを表示します。
+  ![パフォーマンス情報を表示するために必要な codespace ID と設定](/assets/images/help/codespaces/find-codespace-id.png)

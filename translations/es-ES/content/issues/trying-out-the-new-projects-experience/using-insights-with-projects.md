@@ -1,43 +1,48 @@
 ---
-title: Using insights with projects (beta)
-intro: You can view and customize charts that are built from your project's data.
+title: Uso de conclusiones con los proyectos (beta)
+intro: Puedes ver y personalizar gráficos creados a partir de los datos del proyecto.
 allowTitleToDifferFromFilename: true
 miniTocMaxHeadingLevel: 2
 versions:
   fpt: '*'
   ghec: '*'
 topics:
-  - Projects
-  - Organizations
+- Projects
+- Organizations
+ms.openlocfilehash: b2e8f2bc76c584d4de33fe00da1fd95982f9d091
+ms.sourcegitcommit: dc42bb4a4826b414751ffa9eed38962c3e3fea8e
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 07/13/2022
+ms.locfileid: "147064710"
 ---
-
 {% data reusables.projects.insights-alpha %}
 
-## About insights
+## <a name="about-insights"></a>Acerca de las conclusiones
 
-You can use insights to view and customize charts that use the items added to your project as their source data. The default "Burn up" chart shows item status over time, allowing you to visualize progress and spot patterns over time.
+Puedes usar conclusiones para ver y personalizar gráficos que usan como datos de origen los elementos agregados al proyecto. El gráfico predeterminado "Grabación" muestra el estado del elemento a lo largo del tiempo, lo que te permite visualizar los patrones de progreso y puntual a lo largo del tiempo. 
 
-![Screenshot showing an example of the default burn up chart for the current iteration](/assets/images/help/issues/burnup-example.png)
+![Captura de pantalla en la que se muestra un ejemplo del gráfico de grabación predeterminado para la iteración actual](/assets/images/help/issues/burnup-example.png)
 
-You can apply filters to the default chart and also create your own charts. When you create a chart, you set the filters, chart type, and the information displayed, and the chart is available to anyone that can view the project.
+Puedes aplicar filtros al gráfico predeterminado y también crear tus propios gráficos. Cuando se crea un gráfico, se establecen los filtros, el tipo de gráfico y la información mostrada, y el gráfico está disponible para cualquier persona que pueda ver el proyecto.
 
-![Screenshot showing an stacked column chart showing item types for each iteration](/assets/images/help/issues/column-chart-example.png)
+![Captura de pantalla en la que se muestra un gráfico de columnas apiladas que muestra los tipos de elementos de cada iteración](/assets/images/help/issues/column-chart-example.png)
 
-## Creating a chart
-
-{% data reusables.projects.access-insights %}
-3. In the menu on the left, click **New chart**.
-4. Optionally, to change the name of the new chart, click {% octicon "triangle-down" aria-label="The triangle icon" %}, type a new name, and press <kbd>Return</kbd>.
-5. Above the chart, type filters to change the data used to build the chart. Para obtener más información, consulta la sección "[Filtrar proyectos](/issues/trying-out-the-new-projects-experience/filtering-projects)".
-6. To the right of the filter text box, click **Save changes**.
-
-## Configuring a chart
+## <a name="creating-a-chart"></a>Creación de un gráfico
 
 {% data reusables.projects.access-insights %}
-1. In the menu on the left, click on the chart you would like to configure.
-1. On the right side of the page, click **Configure**. A panel will open on the right.
-2. To change the type of chart, select the **Layout** dropdown and click on the chart type you want to use.
-3. To change the field used for your chart's X-axis, select the **X-axis** dropdown and click the field you want to use. If you select "Time", "Group by" will change to "Status" and "Y-Axis" will change to "Count of items."
-4. Optionally, to group the items on your X-axis by another field, select **Group by** and click on the field you want to use, or click "None" to disable grouping.
-5. Optionally, if your project contains number fields and you want the Y-axis to display the sum, average, minimum, or maximum of one of those number fields, select **Y-axis** and click an option. Then, select the dropdown that appears beneath and click on the number field you want to use.
-6. To save your chart, click **Save changes**.
+3. En el menú de la izquierda, haz clic en **Nuevo gráfico**.
+4. Opcionalmente, para cambiar el nombre del gráfico nuevo, haz clic en {% octicon "triangle-down" aria-label="The triangle icon" %}, escribe un nombre nuevo y presiona <kbd>Enter</kbd>.
+5. Encima del gráfico, escribe filtros para cambiar los datos usados para crear el gráfico. Para obtener más información, consulta "[Filtrar proyectos](/issues/trying-out-the-new-projects-experience/filtering-projects)".
+6. A la derecha del cuadro de texto de filtro, haz clic en **Guardar cambios**.
+
+## <a name="configuring-a-chart"></a>Configuración de un gráfico
+
+{% data reusables.projects.access-insights %}
+1. En el menú de la izquierda, haz clic en el gráfico que quieres configurar.
+1. En el lado derecho de la página, haz clic en **Configurar**. Se abrirá un panel a la derecha.
+1. Para cambiar el tipo de gráfico, selecciona la lista desplegable **Diseño** y haz clic en el tipo de gráfico que quieras usar.
+1. Para cambiar el campo usado para el eje X del gráfico, selecciona la lista desplegable **Eje X** y haz clic en el campo que quieras usar.
+1. Opcionalmente, para agrupar los elementos del eje X por otro campo, selecciona **Agrupar por** y haz clic en el campo que quieras usar, o haz clic en "Ninguno" para deshabilitar la agrupación.
+1. Opcionalmente, si el proyecto contiene campos numéricos y quieres que el eje Y muestre la suma, el promedio, el mínimo o el máximo de uno de esos campos numéricos, selecciona **Eje Y** y haz clic en una opción. A continuación, selecciona la lista desplegable que aparece debajo y haz clic en el campo numérico que quieras usar. 
+1. Para guardar el gráfico, haz clic en **Guardar cambios**.

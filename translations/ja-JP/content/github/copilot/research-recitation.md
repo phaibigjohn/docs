@@ -1,141 +1,146 @@
 ---
-title: Research recitation
-intro: 'A first look at rote learning in {% data variables.product.prodname_dotcom %} Copilot suggestions.'
+title: 暗唱について調査する
+intro: A first look at rote learning in {% data variables.product.prodname_dotcom %} Copilot suggestions.
 redirect_from:
-  - /early-access/github/copilot/research-recitation
+- /early-access/github/copilot/research-recitation
 versions:
   fpt: '*'
+ms.openlocfilehash: cacf9a63013c5bbf9b7d867e088640ff01400289
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145068506"
 ---
+投稿者: Albert Ziegler (@wunderalbert)
 
-By: Albert Ziegler (@wunderalbert)
+## <a name="-data-variablesproductprodname_dotcom--copilot-parrot-or-crow"></a>{% data variables.product.prodname_dotcom %} Copilot: オウムなのか、カラスなのか
+{% data variables.product.prodname_dotcom %} Copilot の提案での暗記学習の概要。
 
-## {% data variables.product.prodname_dotcom %} Copilot: Parrot or Crow?
-A first look at rote learning in {% data variables.product.prodname_dotcom %} Copilot suggestions.
+## <a name="introduction"></a>はじめに
 
-## はじめに
+{% data variables.product.prodname_dotcom %} Copilot は、数十億行のパブリック コードでトレーニングされます。 Copilot がユーザーに対して行う提案は、そのユーザーのコードに合わせてありますが、その背後の処理は、結局は他のユーザーが記述したコードに基づく情報が含まれているのです。
 
-{% data variables.product.prodname_dotcom %} Copilot is trained on billions of lines of public code. The suggestions it makes to you are adapted to your code, but the processing behind it is ultimately informed by code written by others.
+提案されたコードと、影響を与えたコードとの間の関係は、どの程度直接的なのでしょうか。 最近の興味深い論文<sup id="anchor1">[1](#footnote1)</sup>で、Bender、Gebru らは、{% data variables.product.prodname_dotcom %} Copilot を動かす人工知能システムについて「確率的おうむ返し」という表現を作り出しました。 また、{% data variables.product.company_short %} の機械学習エンジニア<sup id="anchor2">[2](#footnote2)</sup>として、ウォーター クーラー チャット中に「これらのシステムは『記憶力が抜群の幼い子ども』みたいだ」と発言したのです。
 
-How direct is the relationship between the suggested code and the code that informed it? In a recent thought-provoking paper<sup id="anchor1">[1](#footnote1)</sup>, Bender, Gebru et al. coined the phrase “stochastic parrots” for artificial intelligence systems like the ones that power {% data variables.product.prodname_dotcom %} Copilot. Or as a fellow machine learning engineer at {% data variables.product.company_short %}<sup id="anchor2">[2](#footnote2)</sup> remarked during a water cooler chat: these systems can feel like ”a toddler with a photographic memory.”
+これらは意図的に過度に単純化しています。 多くの {% data variables.product.prodname_dotcom %} Copilot の提案は、ユーザーが取り組んでいる特定のコード ベースにかなり厳密に合わせているように感じます。 多くの場合、それは、オウムというよりは、小さなブロックから斬新なツールを作るカラスのようです <sup id="anchor3">[3](#footnote3)</sup>。 しかし、{% data variables.product.prodname_dotcom %} Copilot が優れた記憶力を持っていることは否定できません。
 
-These are deliberate oversimplifications. Many {% data variables.product.prodname_dotcom %} Copilot suggestions feel pretty specifically tailored to the particular code base the user is working on. Often, it looks less like a parrot and more like a crow building novel tools out of small blocks<sup id="anchor3">[3](#footnote3)</sup>. But there’s no denying that {% data variables.product.prodname_dotcom %} Copilot has an impressive memory:
+![Copilot の動画デモ](/assets/images/help/copilot/resources_recitation_example_zen.gif)
 
-![A movie demonstration of Copilot](/assets/images/help/copilot/resources_recitation_example_zen.gif)
+ここで、{% data variables.product.prodname_dotcom %} Copilot に対して、明らかに暗記している、ある有名な文章を暗唱するよう意図的に指示しました<sup id="anchor4">[4](#footnote4)</sup>。 私も、文章をいくつか暗記しています。 たとえば、学校で学んだいくつかの詩は今でも覚えています。 だからといって、話題に関係なく、突然、弱強四歩格のリズムになって水仙についての詩を詠んで会話を脱線させようと思ったことは一度もありません。
 
-Here, I intentionally directed<sup id="anchor4">[4](#footnote4)</sup> {% data variables.product.prodname_dotcom %} Copilot to recite a well known text it obviously knows by heart. I, too, know a couple of texts by heart. For example, I still remember some poems I learnt in school. Yet no matter the topic, not once have I been tempted to derail a conversation by falling into iambic tetrameter and waxing about daffodils.
+では、そのようなこと (というよりは、それと同等のコーディング) は、{% data variables.product.prodname_dotcom %} Copilot がしがちなことなのでしょうか。 その提案のいくつが独自のもので、トレーニング中に見た可能性の高いコードをどれだけの頻度でただ機械的にまねているのでしょうか。
 
-So is that (or rather the coding equivalent of it) something {% data variables.product.prodname_dotcom %} Copilot is prone to doing? How many of its suggestions are unique, and how often does it just parrot some likely looking code it has seen during training?
+## <a name="the-experiment"></a>実験
 
-## The Experiment
+{% data variables.product.prodname_dotcom %} Copilot の初期の開発で、社内試用の一環として、300 人近くの従業員が毎日の作業で使用しました。 この試用では、暗唱のテストに適したデータセットが用意されました。 {% data variables.product.prodname_dotcom %} Copilot によって、以前に見たことから引用した提案がされた頻度を調べたいと思いました。
 
-During {% data variables.product.prodname_dotcom %} Copilot’s early development, nearly 300 employees used it in their daily work as part of an internal trial. This trial provided a good dataset to test for recitation. I wanted to find out how often {% data variables.product.prodname_dotcom %} Copilot gave them a suggestion that was quoted from something it had seen before.
+調査は、期限が 2021 年 5 月 7 日 (そのデータの抽出を開始した日) の Python の提案に制限しました。 それにより、396 以上の "ユーザー週" つまり、ユーザーが Python コードで {% data variables.product.prodname_dotcom %} Copilot をアクティブに使用したカレンダー週にわたる、453,780 件の提案が残りました。
 
-I limited the investigation to Python suggestions with a cutoff on May 7, 2021 (the day we started extracting that data). That left 453,780 suggestions spread out over 396 “user weeks”, i.e. calendar weeks during which a user actively used {% data variables.product.prodname_dotcom %} Copilot on Python code.
+### <a name="automatic-filtering"></a>自動フィルター処理
 
-### Automatic Filtering
+提案は 453,780 件と多数ですが、その多くはそのまま破棄できます。 興味深いケースを見るために、提案で、{% data variables.product.prodname_dotcom %} Copilot がトレーニングされているコードと同じ順序になっている "単語" の並びを検討します。 このコンテキストでは、句読点、角かっこ、またはその他の特殊文字はすべて "単語" としてカウントされますが、タブ、スペース、または改行は完全に無視されます。 つまり、引用符は、1 つのタブまたは 8 つのスペースでインデントされていても、引用符のままです。
 
-453,780 suggestions are a lot, but many of them can be dismissed immediately. To get to the interesting cases, consider sequences of “words” that occur in the suggestion in the same order as in the code {% data variables.product.prodname_dotcom %} Copilot has been trained on. In this context, punctuation, brackets, or other special characters all count as “words”, while tabs, spaces or even line breaks are ignored completely. After all, a quote is still a quote, whether it’s indented by 1 tab or 8 spaces.
-
-For example, one of {% data variables.product.prodname_dotcom %} Copilot’s suggestions was the following regex for numbers separated by whitespace:
+たとえば、{% data variables.product.prodname_dotcom %} Copilot の提案の 1 つは、次のように、空白で区切られた数値の正規表現でした。
 
 ```
 r'^\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+'
 ```
 
-This would be exactly 100 “words” in the sense above, but it’s a particularly dense example: the average non-empty line of code has only 10 “words.” I’ve restricted this investigation to cases where the overlap with the code {% data variables.product.prodname_dotcom %} Copilot was trained on contains at least 60 such “words”. We have to set the cut somewhere, and I think it’s rather rare that shorter sequences would be of great interest. In fact, most of the interesting cases identified later are well clear of that threshold of 60.
+これは、上述の意味では、ちょうど 100 個の "単語" になりますが、特に極端な例です。空でないコード行に含まれる "単語" は、平均で 10 個のみです。 私はこの調査を、{% data variables.product.prodname_dotcom %} Copilot がトレーニングされたコードとの重複が、少なくとも 60 個ほどの "単語" である場合に限定しました。 区切りをどこかに設定する必要がありますが、短いシーケンスに関心をひかれることはかなりまれだと思います。 実際、後で特定された興味深いケースのほとんどは、そのしきい値である 60 をかなり超えています。
 
-If the overlap extends to what the user has already written, that also counts for the length. After all, the user may have written that context with the help of {% data variables.product.prodname_dotcom %} Copilot as well!
+重複が、ユーザーが既に書いていたものにまで及ぶ場合は、その長さも重要です。 結局のところ、ユーザーは {% data variables.product.prodname_dotcom %} Copilot の助けを借りてそのコンテキストを記述している可能性があるのです。
 
-In the following example, the user has started writing a very common snippet. {% data variables.product.prodname_dotcom %} Copilot completes it. Even though the completion itself is rather short, together with the already existing code it clears the threshold and is retained.
+次の例では、ユーザーがごく普通のスニペットを記述し始めています。 {% data variables.product.prodname_dotcom %}Copilot がこれを完成させます。 出来あがったもの自体は、やや短いものの、既存のコードと共にしきい値を超え、保持されます。 
 
-![Example code](/assets/images/help/copilot/example_last_straw.png)
+![コード例](/assets/images/help/copilot/example_last_straw.png)
 
-This procedure is permissive enough to let many relatively “boring” examples through, like the two above. But it’s still effective at dialing in the human analysis to the interesting cases, sorting out over 99% of Copilot suggestions.
+この手順は、上記の 2 つのように、多くの比較的 "つまらない" 例が通るほど、制限が緩やかです。 しかしそれでも、99% 以上の Copilot の提案を整理して、興味深いケースに対して人間による分析を効果的に調整できます。
 
-### Manual Bucketing
+### <a name="manual-bucketing"></a>手動のバケッティング
 
-After filtering, there were 473 suggestions left. But they came in very different forms:
+フィルター処理の結果、473 個の候補が残りました。 しかし、それらはさまざまな形式になりました。
 
-1. Some were basically just repeats of another case that passed filtering. For example, sometimes {% data variables.product.prodname_dotcom %} Copilot makes a suggestion, the developer types a comment line, and {% data variables.product.prodname_dotcom %} Copilot offers a very similar suggestion again. I removed these cases from the analysis as duplicates.
-2. Some were long, repetitive sequences. Like the following example, where the repeated blocks of `‘<p>’` are of course found somewhere in the training set: <br>![Example repetitions](/assets/images/help/copilot/example_repetitions.png)<br> Such suggestions can be helpful (test cases, regular expressions) or not helpful (like this case, I suspect). But in any case, they do not fit the idea of rote learning I had in mind when I started this investigation.
-3. Some were standard inventories, like the natural numbers, or the prime numbers, or stock market tickers, or the Greek alphabet: <br>![Example of Greek alphabet](/assets/images/help/copilot/example_greek.png)
-4. Some were common, straightforward ways, perhaps even universal ways, of doing things with very few natural degrees of freedom. For example, the middle part of the following strikes me as very much the standard way of using the BeautifulSoup package to parse a Wikipedia list. In fact, the best matching snippet found in {% data variables.product.prodname_dotcom %} Copilot's training data<sup id="anchor5">[5](#footnote5)</sup> uses such code to parse a different article and goes on to do different things with the results. <br>![Example of Beautiful Soup](/assets/images/help/copilot/example_beautiful_soup.png) <br>This doesn’t fit my idea of a quote either. It’s a bit like when someone says “I’m taking out the trash; I’ll be back soon” -- that’s a matter of fact statement, not a quote, even though that particular phrase has been uttered many times before.
-5. And then there are all other cases. Those with at least some specific overlap in either code or comments. These are what interests me most, and what I’m going to concentrate on from now on.
+1. 一部のケースでは、フィルター処理を通った別のケースを基本的に繰り返すだけでした。 たとえば、{% data variables.product.prodname_dotcom %} Copilot により提案が行われ、開発者がコメント行を入力し、{% data variables.product.prodname_dotcom %} Copilot で非常によく似た提案が再び提供されることがあります。 このようなケースは、重複として分析から削除しました。
+2. いくつかは、長い繰り返しのシーケンスでした。 次の例のように、`‘<p>’` のブロックが繰り返される場所は、もちろん、トレーニング セット内のどこかにあります。 <br>![繰り返しの例](/assets/images/help/copilot/example_repetitions.png)<br> このような提案は、役に立つ場合 (テストケース、正規表現)、あるいは、役に立たない場合 (この場合のように、疑わしいと思われる) があります。 しかしいずれにしても、これらは、この調査を始めたときに私が思っていた暗記学習の考えに合っていません。
+3. 一部は、自然数、素数、株価ティッカー、ギリシャ語のアルファベットなどの標準的な一覧表でした。 <br>![ギリシャ語のアルファベットの例](/assets/images/help/copilot/example_greek.png)
+4. いくつかは、ごくわずかな普通の自由度で物事を行うことの、一般的で直接的な方法、おそらく普遍的な方法でした。 たとえば、次の中間の部分は、Beautiful Soup パッケージを使用してウィキペディア リストを解析する標準的な方法とまったく同じように思われます。 実際、{% data variables.product.prodname_dotcom %} Copilot のトレーニング データ <sup id="anchor5">[5](#footnote5)</sup> で見つかった最も一致するスニペットでは、このようなコードを使用して別の記事を解析し、その結果を使用してさまざまな操作を行います。 <br>![Beautiful Soup の例](/assets/images/help/copilot/example_beautiful_soup.png) <br>これも、私が考える引用に当てはまりません。 誰かが「ゴミを出してくる。すぐ戻るよ」と言う場合、その特定のフレーズが以前に何度も発言されていても、それは引用ではなく、事実を淡々と述べるものである、といったようなものです。
+5. さらに、その他のすべてのケースがあります。 コードまたはコメントのいずれかに少なくともいくつかの重複があるケースです。 これらは私が非常に興味があるものなので、これから集中して進めます。
 
-This bucketing necessarily has some edge cases<sup id="anchor6">[6](#footnote6)</sup>, and your mileage may vary in how you think they should be classified. Maybe you even disagree with the whole set of buckets in the first place.
+このバケッティングには必ずエッジ ケース <sup id="anchor6">[6](#footnote6)</sup> があり、分類する必要があると考える方法によって有用性が異なる場合があります。 そもそも、バケットのセット全体に異論もあるかもしれません。
 
-That’s why we’ve open sourced that dataset<sup id="anchor7">[7](#footnote7)</sup>. So if you feel a bit differently about the bucketing, or if you’re interested in other aspects of GitHub Copilot parroting its training set, you’re very welcome to just ignore my next section and draw your own conclusions.
+そのため、私達はそのデータセット <sup id="anchor7">[7](#footnote7)</sup> をオープン ソースにしました。 したがって、バケットについての考え少し異なる場合や、GitHub Copilot によるトレーニング セットのおうむ返しの他の側面に興味がある場合は、次のセクションを無視して、独自の結論を出していただいて結構です。
 
-## 結果
+## <a name="results"></a>結果
 
-![Overview Plot](/assets/images/help/copilot/plot_buckets.png)
+![概要プロット](/assets/images/help/copilot/plot_buckets.png)
 
-For most of {% data variables.product.prodname_dotcom %} Copilot's suggestions, our automatic filter didn’t find any significant overlap with the code used for training. But it did bring 473 cases to our attention. Removing the first bucket (cases that look very similar to other cases) left me with 185 suggestions. Of these, 144 got sorted out in buckets 2 - 4. This left 41 cases in the last bucket, the “recitations”, in the meaning of the term I have in mind.
+自動フィルターでは、{% data variables.product.prodname_dotcom %} Copilot の提案のほとんどについて、トレーニングに使用するコードとの大きな重複は見つかりませんでした。 しかし、それによって 473 件のケースに注目しました。 最初のバケット (他のケースとよく似たケース) を削除すると、185 件の提案が残りました。 そのうち、144 件はバケット 2 から 4 に分類されました。 これにより、41 件のケースが最後のバケットに、つまり私が考えている用語の意味で「暗唱」に残りました。
 
-That corresponds to **1 recitation event every 10 user weeks** (95% confidence interval: 7 - 13 weeks, using a Poisson test).
+これは、**10 ユーザー週ごとに 1 回の暗唱イベント** に相当します (95% 信頼区間: 7 - 13 週間、ポアソンテストを使用)。
 
-Of course, this was measured on the {% data variables.product.prodname_dotcom %} and Microsoft developers who tried out {% data variables.product.prodname_dotcom %} Copilot. If your coding behaviour is very different from theirs, your results might differ. In particular, some of these developers are only working part time on Python projects —— I could not distinguish that and so counted everyone who writes some Python in a given week as a user.
+もちろん、これは {% data variables.product.prodname_dotcom %} と、{% data variables.product.prodname_dotcom %} Copilot を試した Microsoft 開発者で測定しました。 自分のコーディングの動作がこれらと大きく異なる場合、結果は異なる可能性があります。 特に、これらの開発者の中には、Python プロジェクトでのみパートタイムで作業している人もいます。その点は区別できなかったので、特定の週にユーザーとして Python を書くすべてのユーザーを数えました。
 
-1 event in 10 weeks doesn’t sound like a lot, but it’s not 0 either. And I found three things that struck me.
+10 週間で 1 つのイベントは多いようには思えませんが、0 でもありません。 そして、興味深い 3 つのことがわかりました。
 
-### {% data variables.product.prodname_dotcom %} Copilot quotes when it lacks specific context
+### <a name="-data-variablesproductprodname_dotcom--copilot-quotes-when-it-lacks-specific-context"></a>{% data variables.product.prodname_dotcom %} Copilot では、特定のコンテキストがない場合に引用します。
 
-If I want to learn the lyrics to a song, I have to listen to it many times. {% data variables.product.prodname_dotcom %} Copilot is no different: to learn a snippet of code by heart, it must see that snippet a lot. Each file is only shown to {% data variables.product.prodname_dotcom %} Copilot once, so the snippet needs to exist in many different files in public code.
+歌の歌詞を覚えたいと思ったら、それを何度も聴かなければなりません。 {% data variables.product.prodname_dotcom %} Copilot も違いはありません。コードのスニペットを暗記するには、そのスニペットをたくさん見る必要があります。 各ファイルは {% data variables.product.prodname_dotcom %} Copilot に 1 回しか表示されないので、スニペットはパブリック コード内のさまざまなファイルに存在している必要があります。
 
-Of the 41 main cases we singled out during manual labelling, none appear in less than 10 different files. Most (35 cases) appear over a hundred times. Once, {% data variables.product.prodname_dotcom %} Copilot suggested starting an empty file with something it had even seen more than a whopping 700,000 different times during training -- that was the GNU General Public License.
+手動ラベル付け中に選ばれた 41 件の主なケースのうち、異なるファイルが 10 個未満の場合は何も表示されません。 ほとんど (35 件のケース) では 100 回以上表示されます。 以前、{% data variables.product.prodname_dotcom %} Copilot が、トレーニング中に 70 万以上というとてつもない回数で表示されたものから空のファイルを開始するよう提案したことがありました。これは GNU 一般公衆ライセンスでした。
 
-The following plot shows the number of matched files of the results in bucket 5 (one red mark on the bottom for each result) versus buckets 2-4. I left out bucket 1, which is really just a mix of duplicates of bucket 2-4 cases and duplicates of bucket 5 cases. The inferred distribution is displayed as a red line; it peaks between 100 and 1000 matches.
+次のプロットは、バケット 5 の結果の一致したファイルの数 (各結果の下部に 1 つの赤いマーク) と、バケット 2 から 4 を示しています。 バケット 1 を残しました。これは実際には、バケット 2 から 4 のケースの重複とバケット 5 のケースの重複の組み合わせです。 推定分布は赤い線で表示されています。100 から 1,000 の一致の間でピークが発生します。
 
-![Number of Matches Plot](/assets/images/help/copilot/plot_copies.png)
+![一致するプロットの数](/assets/images/help/copilot/plot_copies.png)
 
-### {% data variables.product.prodname_dotcom %} Copilot mostly quotes in generic contexts
+### <a name="-data-variablesproductprodname_dotcom--copilot-mostly-quotes-in-generic-contexts"></a>{% data variables.product.prodname_dotcom %} Copilot では、主に一般的なコンテキストで引用します。
 
-As time goes on, each file becomes unique. But {% data variables.product.prodname_dotcom %} Copilot doesn’t wait for that<sup id="anchor8">[8](#footnote8)</sup>: it will offer its solutions while your file is still extremely generic. And in the absence of anything specific to go on, it’s much more likely to quote from somewhere else than it would be otherwise.
+時間の経過とともにて、各ファイルは一意になります。 しかし、{% data variables.product.prodname_dotcom %} Copilot はそれを待っていません <sup id="anchor8">[8](#footnote8)</sup>。ファイルがまだ非常に一般的である間にソリューションを提供します。 また、動作するための特定なものがない場合は、他の場所から引用する可能性がそれ以外の場合よりもかなりと高くなります。
 
-![Context Length Plot](/assets/images/help/copilot/plot_context.png)
+![コンテキスト長プロット](/assets/images/help/copilot/plot_context.png)
 
-Of course, software developers spend most of their time deep inside the files, where the context is unique enough that {% data variables.product.prodname_dotcom %} Copilot will offer unique suggestions. In contrast, the suggestions at the beginning are rather hit-and-miss, since {% data variables.product.prodname_dotcom %} Copilot cannot know what the program will be. But sometimes, especially in toy projects or standalone scripts, a modest amount of context can be enough to hazard a reasonable guess of what the user wanted to do. And sometimes it's still generic enough so that {% data variables.product.prodname_dotcom %} Copilot thinks one of the solutions it knows by heart looks promising:
+もちろん、ソフトウェア開発者は、ほとんどの時間をファイルの詳細に費やします。そのコンテキストは、{% data variables.product.prodname_dotcom %} Copilot が独自の提案を提供するのに十分に一意です。 一方、{% data variables.product.prodname_dotcom %} Copilot ではどのようなプログラムになるかわからないため、最初の提案はかなりいい加減です。 しかし、特に小さいプロジェクトやスタンドアロンのスクリプトでは、少量のコンテキストでも、ユーザーが何をしたいのかを合理的に推測するのに十分な場合があります。 また、それでもまだ十分に汎用的で、{% data variables.product.prodname_dotcom %} Copilot が暗記しているソリューションの 1 つが有望であると考える場合があります。
 
-![Example code](/assets/images/help/copilot/example_robot.png)
+![コード例](/assets/images/help/copilot/example_robot.png)
 
-This is pretty much directly taken from coursework for a robotics class uploaded in different variations<sup id="anchor9">[9](#footnote9)</sup>.
+これは、さまざまなバリエーションでアップロードされたロボット クラスのコースワークからほとんど直接取っています <sup id="anchor9">[9](#footnote9)</sup>。
 
-### Detection is only as good as the tool that does the detecting
+### <a name="detection-is-only-as-good-as-the-tool-that-does-the-detecting"></a>検出は、検出を行うツールと同じくらい優れている
 
-In its current form, the filter will turn up a good number of uninteresting cases when applied broadly. But it still should not be too much noise. For the internal users in the experiment, it would have been a bit more than one find per week on average (albeit likely in bursts!). Of these, about 17% (95% confidence interval using a binomial test: 14%-21%) would be in the fifth bucket.
+現在のフォームでは、広く適用すると、フィルターによってかなりの数の不要なケースが見つかります。 しかし、それでも、ノイズは多すぎてはいけません。 実験の内部ユーザーの場合、週に平均で 1 件ちょっとが見つかる可能性があります (バーストの可能性はありますが)。 そのうち、約 17% (二項検定を使用した 95% 信頼区間: 14% - 21%) が 5 番目のバケットに含まれます。
 
-And nothing is ever foolproof of course: so this too can be tricked. Some cases are rather hard to detect by the tool we’re building, but still have an obvious source. To return to the Zen of Python:
+もちろん、絶対に確実なものなどはありません。だから、これもだまされる可能性があります。 ビルド中のツールにより検出するのがやや難しい場合もありますが、それでも明らかなソースがあります。 Python の Zen に戻すには:
 
-![Zen Variation](/assets/images/help/copilot/resources_recitation_example_zen_caw.gif)
+![Zen のバリエーション](/assets/images/help/copilot/resources_recitation_example_zen_caw.gif)
 
-## Conclusion and Next Steps
+## <a name="conclusion-and-next-steps"></a>まとめと次の手順
 
-This investigation demonstrates that {% data variables.product.prodname_dotcom %} Copilot _can_ quote a body of code verbatim, but that it rarely does so, and when it does, it mostly quotes code that everybody quotes, and mostly at the beginning of a file, as if to break the ice.
+この調査で示しているのは、{% data variables.product.prodname_dotcom %} Copilot では、コードの本文を逐語的に引用 _できます_ が、そうすることはあまりなく、その場合、ほとんどは誰もが引用するコードを引用し、糸口を見つけるかのように、ほとんどの場合はファイルの先頭で引用していることです。
 
-But there’s still one big difference between GitHub Copilot reciting code and me reciting a poem: I _know_ when I’m quoting. I would also like to know when Copilot is echoing existing code rather than coming up with its own ideas. That way, I’m able to look up background information about that code, and to include credit where credit is due.
+しかし、GitHub Copilot でコードを暗唱するのと、自分が詩を暗唱するのとでは、まだ大きな違いがあります。自分は引用しているタイミングが _わかって_ います。 Copilot で独自のアイデアを思い付くのではなく、既存のコードをそのまま模倣するタイミングも知りたいと思います。 そうすれば、そのコードに関する背景情報を検索し、クレジットが入る予定のところにクレジットを含めることができます。
 
-The answer is obvious: sharing the prefiltering solution we used in this analysis to detect overlap with the training set. When a suggestion contains snippets copied from the training set, the UI should simply tell you where it’s quoted from. You can then either include proper attribution or decide against using that code altogether.
+答えは明らかです。この分析で使用した事前フィルター処理ソリューションを共有して、トレーニング セットとの重複を検出します。 候補にトレーニング セットからコピーされたスニペットが含まれている場合、UI では引用した場所が示されるだけです。 これで、適切な属性を含める、あるいは、そのコードをまったく使用しないことを決定することができます。
 
-This duplication search is not yet integrated into the technical preview, but we plan to do so. And we will both continue to work on decreasing rates of recitation, and on making its detection more precise.
+この重複検索はまだ Technical Preview に統合されていませんが、そのようにする予定です。 そして、引用率の低下と、その検出をより正確なものにすることの両方に引き続き取り組みます。
 
 <br><br>
 
-### Footnotes
+### <a name="footnotes"></a>脚注
 
-<a name="footnote1">1</a>: [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?](https://dl.acm.org/doi/10.1145/3442188.3445922) [^](#anchor1)
+<a name="footnote1">1</a>: [確率的おうむ返しの危険性について: 言語モデルが大きすぎる可能性があるか](https://dl.acm.org/doi/10.1145/3442188.3445922) [^](#anchor1)
 
 <a name="footnote2">2</a>: [Tiferet Gazit](https://github.com/tiferet) [^](#anchor2)
 
-<a name="footnote3">3</a>: see von Bayern et al. about the creative wisdom of crows: [Compound tool construction by New Caledonian crows](https://www.nature.com/articles/s41598-018-33458-z) [^](#anchor3)
+<a name="footnote3">3</a>: von Bayern らによる、カラスの創造的な知恵に関する、「[ニューカレドニアのカラスによる複合ツールの構築](https://www.nature.com/articles/s41598-018-33458-z)」を参照 [^](#anchor3)
 
-<a name="footnote4">4</a>: see Carlini et al. about deliberately triggering the recall of training data: [Extracting Training Data from Large Language Models](https://arxiv.org/pdf/2012.07805.pdf) [^](#anchor4)
+<a name="footnote4">4</a>: Carlini らによる、トレーニング データのリコールを意図的にトリガーする方法に関する、「[大規模言語モデルからのトレーニング データの抽出](https://arxiv.org/pdf/2012.07805.pdf)」を参照。 [^](#anchor4)
 
 <a name="footnote5">5</a>: jaeteekae: [DelayedTwitter](https://github.com/jaeteekae/DelayedTwitter/blob/0a0b03de74c03cfbf36877ffded0cb1312d59642/get_top_twitter_accounts.py#L21) [^](#anchor5)
 
-<a name="footnote6">6</a>: Probably not _too_ many though. I’ve asked some developers to help me label the cases, and everyone was prompted to flag up any uncertainty with their judgement. That happened in only 34 cases, i.e. less than 10%. [^](#anchor6)
+<a name="footnote6">6</a>: おそらく、_それほど_ 多くはありません。 ケースにラベルを付けるのを手伝うよう、何人かの開発者に依頼し、不明な点があれば彼らの判断で注意喚起するよう、全員が指示されました。 これは、10% 未満の 34 件のケースでのみ発生しました。 [^](#anchor6)
 
-<a name="footnote7">7</a>: In the [public dataset](/assets/images/help/copilot/matched_snippets.csv), I list the part of Copilot's suggestion that was also found in the training set, how often it was found, and a link to an example where it occurs in public code. For privacy reasons, I don't include the not-matched part of the completion or the code context the user had typed (only an indication of its length). [^](#anchor7)
+<a name="footnote7">7</a>: [パブリック データセット](/assets/images/help/copilot/matched_snippets.csv)では、トレーニング セットでも見つかった Copilot の提案の一部、見つかった頻度、パブリック コードで発生する例へのリンクを一覧表示します。 プライバシー上の理由から、入力候補の一致しない部分や、ユーザーが入力したコード コンテキストは含めていません (その長さだけを示しています)。 [^](#anchor7)
 
-<a name="footnote8">8</a>: In fact, since this experiment has been made, {% data variables.product.prodname_dotcom %} Copilot _has_ changed to require a minimum file content. So some of the suggestions flagged here would not have been shown by the current version. [^](#anchor8)
+<a name="footnote8">8</a>: 実際には、この実験が行われたので、{% data variables.product.prodname_dotcom %} Copilot は、必要なファイル コンテンツが最小限になるように変更 _されています_。 そのため、ここでフラグが設定された提案の一部は、現在のバージョンでは表示されませんでした。 [^](#anchor8)
 
-<a name="footnote9">9</a>: For example jenevans33: [CS8803-1](https://github.com/jenevans33/CS8803-1/blob/eca1bbc27ca6f7355dbc806b2f95964b59381605/src/Final/ekfcode.py#L23) [^](#anchor9)
+<a name="footnote9">9</a>: jenevans33 など: [CS8803-1](https://github.com/jenevans33/CS8803-1/blob/eca1bbc27ca6f7355dbc806b2f95964b59381605/src/Final/ekfcode.py#L23) [^](#anchor9)

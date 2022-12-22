@@ -1,27 +1,31 @@
-With per-user pricing, each person consumes one license. {% data variables.product.company_short %} identifies individuals by primary email address.
+---
+ms.openlocfilehash: c8432b756590deab759f023a78453a482b8091fd
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145113609"
+---
+Con los precios por usuario, cada persona utiliza una licencia. {% data variables.product.company_short %} identifica a las personas por dirección de correo electrónico principal.
 
-{% data variables.product.company_short %} bills for the following people.
-
-{%- ifversion ghec %}
-- Enterprise owners who are a member or owner of at least one organization in the enterprise
-{%- endif %}
-- Organization members, including owners
-- Outside collaborators on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-- Anyone with a pending invitation to become an organization owner or member
-- Anyone with a pending invitation to become an outside collaborator on private{% ifversion ghec %} or internal{% endif %} repositories owned by your organization, excluding forks
-{%- ifversion ghec %}
-- Each user on any {% data variables.product.prodname_ghe_server %} instance that you deploy
-{% endif %}
-
-{% data variables.product.company_short %} does not bill for any of the following people.
+{% data variables.product.company_short %} factura a las siguientes personas.
 
 {%- ifversion ghec %}
-- Enterprise owners who are not a member or owner of at least one organization in the enterprise
-- Enterprise billing managers
-{%- endif %}
-- Organization billing managers{% ifversion ghec %} for individual organizations on {% data variables.product.prodname_ghe_cloud %}{% endif %}
-- Anyone with a pending invitation to become an{% ifversion ghec %} enterprise or{% endif %} organization billing manager
-- Anyone with a pending invitation to become an outside collaborator on a public repository owned by your organization
+- Los propietarios de empresas que son miembros o propietarios de al menos una organización de la empresa {%- endif %}
+- Miembros de la organización, incluidos los propietarios
+- Colaboradores externos en repositorios privados{% ifversion ghec %} o internos{% endif %} propiedad de su organización, excepto las bifurcaciones
+- Cualquier persona con una invitación pendiente para convertirse en propietario o miembro de la organización
+- Cualquier persona con una invitación pendiente para convertirse en colaborador externo en repositorios privados{% ifversion ghec %} o internos{% endif %} propiedad de su organización, excepto las bifurcaciones {%- ifversion ghec %}
+- Los usuarios de cualquier instancia de {% data variables.product.prodname_ghe_server %} que implemente {% endif %}
+
+{% data variables.product.company_short %} no factura a ninguna de las personas siguientes.
+
+{%- ifversion ghec %}
+- Los propietarios de la empresa que no son miembros o propietarios de al menos una organización de la empresa
+- Gerentes de facturación de empresas {%- endif %}
+- Gerentes de facturación de la organización{% ifversion ghec %} para organizaciones individuales en {% data variables.product.prodname_ghe_cloud %}{% endif %}
+- Cualquier persona con una invitación pendiente para convertirse en un gerente de facturación de la organización{% ifversion ghec %} o de la empresa{% endif %}
+- Cualquier persona con una invitación pendiente para convertirse en colaborador externo en un repositorio público propiedad de su organización
 
 {% note %}
 

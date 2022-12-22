@@ -1,9 +1,9 @@
 ---
-title: Crear y probar Node.js o Python
-shortTitle: Crear & probar Node.js o Python
-intro: Puedes crear un flujo de trabajo de integración continua (CI) para crear y probar tu proyecto. Utiliza el selector de lenguaje para mostrar ejemplos de tu lenguaje seleccionado.
+title: Crear y probar a Node-js o Python
+shortTitle: Build & test Node.js or Python
+intro: You can create a continuous integration (CI) workflow to build and test your project. Use the language selector to show examples for your language of choice.
 redirect_from:
-  - /actions/guides/building-and-testing-nodejs-or-python
+- /actions/guides/building-and-testing-nodejs-or-python
 versions:
   fpt: '*'
   ghes: '*'
@@ -11,8 +11,12 @@ versions:
   ghec: '*'
 type: tutorial
 topics:
-  - CI
+- CI
+ms.openlocfilehash: aa03416907eb05ac6c31081d51dcb50980a3501f
+ms.sourcegitcommit: 67064b14c9d4d18819db8f6398358b77a1c8002a
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145092564"
 ---
-
-
 <!-- This article is specially rendered via the pages/ directory -->

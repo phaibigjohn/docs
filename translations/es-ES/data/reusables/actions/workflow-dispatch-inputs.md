@@ -1,6 +1,16 @@
-Cuando se utiliza el evento `workflow_dispatch`, puedes especificar opcionalmente entradas que se pasan al flujo de trabajo.
+---
+ms.openlocfilehash: 6a71d461562c3d6e390549739ac1f17cb274f3f2
+ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 09/05/2022
+ms.locfileid: "146199798"
+---
+Cuando se usa el evento `workflow_dispatch`, puede especificar opcionalmente entradas que se pasan al flujo de trabajo.
 
-El flujo de trabajo que se activa recibe las entradas en el contexto de `github.event.inputs`. Para obtener más información, consulta "[Contextos](/actions/learn-github-actions/contexts#github-context)".
+El flujo de trabajo desencadenado recibe las entradas en el contexto {% ifversion actions-unified-inputs %}`inputs`{% else %}`github.event.inputs`{% endif %}. Para más información, vea "[Contextos]({% ifversion actions-unified-inputs %}/actions/learn-github-actions/contexts#inputs-context{% else %}/actions/learn-github-actions/contexts#github-context{% endif %})".
+
+{% data reusables.actions.inputs-vs-github-event-inputs %}
 
 ```yaml
 on:
@@ -31,8 +41,8 @@ on:
 jobs:
   print-tag:
     runs-on: ubuntu-latest
-    if: {% raw %} ${{ github.event.inputs.print_tags == 'true' }} {% endraw %}
+    if: {% ifversion actions-unified-inputs %}{% raw %} ${{ inputs.print_tags }} {% endraw %}{% else %}{% raw %} ${{ github.event.inputs.print_tags == 'true' }} {% endraw %}{% endif %}
     steps:
       - name: Print the input tag to STDOUT
-        run: echo {% raw %} The tags are ${{ github.event.inputs.tags }} {% endraw %}
+        run: {% ifversion actions-unified-inputs %}echo {% raw %} The tags are ${{ inputs.tags }} {% endraw %}{% else %}echo {% raw %} The tags are ${{ github.event.inputs.tags }} {% endraw %}{% endif %}
 ```
